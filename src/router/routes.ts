@@ -1,7 +1,7 @@
-export enum Routes {
+export enum RouteNames {
   HOME = "/",
   TRENDS = "/trends",
-  FVOURITES = "/favourites",
+  FAVOURITES = "/favourites",
   SETTINGS = "/setting",
   SIGN_IN = "/signin",
   SIGN_UP = "/signup",

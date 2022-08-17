@@ -5,7 +5,7 @@ import { Favourites, Home, NotFound, Settings, Trends } from "../pages";
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path={Endpoint.HOME} element={<Home />} />
+      <Route index element={<Home />} />
       <Route path={Endpoint.FAVOURITES} element={<Favourites />} />
       <Route path={Endpoint.TRENDS} element={<Trends />} />
       <Route path={Endpoint.SETTINGS} element={<Settings />} />

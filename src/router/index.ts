@@ -1,4 +1,4 @@
 import { AppRouter } from "./AppRouter";
-import { RouteNames } from "./routes";
+import { Endpoint } from "./routes";
 
-export { RouteNames, AppRouter };
+export { Endpoint, AppRouter };

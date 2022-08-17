@@ -1,4 +1,4 @@
-export enum RouteNames {
+export enum Endpoint {
   HOME = "/",
   TRENDS = "/trends",
   FAVOURITES = "/favourites",

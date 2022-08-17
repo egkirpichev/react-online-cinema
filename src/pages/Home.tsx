@@ -1,5 +1,9 @@
-import { Input } from "../components/Input";
+import { NavBar } from "../components/NavBar";
 
 export const Home = () => {
-  return <div></div>;
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
 };

@@ -1,7 +1,7 @@
 export enum Breakpoints {
-  xsm = "320px",
-  sm = "768px",
-  md = "1024px",
-  lg = "1280px",
-  xl = "1440px",
+  XS = "320px",
+  S = "768px",
+  M = "1024px",
+  L = "1280px",
+  XL = "1440px",
 }

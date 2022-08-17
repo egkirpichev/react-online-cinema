@@ -1,9 +1,10 @@
 export enum Space {
-  extrasmall = "8px",
-  smaller = "16px",
-  small = "20px",
-  medium = "20px",
-  large = "40px",
-  larger = "56px",
-  extraLarge = "64px",
+  XXS = "8px",
+  XS = "16px",
+  S = "20px",
+  M = "20px",
+  L = "40px",
+  XL = "56px",
+  XXL = "64px",
+  XXXL = "128px",
 }

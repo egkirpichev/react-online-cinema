@@ -1,5 +1,10 @@
 import { AppRouter } from "./router";
+import { Wrapper } from "./ui/base";
 
 export const App = () => {
-  return <AppRouter />;
+  return (
+    <Wrapper>
+      <AppRouter />
+    </Wrapper>
+  );
 };

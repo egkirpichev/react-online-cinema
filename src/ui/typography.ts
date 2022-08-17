@@ -24,21 +24,21 @@ export const H3 = styled.h3`
   color: ${Color.Graphite};
 `;
 
-export const Subline1 = styled.h4`
+export const Subtitle1 = styled.h4`
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   color: ${Color.Graphite};
 `;
 
-export const Subline2 = styled.h4`
+export const Subtitle2 = styled.h4`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: ${Color.Graphite};
 `;
 
-export const Subline3 = styled.h4`
+export const Subtitle3 = styled.h4`
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -48,6 +48,6 @@ export const Subline3 = styled.h4`
 export const Body = styled.p`
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 20px;
   color: ${Color.Graphite};
 `;

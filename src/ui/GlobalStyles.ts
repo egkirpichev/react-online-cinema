@@ -41,9 +41,8 @@ export const GlobalStyles = createGlobalStyle`
 	* Correct the font size and margin on h1 elements within section and
 	* article contexts in Chrome, Firefox, and Safari.
 	*/
-	h1 {
-		font-size: 2em;
-		margin: 0.67em 0;
+	h1, h2, h3, h4 {
+		margin: 0;
 	}
 	/* Grouping content
 		========================================================================== */

@@ -1,16 +1,29 @@
-import { NavBarLink, Navigation, StyledNavBar } from "./styles";
+import { Navigation, StyledNavBar } from "./styles";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { Endpoint } from "../../router";
+import { CustomLink } from "../CustomLink";
+import homeIcon from "../../assets/home.svg";
+import trendsIcon from "../../assets/trends.svg";
+import favouritesIcon from "../../assets/favourites.svg";
+import settingsIcon from "../../assets/settings.svg";
 
 export const NavBar = () => {
   return (
     <StyledNavBar>
       <Logo />
       <Navigation>
-        <NavBarLink to={Endpoint.HOME}>Home</NavBarLink>
-        <NavBarLink to={Endpoint.TRENDS}>Trends</NavBarLink>
-        <NavBarLink to={Endpoint.FAVOURITES}>Favourites</NavBarLink>
-        <NavBarLink to={Endpoint.SETTINGS}>Settings</NavBarLink>
+        <CustomLink to={Endpoint.HOME} text="Home" icon={homeIcon}></CustomLink>
+        <CustomLink to={Endpoint.TRENDS} text="Trends" icon={trendsIcon} />
+        <CustomLink
+          to={Endpoint.FAVOURITES}
+          text="Favourites"
+          icon={favouritesIcon}
+        />
+        <CustomLink
+          to={Endpoint.SETTINGS}
+          text="Settings"
+          icon={settingsIcon}
+        />
       </Navigation>
     </StyledNavBar>
   );

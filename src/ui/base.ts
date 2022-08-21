@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Breakpoints } from "./breakpoints";
+import { Breakpoint } from "./breakpoints";
 import { Color } from "./colors";
 import { Space } from "./spacing";
 
@@ -11,21 +11,21 @@ export const Wrapper = styled.div`
   padding: ${Space.L} ${Space.XXL} ${Space.XXL};
   background-color: ${Color.Black};
 
-  @media (max-width: ${Breakpoints.XL}) {
+  @media (max-width: ${Breakpoint.XL}) {
     padding: ${Space.M} ${Space.XXXL} ${Space.XXL};
   }
 
-  @media (max-width: ${Breakpoints.L}) {
+  @media (max-width: ${Breakpoint.L}) {
     grid-template-columns: 1fr;
     padding: ${Space.L} ${Space.XXXL} ${Space.XL};
   }
 
-  @media (max-width: ${Breakpoints.M}) {
+  @media (max-width: ${Breakpoint.M}) {
     grid-template-columns: 1fr;
     padding: ${Space.L} ${Space.L} ${Space.XL};
   }
 
-  @media (max-width: ${Breakpoints.XS}) {
+  @media (max-width: ${Breakpoint.XS}) {
     grid-template-columns: 1fr;
     padding: ${Space.M} ${Space.M} ${Space.L};
   }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Param } from "../../types/types";
 
 class OMDbAPI {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDbAPI;
@@ -13,9 +14,21 @@ class OMDbAPI {
   }
 
   public async getRandomMovies(): Promise<any> {
-    const params = { apikey: this.API_KEY, s: this.getRandomParam() };
+    const params = {
+      [Param.ApiKey]: this.API_KEY,
+      [Param.Search]: this.getRandomParam(),
+    };
 
-    const { data } = await this.API.get<any>("?", {
+    const { data } = await this.API.get<any>("", {
+      params,
+    });
+
+    return data;
+  }
+
+  public async getMovieById(id: string): Promise<any> {
+    const params = { [Param.ApiKey]: this.API_KEY, [Param.Id]: id };
+    const { data } = await this.API.get<any>("", {
       params,
     });
     return data;

@@ -1,11 +1,13 @@
-export type MovieRequestParams =
-  | "?i"
-  | "?t"
-  | "type"
-  | "y"
-  | "plot"
-  | "s"
-  | "page";
+export enum Param {
+  ApiKey = "apikey",
+  Id = "i",
+  Title = "t",
+  Type = "type",
+  Year = "y",
+  Plot = "plot",
+  Search = "s",
+  Page = "p",
+}
 
 export interface IMovie {
   Title: string;

@@ -45,11 +45,11 @@ export const Subtitle3 = styled.h4`
   color: ${Color.Graphite};
 `;
 
-export const Body = styled.p`
+export const Body1 = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
-  color: ${Color.Graphite};
+  color: ${Color.Light};
 `;
 
 export const Body2 = styled.p`

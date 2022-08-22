@@ -28,7 +28,7 @@ export interface IMovie {
   Metascore: string;
   imdbRating: string;
   imdbVotes: string;
-  imdbId: string;
+  imdbID: string;
   Type: string;
   DVD: string;
   BoxOffice: string;

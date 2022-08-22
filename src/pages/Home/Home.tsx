@@ -6,17 +6,29 @@ import { IMovie } from "../../types/types";
 
 export const Home = () => {
   const [movies, setMovies] = useState<IMovie[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    OMDbApi.getRandomMovies().then((response) => setMovies(response.Search));
+    OMDbApi.getRandomMovies()
+      .then((response) => {
+        setMovies(response.Search);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setErrorMessage(error.message);
+      });
   }, []);
-
-  console.log(movies);
 
   return (
     <>
       <NavBar />
-      <MovieList movies={movies} />
+      <MovieList
+        movies={movies}
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+      />
     </>
   );
 };

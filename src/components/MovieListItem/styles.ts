@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Subtitle2 } from "../../ui";
+import { Body2, Color, Subtitle2 } from "../../ui";
 import { Space } from "../../ui/spacing";
-import { Body2 } from "../../ui/typography";
 
 interface IProps {
   poster: string;
@@ -19,5 +18,10 @@ export const Poster = styled.img`
   height: 357px;
   border-radius: 20px;
 `;
-export const Title = styled(Subtitle2)``;
-export const Genre = styled(Body2)``;
+
+export const MovieTitle = styled(Subtitle2)`
+  color: ${Color.White};
+`;
+export const Genre = styled(Body2)`
+  color: ${Color.Light};
+`;

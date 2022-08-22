@@ -1,7 +1,8 @@
 import { Color } from "./colors";
 import { GlobalStyles } from "./GlobalStyles";
 import {
-  Body,
+  Body1,
+  Body2,
   H1,
   H2,
   H3,
@@ -13,7 +14,8 @@ import {
 export {
   GlobalStyles,
   Color,
-  Body,
+  Body1,
+  Body2,
   H1,
   H2,
   H3,

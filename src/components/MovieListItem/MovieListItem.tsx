@@ -1,4 +1,4 @@
-import { StyledMovieCard } from "./styles";
+import { Genre, Poster, StyledMovieCard, Title } from "./styles";
 
 interface IProps {
   poster: string;
@@ -9,9 +9,9 @@ interface IProps {
 export const MovieListItem = ({ poster, title, genre }: IProps) => {
   return (
     <StyledMovieCard>
-      <img src={poster} alt={poster} />
-      <p>{title}</p>
-      <p>{genre}</p>
+      <Poster src={poster} alt={poster} />
+      <Title>{title}</Title>
+      <Genre>{genre}</Genre>
     </StyledMovieCard>
   );
 };

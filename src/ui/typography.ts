@@ -51,3 +51,10 @@ export const Body = styled.p`
   line-height: 20px;
   color: ${Color.Graphite};
 `;
+
+export const Body2 = styled.p`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${Color.Light};
+`;

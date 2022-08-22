@@ -11,6 +11,8 @@ export const Home = () => {
     OMDbApi.getRandomMovies().then((response) => setMovies(response.Search));
   }, []);
 
+  console.log(movies);
+
   return (
     <>
       <NavBar />

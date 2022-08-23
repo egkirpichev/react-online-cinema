@@ -1,16 +1,27 @@
-import { SpinnerCircular } from "spinners-react";
-import { IMovie } from "../../types/types";
-import { Color, H2 } from "../../ui";
+import { useEffect, useState } from "react";
+import { OMDbApi } from "../../services/OMDbApi";
+import { IMovieFull } from "../../types/types";
+import { Color } from "../../ui";
 import { MovieListItem } from "../MovieListItem";
 import { ErrorMessage, Spinner, StyledMovieList } from "./styles";
 
-interface IProps {
-  movies: IMovie[];
-  isLoading: boolean;
-  errorMessage: string;
-}
+export const MovieList = () => {
+  const [movieList, setMovieList] = useState<IMovieFull[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {
+  useEffect(() => {
+    OMDbApi.getRandomMovies()
+      .then((response) => {
+        setMovieList(response.Search);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setErrorMessage(error.message);
+      });
+  }, []);
+
   if (isLoading) {
     return <Spinner color={Color.PrimaryDark} />;
   }
@@ -21,15 +32,8 @@ export const MovieList = ({ movies, isLoading, errorMessage }: IProps) => {
 
   return (
     <StyledMovieList>
-      {movies.map(({ Poster, Title, Genre, imdbID }) => {
-        return (
-          <MovieListItem
-            poster={Poster}
-            title={Title}
-            genre={Genre}
-            key={imdbID}
-          />
-        );
+      {movieList.map((movieListItem) => {
+        return <MovieListItem movieListItem={movieListItem} />;
       })}
     </StyledMovieList>
   );

@@ -1,10 +1,7 @@
+import { SpinnerCircular } from "spinners-react";
 import styled from "styled-components";
-import { Body2, Color, Subtitle2 } from "../../ui";
+import { Body2, Color, Subtitle2, H2 } from "../../ui";
 import { Space } from "../../ui/spacing";
-
-interface IProps {
-  poster: string;
-}
 
 export const StyledMovieCard = styled.div`
   display: flex;
@@ -24,4 +21,13 @@ export const MovieTitle = styled(Subtitle2)`
 `;
 export const Genre = styled(Body2)`
   color: ${Color.Light};
+`;
+
+export const Spinner = styled(SpinnerCircular)`
+  place-self: center;
+`;
+
+export const ErrorMessage = styled(H2)`
+  place-self: center;
+  color: ${Color.PrimaryDark};
 `;

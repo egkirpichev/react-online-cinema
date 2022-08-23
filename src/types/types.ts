@@ -9,7 +9,7 @@ export enum Param {
   Page = "p",
 }
 
-export interface IMovie {
+export interface IMovieFull {
   Title: string;
   Year: string;
   Rated: string;
@@ -36,7 +36,15 @@ export interface IMovie {
   Response: string;
 }
 
-interface IMovieRating {
+export interface IMovieShort {
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
+  imdbID: string;
+}
+
+export interface IMovieRating {
   Source: string;
   Value: string;
 }

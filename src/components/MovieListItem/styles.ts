@@ -8,12 +8,20 @@ export const StyledMovieCard = styled.div`
   flex-direction: column;
   gap: ${Space.S};
   max-width: 266px;
-  height: 433px;
+  height: 457px;
 `;
 
 export const Poster = styled.img`
   height: 357px;
   border-radius: 20px;
+`;
+
+export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  gap: 4px;
 `;
 
 export const MovieTitle = styled(Subtitle2)`

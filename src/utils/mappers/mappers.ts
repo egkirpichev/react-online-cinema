@@ -9,7 +9,7 @@ export const getShortMovieDescription = ({
   return {
     poster: Poster,
     title: Title,
-    genre: Genre,
+    genre: Genre.split(", "),
     rating: Ratings.reduce((value, rating) => {
       return rating.Source === "Rotten Tomatoes"
         ? (value = rating.Value)

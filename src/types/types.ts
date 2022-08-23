@@ -47,7 +47,7 @@ export interface IMovieShort {
 export interface IMovieListItem {
   poster: string;
   title: string;
-  genre: string;
+  genre: string[];
   rating: string;
 }
 

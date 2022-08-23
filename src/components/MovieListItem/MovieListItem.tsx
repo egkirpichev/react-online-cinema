@@ -4,6 +4,7 @@ import { IMovieFull, IMovieListItem } from "../../types";
 import { Color } from "../../ui";
 import { getShortMovieDescription } from "../../utils/mappers";
 import {
+  Description,
   ErrorMessage,
   Genre,
   MovieTitle,
@@ -44,8 +45,10 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   return (
     <StyledMovieCard>
       <Poster src={movie?.poster} alt={movie?.poster} />
-      <MovieTitle>{movie?.title}</MovieTitle>
-      <Genre>{movie?.genre}</Genre>
+      <Description>
+        <MovieTitle>{movie?.title}</MovieTitle>
+        <Genre>{movie?.genre}</Genre>
+      </Description>
     </StyledMovieCard>
   );
 };

@@ -37,11 +37,18 @@ export interface IMovieFull {
 }
 
 export interface IMovieShort {
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string;
+  poster: string;
+  title: string;
+  type: string;
+  year: string;
   imdbID: string;
+}
+
+export interface IMovieListItem {
+  poster: string;
+  title: string;
+  genre: string;
+  rating: string;
 }
 
 export interface IMovieRating {

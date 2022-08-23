@@ -1,4 +1,10 @@
-import { Param, IMovieFull, IMovieRating, IMovieShort } from "./types";
+import {
+  Param,
+  IMovieFull,
+  IMovieRating,
+  IMovieShort,
+  IMovieListItem,
+} from "./types";
 
 export { Param };
-export type { IMovieFull, IMovieRating, IMovieShort };
+export type { IMovieFull, IMovieRating, IMovieShort, IMovieListItem };

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieFull, IMovieShort } from "../../types";
+import { IMovieFull, IMovieListItem } from "../../types";
 import { Color } from "../../ui";
+import { getShortMovieDescription } from "../../utils/mappers";
 import {
   ErrorMessage,
   Genre,
@@ -12,18 +13,19 @@ import {
 } from "./styles";
 
 interface IProps {
-  movieListItem: IMovieShort;
+  movieListItem: IMovieFull;
 }
 
 export const MovieListItem = ({ movieListItem }: IProps) => {
-  const [movie, setMovie] = useState<IMovieFull>();
+  const [movie, setMovie] = useState<IMovieListItem>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     OMDbApi.getMovieById(movieListItem.imdbID)
       .then((response) => {
-        setMovie(response);
+        const movieListItem = getShortMovieDescription(response);
+        setMovie(movieListItem);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -41,9 +43,9 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   }
   return (
     <StyledMovieCard>
-      <Poster src={movie?.Poster} alt={movie?.Poster} />
-      <MovieTitle>{movie?.Title}</MovieTitle>
-      <Genre>{movie?.Genre}</Genre>
+      <Poster src={movie?.poster} alt={movie?.poster} />
+      <MovieTitle>{movie?.title}</MovieTitle>
+      <Genre>{movie?.genre}</Genre>
     </StyledMovieCard>
   );
 };

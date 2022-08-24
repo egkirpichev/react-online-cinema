@@ -35,9 +35,6 @@ export const Description = styled.div`
 export const MovieTitle = styled(Subtitle2)`
   color: ${Color.White};
 `;
-export const Genre = styled(Body2)`
-  color: ${Color.Light};
-`;
 
 export const Spinner = styled(SpinnerCircular)`
   place-self: center;

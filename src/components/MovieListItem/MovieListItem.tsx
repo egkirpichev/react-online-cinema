@@ -7,12 +7,12 @@ import { RatingBadge } from "../RatingBadge";
 import {
   Description,
   ErrorMessage,
-  Genre,
   MovieTitle,
   Poster,
   Spinner,
   StyledMovieCard,
 } from "./styles";
+import { MovieGenre } from "../MovieGenre";
 
 interface IProps {
   movieListItem: IMovieFull;
@@ -50,7 +50,7 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
       </Poster>
       <Description>
         <MovieTitle>{movie?.title}</MovieTitle>
-        <Genre>{movie?.genre}</Genre>
+        <MovieGenre genres={movie?.genres} />
       </Description>
     </StyledMovieCard>
   );

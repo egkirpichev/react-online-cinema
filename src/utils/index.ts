@@ -1,3 +1,3 @@
-import { getRatingBadgeColor } from "./utils";
+import { getRatingBadgeColor, createRoute } from "./utils";
 
-export { getRatingBadgeColor };
+export { getRatingBadgeColor, createRoute };

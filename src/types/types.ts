@@ -51,6 +51,7 @@ export interface IMovieListItem {
   title: string;
   genres: string[];
   rating: string;
+  imdbID: string;
 }
 
 export interface IMovieRating {
@@ -60,7 +61,7 @@ export interface IMovieRating {
 
 export type RouteType =
   | [Endpoint.HOME]
-  | [Endpoint, { name: string }]
+  | [Endpoint, { imdbID: string }]
   | [Endpoint.TRENDS]
   | [Endpoint.FAVOURITES]
   | [Endpoint.SETTINGS]

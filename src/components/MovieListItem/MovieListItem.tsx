@@ -13,6 +13,9 @@ import {
 } from "./styles";
 import { MovieGenre } from "../MovieGenre";
 import { MoviePoster } from "../MoviePoster";
+import { Link } from "react-router-dom";
+import { createRoute } from "../../utils";
+import { Endpoint } from "../../router";
 
 interface IProps {
   movieListItem: IMovieFull;
@@ -47,11 +50,18 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   if (movie) {
     return (
       <StyledMovieCard>
-        <MoviePoster poster={movie.poster}>
-          <RatingBadge rating={movie.rating} />
-        </MoviePoster>
+        <Link to={createRoute(Endpoint.MOVIE, { imdbID: movie.imdbID })}>
+          <MoviePoster poster={movie.poster}>
+            <RatingBadge rating={movie.rating} />
+          </MoviePoster>
+        </Link>
         <Description>
-          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieTitle
+            to={createRoute(Endpoint.MOVIE, { imdbID: movie.imdbID })}
+          >
+            {movie.title}
+          </MovieTitle>
+
           <MovieGenre genres={movie.genres} />
         </Description>
       </StyledMovieCard>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
 import styled from "styled-components";
 import { Color, Subtitle2, H2 } from "../../ui";
@@ -19,8 +20,19 @@ export const Description = styled.div`
   gap: 4px;
 `;
 
-export const MovieTitle = styled(Subtitle2)`
+export const MovieTitle = styled(Link)`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
   color: ${Color.White};
+  :hover {
+    color: ${Color.PrimaryDark};
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const Spinner = styled(SpinnerCircular)`

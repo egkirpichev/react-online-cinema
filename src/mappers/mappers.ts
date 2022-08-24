@@ -5,6 +5,7 @@ export const getShortMovieDescription = ({
   Title,
   Genre,
   Ratings,
+  imdbID,
 }: IMovieFull): IMovieListItem => {
   return {
     poster: Poster,
@@ -15,5 +16,6 @@ export const getShortMovieDescription = ({
         ? (value = rating.Value.replace("/10", "").padStart(3, ".0"))
         : value;
     }, ""),
+    imdbID: imdbID,
   };
 };

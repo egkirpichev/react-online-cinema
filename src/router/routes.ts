@@ -1,6 +1,6 @@
 export enum Endpoint {
   HOME = "/",
-  MOVIE = "movie/:id",
+  MOVIE = "movie/:imdbID",
   TRENDS = "trends",
   FAVOURITES = "favourites",
   SETTINGS = "settings",

@@ -6,6 +6,6 @@ interface IProps {
   children?: ReactNode;
 }
 
-export const MoviePoster = ({ poster }: IProps) => {
-  return <StyledMoviePoster poster={poster}></StyledMoviePoster>;
+export const MoviePoster = ({ poster, children }: IProps) => {
+  return <StyledMoviePoster poster={poster}>{children}</StyledMoviePoster>;
 };

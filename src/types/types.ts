@@ -1,3 +1,5 @@
+import { Endpoint } from "../router";
+
 export enum Param {
   ApiKey = "apikey",
   Id = "i",
@@ -55,3 +57,13 @@ export interface IMovieRating {
   Source: string;
   Value: string;
 }
+
+export type RouteType =
+  | [Endpoint.HOME]
+  | [Endpoint, { name: string }]
+  | [Endpoint.TRENDS]
+  | [Endpoint.FAVOURITES]
+  | [Endpoint.SETTINGS]
+  | [Endpoint.SIGN_IN]
+  | [Endpoint.SIGN_UP]
+  | [Endpoint.RESET_PASSWORD];

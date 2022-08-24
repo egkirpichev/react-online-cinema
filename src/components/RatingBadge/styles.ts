@@ -3,7 +3,7 @@ import { Color, Subtitle3 } from "../../ui";
 import { getRatingBadgeColor } from "../../utils";
 
 interface IProps {
-  rating: number;
+  rating: string;
 }
 
 export const StyledBadge = styled(Subtitle3)<IProps>`

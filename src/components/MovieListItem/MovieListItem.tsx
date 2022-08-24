@@ -43,15 +43,20 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   if (errorMessage) {
     return <ErrorMessage>Something went wrong 🎞</ErrorMessage>;
   }
-  return (
-    <StyledMovieCard>
-      <Poster poster={movie?.poster}>
-        <RatingBadge rating={movie?.rating} />
-      </Poster>
-      <Description>
-        <MovieTitle>{movie?.title}</MovieTitle>
-        <MovieGenre genres={movie?.genres} />
-      </Description>
-    </StyledMovieCard>
-  );
+
+  if (movie) {
+    return (
+      <StyledMovieCard>
+        <Poster poster={movie.poster}>
+          <RatingBadge rating={movie.rating} />
+        </Poster>
+        <Description>
+          <MovieTitle>{movie.title}</MovieTitle>
+          <MovieGenre genres={movie.genres} />
+        </Description>
+      </StyledMovieCard>
+    );
+  } else {
+    return <ErrorMessage>Something went wrong 🎞</ErrorMessage>;
+  }
 };

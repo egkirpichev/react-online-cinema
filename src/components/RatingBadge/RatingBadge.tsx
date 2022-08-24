@@ -1,7 +1,7 @@
 import { StyledBadge } from "./styles";
 
 interface IProps {
-  rating: any;
+  rating: string;
 }
 
 export const RatingBadge = ({ rating }: IProps) => {

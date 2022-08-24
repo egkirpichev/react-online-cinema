@@ -4,7 +4,7 @@ import { Body2, Color, Subtitle2, H2 } from "../../ui";
 import { Space } from "../../ui/spacing";
 
 interface IProps {
-  poster: any;
+  poster: string;
 }
 
 export const StyledMovieCard = styled.div`

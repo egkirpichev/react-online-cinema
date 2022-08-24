@@ -3,16 +3,24 @@ import styled from "styled-components";
 import { Body2, Color, Subtitle2, H2 } from "../../ui";
 import { Space } from "../../ui/spacing";
 
+interface IProps {
+  poster: any;
+}
+
 export const StyledMovieCard = styled.div`
+  justify-self: stretch;
   display: flex;
   flex-direction: column;
   gap: ${Space.S};
-  max-width: 266px;
-  height: 457px;
+  height: 433px;
 `;
 
-export const Poster = styled.img`
+export const Poster = styled.div<IProps>`
+  flex-grow: 1;
   height: 357px;
+  padding: ${Space.S};
+  background: no-repeat url(${(props) => props.poster});
+  background-size: cover;
   border-radius: 20px;
 `;
 

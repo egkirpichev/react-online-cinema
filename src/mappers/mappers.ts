@@ -1,4 +1,4 @@
-import { IMovieFull, IMovieListItem } from "../../types";
+import { IMovieFull, IMovieListItem } from "../types";
 
 export const getShortMovieDescription = ({
   Poster,
@@ -11,8 +11,8 @@ export const getShortMovieDescription = ({
     title: Title,
     genre: Genre.split(", "),
     rating: Ratings.reduce((value, rating) => {
-      return rating.Source === "Rotten Tomatoes"
-        ? (value = rating.Value)
+      return rating.Source === "Internet Movie Database"
+        ? (value = rating.Value.replace("/10", "").padStart(3, ".0"))
         : value;
     }, ""),
   };

@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieFull, IMovieListItem } from "../../types";
 import { Color } from "../../ui";
-import { getShortMovieDescription } from "../../utils/mappers";
+import { getShortMovieDescription } from "../../mappers";
+import { RatingBadge } from "../RatingBadge";
 import {
   Description,
   ErrorMessage,
@@ -44,7 +45,9 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   }
   return (
     <StyledMovieCard>
-      <Poster src={movie?.poster} alt={movie?.poster} />
+      <Poster poster={movie?.poster}>
+        <RatingBadge rating={movie?.rating} />
+      </Poster>
       <Description>
         <MovieTitle>{movie?.title}</MovieTitle>
         <Genre>{movie?.genre}</Genre>

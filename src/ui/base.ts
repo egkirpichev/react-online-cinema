@@ -7,7 +7,8 @@ export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 306px auto;
   min-height: 100vh;
-  max-width: 100vw;
+  max-width: 1920px;
+  margin: 0 auto;
   padding: ${Space.L} ${Space.XXL} ${Space.XXL};
   background-color: ${Color.Black};
 

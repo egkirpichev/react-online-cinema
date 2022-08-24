@@ -8,11 +8,11 @@ import {
   Description,
   ErrorMessage,
   MovieTitle,
-  Poster,
   Spinner,
   StyledMovieCard,
 } from "./styles";
 import { MovieGenre } from "../MovieGenre";
+import { MoviePoster } from "../MoviePoster";
 
 interface IProps {
   movieListItem: IMovieFull;
@@ -47,9 +47,9 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   if (movie) {
     return (
       <StyledMovieCard>
-        <Poster poster={movie.poster}>
+        <MoviePoster poster={movie.poster}>
           <RatingBadge rating={movie.rating} />
-        </Poster>
+        </MoviePoster>
         <Description>
           <MovieTitle>{movie.title}</MovieTitle>
           <MovieGenre genres={movie.genres} />

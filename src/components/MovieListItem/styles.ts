@@ -1,11 +1,7 @@
 import { SpinnerCircular } from "spinners-react";
 import styled from "styled-components";
-import { Body2, Color, Subtitle2, H2 } from "../../ui";
+import { Color, Subtitle2, H2 } from "../../ui";
 import { Space } from "../../ui/spacing";
-
-interface IProps {
-  poster: string;
-}
 
 export const StyledMovieCard = styled.div`
   justify-self: stretch;
@@ -13,15 +9,6 @@ export const StyledMovieCard = styled.div`
   flex-direction: column;
   gap: ${Space.S};
   height: 433px;
-`;
-
-export const Poster = styled.div<IProps>`
-  flex-grow: 1;
-  height: 357px;
-  padding: ${Space.S};
-  background: no-repeat url(${(props) => props.poster});
-  background-size: cover;
-  border-radius: 20px;
 `;
 
 export const Description = styled.div`

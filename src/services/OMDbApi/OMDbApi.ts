@@ -9,7 +9,15 @@ class OMDbAPI {
   private readonly API = axios.create({ baseURL: this.BASE_URL });
 
   private getRandomParam() {
-    const defaultParams = ["gun", "world", "life"];
+    const defaultParams = [
+      "gun",
+      "world",
+      "life",
+      "story",
+      "sea",
+      "dark",
+      "road",
+    ];
     return defaultParams[Math.floor(Math.random() * defaultParams.length)];
   }
 

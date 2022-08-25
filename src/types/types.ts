@@ -59,6 +59,36 @@ export interface IMovieRating {
   Value: string;
 }
 
+export interface IMovieCard {
+  title: string;
+  year: string;
+  released: string;
+  runtime: string;
+  genres: string[];
+  director: string;
+  writers: string;
+  actors: string;
+  plot: string;
+  country: string;
+  poster: string;
+  imdbRating: string;
+  imdbID: string;
+  type: string;
+  boxOffice: string;
+  production: string;
+}
+
+export interface IMovieFactsList {
+  Year: string;
+  Released: string;
+  BoxOffice: string;
+  Country: string;
+  Production: string;
+  Actors: string;
+  Director: string;
+  Writers: string;
+}
+
 export type RouteType =
   | [Endpoint.HOME]
   | [Endpoint, { imdbID: string }]

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieFull, IMovieListItem } from "../../types";
+import { IMovieFull, IMovieListItem, IMovieShort } from "../../types";
 import { Color } from "../../ui";
 import { getShortMovieDescription } from "../../mappers";
 import { RatingBadge } from "../RatingBadge";
@@ -14,7 +14,7 @@ import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
 
 interface IProps {
-  movieListItem: IMovieFull;
+  movieListItem: IMovieShort;
 }
 
 export const MovieListItem = ({ movieListItem }: IProps) => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieFull } from "../../types/types";
+import { IMovieShort } from "../../types/types";
 import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
@@ -8,14 +8,14 @@ import { MovieListItem } from "../MovieListItem";
 import { StyledMovieList } from "./styles";
 
 export const MovieList = () => {
-  const [movieList, setMovieList] = useState<IMovieFull[]>([]);
+  const [movieList, setMovieList] = useState<IMovieShort[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     OMDbApi.getRandomMovies()
       .then((response) => {
-        setMovieList(response.Search);
+        setMovieList(response);
         setIsLoading(false);
       })
       .catch((error) => {

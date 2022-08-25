@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Param } from "../../types/types";
+import { IMovieFull, IMovieShort, Param } from "../../types/types";
 
 class OMDbAPI {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDbAPI;
@@ -13,22 +13,24 @@ class OMDbAPI {
     return defaultParams[Math.floor(Math.random() * defaultParams.length)];
   }
 
-  public async getRandomMovies(): Promise<any> {
+  public async getRandomMovies(): Promise<IMovieShort[]> {
     const params = {
       [Param.ApiKey]: this.API_KEY,
       [Param.Search]: this.getRandomParam(),
     };
 
-    const { data } = await this.API.get<any>("", {
+    const {
+      data: { Search },
+    } = await this.API.get("", {
       params,
     });
 
-    return data;
+    return Search;
   }
 
-  public async getMovieById(id: string): Promise<any> {
+  public async getMovieById(id: string): Promise<IMovieFull> {
     const params = { [Param.ApiKey]: this.API_KEY, [Param.Id]: id };
-    const { data } = await this.API.get<any>("", {
+    const { data } = await this.API.get("", {
       params,
     });
     return data;

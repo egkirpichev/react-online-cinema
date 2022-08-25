@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { SpinnerCircular } from "spinners-react";
 import styled from "styled-components";
-import { Color, Subtitle2, H2 } from "../../ui";
+import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/spacing";
 
 export const StyledMovieCard = styled.div`
@@ -33,13 +32,4 @@ export const MovieTitle = styled(Link)`
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-`;
-
-export const Spinner = styled(SpinnerCircular)`
-  place-self: center;
-`;
-
-export const ErrorMessage = styled(H2)`
-  place-self: center;
-  color: ${Color.PrimaryDark};
 `;

@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieFull } from "../../types";
 import { Color } from "../../ui";
-import { Spinner } from "../MovieList/styles";
-import { ErrorMessage } from "../MovieListItem/styles";
+import { CustomSpinner } from "../CustomSpinner";
+import { ErrorMessage } from "../ErrorMessage";
 import { MoviePoster } from "../MoviePoster";
 import { StyledMovieCard } from "./styles";
 
@@ -29,11 +29,11 @@ export const MovieCard = () => {
   }, [imdbID]);
 
   if (isLoading) {
-    return <Spinner color={Color.PrimaryDark} />;
+    return <CustomSpinner color={Color.PrimaryDark} />;
   }
 
   if (errorMessage) {
-    return <ErrorMessage>Something went wrong 🎞</ErrorMessage>;
+    return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
   }
 
   if (movie) {
@@ -42,5 +42,5 @@ export const MovieCard = () => {
         <MoviePoster poster={movie.Poster}></MoviePoster>
       </StyledMovieCard>
     );
-  } else return <ErrorMessage>Something went wrong 🎞</ErrorMessage>;
+  } else return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
 };

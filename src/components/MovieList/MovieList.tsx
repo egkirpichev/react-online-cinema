@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieFull } from "../../types/types";
 import { Color } from "../../ui";
+import { CustomSpinner } from "../CustomSpinner";
+import { ErrorMessage } from "../ErrorMessage";
 import { MovieListItem } from "../MovieListItem";
-import { ErrorMessage, Spinner, StyledMovieList } from "./styles";
+import { StyledMovieList } from "./styles";
 
 export const MovieList = () => {
   const [movieList, setMovieList] = useState<IMovieFull[]>([]);
@@ -23,11 +25,11 @@ export const MovieList = () => {
   }, []);
 
   if (isLoading) {
-    return <Spinner color={Color.PrimaryDark} />;
+    return <CustomSpinner color={Color.PrimaryDark} />;
   }
 
   if (errorMessage) {
-    return <ErrorMessage>Something went wrong, try again 🍿</ErrorMessage>;
+    return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
   }
 
   return (

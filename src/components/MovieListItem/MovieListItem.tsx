@@ -4,18 +4,14 @@ import { IMovieFull, IMovieListItem } from "../../types";
 import { Color } from "../../ui";
 import { getShortMovieDescription } from "../../mappers";
 import { RatingBadge } from "../RatingBadge";
-import {
-  Description,
-  ErrorMessage,
-  MovieTitle,
-  Spinner,
-  StyledMovieCard,
-} from "./styles";
+import { Description, MovieTitle, StyledMovieCard } from "./styles";
 import { MovieGenre } from "../MovieGenre";
 import { MoviePoster } from "../MoviePoster";
 import { Link } from "react-router-dom";
 import { createRoute } from "../../utils";
 import { Endpoint } from "../../router";
+import { CustomSpinner } from "../CustomSpinner";
+import { ErrorMessage } from "../ErrorMessage";
 
 interface IProps {
   movieListItem: IMovieFull;
@@ -40,11 +36,11 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   }, []);
 
   if (isLoading) {
-    return <Spinner color={Color.PrimaryDark} />;
+    return <CustomSpinner color={Color.PrimaryDark} />;
   }
 
   if (errorMessage) {
-    return <ErrorMessage>Something went wrong 🎞</ErrorMessage>;
+    return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
   }
 
   if (movie) {
@@ -67,6 +63,6 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
       </StyledMovieCard>
     );
   } else {
-    return <ErrorMessage>Something went wrong 🎞</ErrorMessage>;
+    return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
   }
 };

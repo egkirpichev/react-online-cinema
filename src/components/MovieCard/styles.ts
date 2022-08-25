@@ -17,8 +17,14 @@ export const Control = styled.div`
 export const Title = styled(H1)`
   color: ${Color.White};
 `;
-export const Description = styled.div``;
+export const Description = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${Space.L};
+`;
 
 export const Header = styled.div``;
 
-export const Plot = styled(Body2)``;
+export const Plot = styled(Body2)`
+  color: ${Color.White};
+`;

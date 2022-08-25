@@ -6,6 +6,7 @@ import { IMovieCard, IMovieFactsList } from "../../types/types";
 import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
+import { MovieFactsList } from "../MovieFactsList";
 import { MovieGenre } from "../MovieGenre";
 import { MoviePoster } from "../MoviePoster";
 import { RatingBadge } from "../RatingBadge";
@@ -16,7 +17,6 @@ import {
   Header,
   StyledMovieCard,
   Title,
-  MovieFacts,
 } from "./styles";
 
 export const MovieCard = () => {
@@ -61,9 +61,10 @@ export const MovieCard = () => {
           <Header>
             <MovieGenre genres={movie.genres} />
             <Title>{movie.title}</Title>
+            <RatingBadge rating={movie.imdbRating} />
           </Header>
-          <RatingBadge rating={movie.imdbRating} />
           <Plot>{movie.plot}</Plot>
+          <MovieFactsList movieFactsList={movieFactsList} />
         </Description>
       </StyledMovieCard>
     );

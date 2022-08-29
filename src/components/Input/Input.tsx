@@ -3,13 +3,14 @@ import { StyledInput, Wrapper } from "./styles";
 
 interface IProps {
   title?: string;
+  placeholder: string;
 }
 
-export const Input = ({ title }: IProps) => {
+export const Input = ({ title, placeholder }: IProps) => {
   return (
     <Wrapper>
       {title && <Subtitle3>{title}</Subtitle3>}
-      <StyledInput placeholder="Placeholder" type="text" />
+      <StyledInput placeholder={placeholder} type="text" />
     </Wrapper>
   );
 };

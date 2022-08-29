@@ -6,6 +6,7 @@ export const StyledHeader = styled.header<GridProps>`
   display: grid;
   grid-template-columns: 162px 56px;
   grid-gap: ${Space.L} ${Space.LARGEST};
+  align-items: center;
   ${grid};
   width: 100%;
 `;

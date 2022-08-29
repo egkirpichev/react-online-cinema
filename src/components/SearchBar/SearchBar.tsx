@@ -4,7 +4,7 @@ import { StyledSearchBar } from "./styles";
 export const SearchBar = () => {
   return (
     <StyledSearchBar>
-      <Input />
+      <Input placeholder="Search" />
     </StyledSearchBar>
   );
 };

@@ -8,8 +8,14 @@ export const StyledInput = styled.input`
   line-height: 24px;
   color: ${Color.Secondary};
   background-color: ${Color.Graphite};
-  border: none;
+  border: 1px solid ${Color.Black};
   border-radius: 10px;
+
+  :focus {
+    color: ${Color.White};
+    outline: none;
+    border: 1px solid ${Color.PrimaryDark};
+  }
 `;
 
 export const Wrapper = styled.div`

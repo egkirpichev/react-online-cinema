@@ -8,12 +8,14 @@ import {
   SpaceProps,
 } from "styled-system";
 import { Color } from "./colors";
+import { Space } from "./theme";
 
 export const Wrapper = styled.div<SpaceProps & LayoutProps & GridProps>`
   display: grid;
-  grid-template-columns: 306px auto;
+  grid-template-columns: 100%;
   min-height: 100vh;
-  margin: 0 auto;
+  max-width: 100vw;
+  margin: ${Space.M} ${Space.S};
   ${layout};
   ${space};
   ${grid};

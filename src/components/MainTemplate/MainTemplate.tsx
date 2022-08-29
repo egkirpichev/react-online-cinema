@@ -8,20 +8,17 @@ export const MainTemplate = () => {
   return (
     <Wrapper
       margin={{
-        default: `${Space.M} ${Space.S}`,
         S: `${Space.L} ${Space.L}`,
         M: `${Space.L} ${Space.XL}`,
         L: `${Space.L} auto`,
         XXL: `${Space.L} ${Space.LARGEST}`,
       }}
       maxWidth={{
-        default: "100vw",
         L: "928px",
         XL: "1184px",
         XXL: "1920px",
       }}
       gridTemplateColumns={{
-        default: "1fr",
         XL: "25% 75%",
         XXL: "17% 83%",
       }}

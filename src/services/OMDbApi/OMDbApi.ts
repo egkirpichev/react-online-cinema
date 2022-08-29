@@ -43,6 +43,19 @@ class OMDbAPI {
     });
     return data;
   }
+
+  public async loadMoreMovies(): Promise<any> {
+    const params = {
+      [Param.ApiKey]: this.API_KEY,
+      [Param.Search]: this.getRandomParam(),
+    };
+
+    const response = await this.API.get("", {
+      params,
+    });
+
+    return response;
+  }
 }
 
 export const OMDbApi = new OMDbAPI();

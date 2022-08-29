@@ -5,6 +5,7 @@ import homeIcon from "../../assets/home.svg";
 import trendsIcon from "../../assets/trends.svg";
 import favouritesIcon from "../../assets/favourites.svg";
 import settingsIcon from "../../assets/settings.svg";
+import { useRef } from "react";
 
 export const NavBar = () => {
   return (

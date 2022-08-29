@@ -30,7 +30,6 @@ export const GlobalStyles = createGlobalStyle`
 	body {
 		margin: 0;
 		font-family: "Exo 2", sans-serif;
-		overflow: auto;
 		background-color: ${Color.Black}
 	}
 	/**

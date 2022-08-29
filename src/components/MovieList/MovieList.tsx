@@ -5,7 +5,7 @@ import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
 import { MovieListItem } from "../MovieListItem";
-import { StyledMovieList } from "./styles";
+import { Container, StyledButton, StyledMovieList } from "./styles";
 
 export const MovieList = () => {
   const [movieList, setMovieList] = useState<IMovieShort[]>([]);
@@ -33,17 +33,22 @@ export const MovieList = () => {
   }
 
   return (
-    <StyledMovieList
-      gridTemplateColumns={{
-        default: "1fr",
-        S: "repeat(3, 1fr)",
-        XL: "repeat(4, 1fr)",
-        XXL: "repeat(5, 1fr)",
-      }}
-    >
-      {movieList.map((movieListItem) => {
-        return <MovieListItem movieListItem={movieListItem} />;
-      })}
-    </StyledMovieList>
+    <Container>
+      <StyledMovieList
+        gridTemplateColumns={{
+          default: "1fr",
+          S: "repeat(3, 1fr)",
+          XL: "repeat(4, 1fr)",
+          XXL: "repeat(5, 1fr)",
+        }}
+      >
+        {movieList.map((movieListItem) => {
+          return <MovieListItem movieListItem={movieListItem} />;
+        })}
+      </StyledMovieList>
+      <StyledButton>
+        <CustomSpinner color={Color.PrimaryDark} />
+      </StyledButton>
+    </Container>
   );
 };

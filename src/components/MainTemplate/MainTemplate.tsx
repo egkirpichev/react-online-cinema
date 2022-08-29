@@ -25,6 +25,12 @@ export const MainTemplate = () => {
         XL: "25% 75%",
         XXL: "17% 83%",
       }}
+      gridRowGap={{
+        default: `${Space.M}`,
+        S: `${Space.L}`,
+        L: `${Space.XL}`,
+        XL: `${Space.XXL}`,
+      }}
     >
       <Header />
       <NavBar />

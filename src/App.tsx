@@ -1,5 +1,11 @@
+import { ThemeProvider } from "styled-components";
 import { AppRouter } from "./router";
+import theme from "./ui/theme";
 
 export const App = () => {
-  return <AppRouter />;
+  return (
+    <ThemeProvider theme={theme}>
+      <AppRouter />;
+    </ThemeProvider>
+  );
 };

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Space } from "../../ui/spacing";
+import { grid, GridProps } from "styled-system";
+import { Space } from "../../ui/theme";
 
-export const StyledMovieList = styled.div`
+export const StyledMovieList = styled.div<GridProps>`
   display: grid;
   place-items: center;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   grid-gap: ${Space.L};
+  ${grid}
 `;

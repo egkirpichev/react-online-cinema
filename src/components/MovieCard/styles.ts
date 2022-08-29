@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Body2, Color, H1 } from "../../ui";
-import { Space } from "../../ui/spacing";
+import { Space } from "../../ui/theme";
 
 export const StyledMovieCard = styled.div`
   display: grid;

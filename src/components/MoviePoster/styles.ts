@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Space } from "../../ui/spacing";
+import { Space } from "../../ui/theme";
 
 interface IProps {
   poster: string;

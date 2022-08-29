@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Color } from "../../ui";
-import { Space } from "../../ui/spacing";
+import { Space } from "../../ui/theme";
 
 export const StyledNavBar = styled.nav`
   display: flex;

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { Color } from "./colors";
 
 export const GlobalStyles = createGlobalStyle`
 			/* Document
@@ -30,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
 		margin: 0;
 		font-family: "Exo 2", sans-serif;
 		overflow: auto;
+		background-color: ${Color.Black}
 	}
 	/**
 	* Render the main element consistently in IE.

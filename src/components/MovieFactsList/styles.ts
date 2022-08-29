@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Body2, Color, Subtitle3 } from "../../ui";
-import { Space } from "../../ui/spacing";
+import { Space } from "../../ui/theme";
 
 export const MovieFacts = styled.div`
   display: grid;

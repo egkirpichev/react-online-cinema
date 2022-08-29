@@ -33,7 +33,14 @@ export const MovieList = () => {
   }
 
   return (
-    <StyledMovieList>
+    <StyledMovieList
+      gridTemplateColumns={{
+        default: "1fr",
+        S: "repeat(3, 1fr)",
+        XL: "repeat(4, 1fr)",
+        XXL: "repeat(5, 1fr)",
+      }}
+    >
       {movieList.map((movieListItem) => {
         return <MovieListItem movieListItem={movieListItem} />;
       })}

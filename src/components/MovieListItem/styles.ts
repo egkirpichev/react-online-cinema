@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Color, H2 } from "../../ui";
-import { Space } from "../../ui/spacing";
+import { Space } from "../../ui/theme";
 
 export const StyledMovieCard = styled.div`
   justify-self: stretch;

@@ -1,6 +1,11 @@
 import { SpinnerCircular } from "spinners-react";
 import styled from "styled-components";
 
-export const Spinner = styled(SpinnerCircular)`
+interface IProps {
+  size?: string;
+}
+
+export const Spinner = styled(SpinnerCircular)<IProps>`
   place-self: center;
+  width: ${(props) => props.size && props.size};
 `;

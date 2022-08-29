@@ -5,7 +5,7 @@ import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
 import { MovieListItem } from "../MovieListItem";
-import { Container, StyledButton, StyledMovieList } from "./styles";
+import { Container, StyledMovieList } from "./styles";
 
 export const MovieList = () => {
   const [movieList, setMovieList] = useState<IMovieShort[]>([]);
@@ -46,9 +46,6 @@ export const MovieList = () => {
           return <MovieListItem movieListItem={movieListItem} />;
         })}
       </StyledMovieList>
-      <StyledButton>
-        <CustomSpinner color={Color.PrimaryDark} />
-      </StyledButton>
     </Container>
   );
 };

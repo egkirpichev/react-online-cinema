@@ -14,5 +14,3 @@ export const StyledMovieList = styled.div<GridProps>`
   grid-gap: ${Space.L};
   ${grid}
 `;
-
-export const StyledButton = styled.button``;

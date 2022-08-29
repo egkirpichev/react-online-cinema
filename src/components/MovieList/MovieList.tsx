@@ -43,7 +43,12 @@ export const MovieList = () => {
         }}
       >
         {movieList.map((movieListItem) => {
-          return <MovieListItem movieListItem={movieListItem} />;
+          return (
+            <MovieListItem
+              key={movieListItem.imdbID}
+              movieListItem={movieListItem}
+            />
+          );
         })}
       </StyledMovieList>
     </Container>

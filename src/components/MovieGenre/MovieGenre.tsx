@@ -8,7 +8,7 @@ export const MovieGenre = ({ genres }: IProps) => {
   return (
     <StyledGenre>
       {genres.map((genre: string) => {
-        return <Genre>{genre}</Genre>;
+        return <Genre key={genre}>{genre}</Genre>;
       })}
     </StyledGenre>
   );

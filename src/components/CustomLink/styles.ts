@@ -4,7 +4,7 @@ import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 interface IProps {
-  isActive: PathMatch<string> | null;
+  isactive: PathMatch<string> | null;
 }
 
 export const StyledLink = styled(Link)<IProps>`
@@ -13,7 +13,7 @@ export const StyledLink = styled(Link)<IProps>`
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
-  color: ${(props) => (props.isActive ? Color.PrimaryDark : Color.Secondary)};
+  color: ${(props) => (props.isactive ? Color.PrimaryDark : Color.Secondary)};
   text-decoration: none;
 
   :hover {

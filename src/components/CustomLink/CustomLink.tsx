@@ -12,7 +12,7 @@ export const CustomLink = ({ text, to, icon }: IProps) => {
   const isActive = useMatch(to);
 
   return (
-    <StyledLink to={to} isActive={isActive}>
+    <StyledLink to={to} isactive={isActive}>
       <img src={icon} />
       <span>{text}</span>
     </StyledLink>

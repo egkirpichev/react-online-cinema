@@ -1,5 +1,4 @@
 import { Navigation, StyledNavBar } from "./styles";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { Endpoint } from "../../router";
 import { CustomLink } from "../CustomLink";
 import homeIcon from "../../assets/home.svg";
@@ -10,7 +9,6 @@ import settingsIcon from "../../assets/settings.svg";
 export const NavBar = () => {
   return (
     <StyledNavBar>
-      <Logo />
       <Navigation>
         <CustomLink to={Endpoint.HOME} text="Home" icon={homeIcon}></CustomLink>
         <CustomLink to={Endpoint.TRENDS} text="Trends" icon={trendsIcon} />

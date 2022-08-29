@@ -4,6 +4,7 @@ import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 export const StyledNavBar = styled.nav`
+  grid-column: 1/2;
   display: flex;
   flex-direction: column;
   gap: ${Space.XXL};

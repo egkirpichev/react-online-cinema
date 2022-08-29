@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Wrapper } from "../../ui/base";
 import { Space } from "../../ui/theme";
+import { Header } from "../Header";
 import { NavBar } from "../NavBar";
 
 export const MainTemplate = () => {
@@ -19,7 +20,13 @@ export const MainTemplate = () => {
         XL: "1184px",
         XXL: "1920px",
       }}
+      gridTemplateColumns={{
+        default: "1fr",
+        XL: "25% 75%",
+        XXL: "17% 83%",
+      }}
     >
+      <Header />
       <NavBar />
       <Outlet />
     </Wrapper>

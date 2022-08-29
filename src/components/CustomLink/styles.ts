@@ -18,5 +18,8 @@ export const StyledLink = styled(Link)<IProps>`
 
   :hover {
     color: ${Color.PrimaryLight};
+    > svg {
+      fill: ${Color.PrimaryLight};
+    }
   }
 `;

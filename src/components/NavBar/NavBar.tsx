@@ -1,28 +1,27 @@
 import { Navigation, StyledNavBar } from "./styles";
 import { Endpoint } from "../../router";
 import { CustomLink } from "../CustomLink";
-import homeIcon from "../../assets/home.svg";
-import trendsIcon from "../../assets/trends.svg";
-import favouritesIcon from "../../assets/favourites.svg";
-import settingsIcon from "../../assets/settings.svg";
-import { useRef } from "react";
+import { ReactComponent as HomeIcon } from "../../assets/home.svg";
+import { ReactComponent as TrendsIcon } from "../../assets/trends.svg";
+import { ReactComponent as FavouritesIcon } from "../../assets/favourites.svg";
+import { ReactComponent as SettingsIcon } from "../../assets/settings.svg";
 
 export const NavBar = () => {
   return (
     <StyledNavBar>
       <Navigation>
-        <CustomLink to={Endpoint.HOME} text="Home" icon={homeIcon}></CustomLink>
-        <CustomLink to={Endpoint.TRENDS} text="Trends" icon={trendsIcon} />
-        <CustomLink
-          to={Endpoint.FAVOURITES}
-          text="Favourites"
-          icon={favouritesIcon}
-        />
-        <CustomLink
-          to={Endpoint.SETTINGS}
-          text="Settings"
-          icon={settingsIcon}
-        />
+        <CustomLink to={Endpoint.HOME} text="Home">
+          <HomeIcon />
+        </CustomLink>
+        <CustomLink to={Endpoint.TRENDS} text="Trends">
+          <TrendsIcon />
+        </CustomLink>
+        <CustomLink to={Endpoint.FAVOURITES} text="Favourites">
+          <FavouritesIcon />
+        </CustomLink>
+        <CustomLink to={Endpoint.SETTINGS} text="Settings">
+          <SettingsIcon />
+        </CustomLink>
       </Navigation>
     </StyledNavBar>
   );

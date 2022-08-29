@@ -1,3 +1,10 @@
+import {
+  FunctionComponent,
+  ReactComponentElement,
+  ReactElement,
+  ReactNode,
+  SVGProps,
+} from "react";
 import { useMatch } from "react-router-dom";
 import { Endpoint } from "../../router";
 import { StyledLink } from "./styles";
@@ -5,15 +12,15 @@ import { StyledLink } from "./styles";
 interface IProps {
   text: string;
   to: Endpoint;
-  icon: string;
+  children: ReactNode;
 }
 
-export const CustomLink = ({ text, to, icon }: IProps) => {
+export const CustomLink = ({ text, to, children }: IProps) => {
   const isActive = useMatch(to);
 
   return (
     <StyledLink to={to} isactive={isActive}>
-      <img src={icon} />
+      {children}
       <span>{text}</span>
     </StyledLink>
   );

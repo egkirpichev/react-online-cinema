@@ -6,6 +6,9 @@ import { Space } from "../../ui/theme";
 export const Header = () => {
   return (
     <StyledHeader
+      p={{
+        S: `${Space.L} 0`,
+      }}
       gridTemplateColumns={{
         S: "25% auto 8%",
         XL: "21% auto 17%",

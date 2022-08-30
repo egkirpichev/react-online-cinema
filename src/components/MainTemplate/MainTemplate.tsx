@@ -8,10 +8,10 @@ export const MainTemplate = () => {
   return (
     <Wrapper
       margin={{
-        S: `${Space.L} ${Space.L}`,
-        M: `${Space.L} ${Space.XL}`,
-        L: `${Space.L} auto`,
-        XXL: `${Space.L} ${Space.LARGEST}`,
+        S: `0 ${Space.L} ${Space.L}`,
+        M: `0 ${Space.XL} ${Space.L}`,
+        L: `0 auto ${Space.L}`,
+        XXL: `0 ${Space.LARGEST} ${Space.L}`,
       }}
       maxWidth={{
         L: "928px",

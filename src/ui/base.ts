@@ -15,7 +15,7 @@ export const Wrapper = styled.div<SpaceProps & LayoutProps & GridProps>`
   grid-template-columns: 100%;
   min-height: 100vh;
   max-width: 100vw;
-  margin: ${Space.M} ${Space.S};
+  margin: 0 ${Space.S} ${Space.M};
   ${layout};
   ${space};
   ${grid};

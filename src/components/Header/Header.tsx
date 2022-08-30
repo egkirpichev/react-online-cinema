@@ -2,8 +2,12 @@ import { StyledHeader } from "./styles";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { SearchBar } from "../SearchBar";
 import { Space } from "../../ui/theme";
+import { useWindowSize } from "../../hooks";
+import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
 
 export const Header = () => {
+  const { screenWidth } = useWindowSize();
+
   return (
     <StyledHeader
       p={{
@@ -25,6 +29,7 @@ export const Header = () => {
     >
       <Logo />
       <SearchBar />
+      {screenWidth < 1440 && <BurgerMenu />}
     </StyledHeader>
   );
 };

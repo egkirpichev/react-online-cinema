@@ -35,7 +35,7 @@ export const MainTemplate = () => {
           XL: `${Space.XXL}`,
         }}
       >
-        {screenWidth > 1280 && <NavBar />}
+        {screenWidth > 1439 && <NavBar />}
         <Outlet />
       </Main>
     </Wrapper>

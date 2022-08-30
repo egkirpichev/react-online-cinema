@@ -1,10 +1,13 @@
 import { Outlet } from "react-router-dom";
+import { useWindowSize } from "../../hooks";
 import { Space } from "../../ui/theme";
 import { Header } from "../Header";
 import { NavBar } from "../NavBar";
 import { Main, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
+  const { screenWidth } = useWindowSize();
+
   return (
     <Wrapper
       margin={{
@@ -19,6 +22,7 @@ export const MainTemplate = () => {
         XXL: "1920px",
       }}
     >
+      <Header />
       <Main
         gridTemplateColumns={{
           XL: "25% 75%",
@@ -31,8 +35,7 @@ export const MainTemplate = () => {
           XL: `${Space.XXL}`,
         }}
       >
-        <Header />
-        <NavBar />
+        {screenWidth > 1280 && <NavBar />}
         <Outlet />
       </Main>
     </Wrapper>

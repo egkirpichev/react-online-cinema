@@ -7,7 +7,8 @@ export const Header = () => {
   return (
     <StyledHeader
       p={{
-        S: `${Space.L} 0`,
+        S: `${Space.L} 0 ${Space.XL}`,
+        XL: `${Space.L} 0 ${Space.XXL}`,
       }}
       gridTemplateColumns={{
         S: "25% auto 8%",

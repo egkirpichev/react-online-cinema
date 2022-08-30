@@ -11,13 +11,15 @@ export const StyledFooter = styled.footer<GridProps>`
 
 export const LoadMore = styled.button`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
   margin: 0 auto;
   padding: ${Space.SMALLEST} ${Space.S};
   width: 161px;
   background-color: ${Color.Graphite};
   border: none;
   border-radius: 40px;
+  cursor: pointer;
 `;
 
 export const Text = styled(Body2)`

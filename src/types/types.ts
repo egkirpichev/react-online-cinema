@@ -8,7 +8,7 @@ export enum Param {
   Year = "y",
   Plot = "plot",
   Search = "s",
-  Page = "p",
+  Page = "page",
 }
 
 export interface IMovieFull {
@@ -98,3 +98,9 @@ export type RouteType =
   | [Endpoint.SIGN_IN]
   | [Endpoint.SIGN_UP]
   | [Endpoint.RESET_PASSWORD];
+
+export interface IRequestParams {
+  apikey: string | undefined;
+  s: string;
+  page: string;
+}

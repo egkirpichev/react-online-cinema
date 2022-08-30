@@ -9,6 +9,7 @@ interface IProps {
 
 export const StyledLink = styled(Link)<IProps>`
   display: flex;
+  align-items: center;
   gap: ${Space.S};
   font-weight: 600;
   font-size: 18px;
@@ -18,8 +19,5 @@ export const StyledLink = styled(Link)<IProps>`
 
   :hover {
     color: ${Color.PrimaryLight};
-    > svg {
-      fill: ${Color.PrimaryLight};
-    }
   }
 `;

@@ -1,10 +1,4 @@
-import {
-  FunctionComponent,
-  ReactComponentElement,
-  ReactElement,
-  ReactNode,
-  SVGProps,
-} from "react";
+import { ReactNode } from "react";
 import { useMatch } from "react-router-dom";
 import { Endpoint } from "../../router";
 import { StyledLink } from "./styles";

@@ -1,26 +1,26 @@
 import { Navigation, StyledNavBar } from "./styles";
 import { Endpoint } from "../../router";
 import { CustomLink } from "../CustomLink";
-import { ReactComponent as HomeIcon } from "../../assets/home.svg";
-import { ReactComponent as TrendsIcon } from "../../assets/trends.svg";
-import { ReactComponent as FavouritesIcon } from "../../assets/favourites.svg";
-import { ReactComponent as SettingsIcon } from "../../assets/settings.svg";
+import { RiHome6Line } from "react-icons/ri";
+import { IoMdFlame } from "react-icons/io";
+import { HiBookmark } from "react-icons/hi";
+import { IoMdSettings } from "react-icons/io";
 
 export const NavBar = () => {
   return (
     <StyledNavBar>
       <Navigation>
         <CustomLink to={Endpoint.HOME} text="Home">
-          <HomeIcon />
+          <RiHome6Line />
         </CustomLink>
         <CustomLink to={Endpoint.TRENDS} text="Trends">
-          <TrendsIcon />
+          <IoMdFlame />
         </CustomLink>
         <CustomLink to={Endpoint.FAVOURITES} text="Favourites">
-          <FavouritesIcon />
+          <HiBookmark />
         </CustomLink>
         <CustomLink to={Endpoint.SETTINGS} text="Settings">
-          <SettingsIcon />
+          <IoMdSettings />
         </CustomLink>
       </Navigation>
     </StyledNavBar>

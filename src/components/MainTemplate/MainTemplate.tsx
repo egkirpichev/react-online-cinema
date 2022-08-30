@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { Wrapper } from "../../ui/base";
 import { Space } from "../../ui/theme";
 import { Header } from "../Header";
 import { NavBar } from "../NavBar";
+import { Main, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
   return (
@@ -18,20 +18,23 @@ export const MainTemplate = () => {
         XL: "1184px",
         XXL: "1920px",
       }}
-      gridTemplateColumns={{
-        XL: "25% 75%",
-        XXL: "17% 83%",
-      }}
-      gridRowGap={{
-        default: `${Space.M}`,
-        S: `${Space.L}`,
-        L: `${Space.XL}`,
-        XL: `${Space.XXL}`,
-      }}
     >
-      <Header />
-      <NavBar />
-      <Outlet />
+      <Main
+        gridTemplateColumns={{
+          XL: "25% 75%",
+          XXL: "17% 83%",
+        }}
+        gridRowGap={{
+          default: `${Space.M}`,
+          S: `${Space.L}`,
+          L: `${Space.XL}`,
+          XL: `${Space.XXL}`,
+        }}
+      >
+        <Header />
+        <NavBar />
+        <Outlet />
+      </Main>
     </Wrapper>
   );
 };

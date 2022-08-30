@@ -1,7 +1,10 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { Color } from "../../ui";
+import { position, PositionProps, space, top } from "styled-system";
 import { Space } from "../../ui/theme";
+
+interface IProps {
+  offset: number;
+}
 
 export const StyledNavBar = styled.nav`
   grid-column: 1/2;
@@ -10,9 +13,9 @@ export const StyledNavBar = styled.nav`
   gap: ${Space.XXL};
 `;
 
-export const Navigation = styled.div`
+export const Navigation = styled.div<IProps>`
   position: sticky;
-  top: 0;
+  top: ${(props) => props.offset}px;
   display: flex;
   flex-direction: column;
   gap: ${Space.L};

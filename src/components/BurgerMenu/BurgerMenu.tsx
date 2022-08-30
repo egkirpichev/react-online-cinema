@@ -1,14 +1,15 @@
-import { slide as Menu } from "react-burger-menu";
 import { useWindowSize } from "../../hooks";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { NavBar } from "../NavBar";
+import { slide as Menu } from "react-burger-menu";
 
 import { ReactComponent as CloseIcon } from "../../assets/closeIcon.svg";
+import { StyledMenu } from "./styles";
 
 export const BurgerMenu = () => {
   const { screenWidth } = useWindowSize();
-  const styles = {
+  const byrgerStyles = {
     bmBurgerButton: {
       position: "relative",
       width: "56px",
@@ -47,8 +48,8 @@ export const BurgerMenu = () => {
   };
 
   return (
-    <Menu right styles={styles} customCrossIcon={<CloseIcon />}>
+    <StyledMenu right styles={byrgerStyles} customCrossIcon={<CloseIcon />}>
       <NavBar />
-    </Menu>
+    </StyledMenu>
   );
 };

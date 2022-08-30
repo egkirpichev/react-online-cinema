@@ -3,7 +3,11 @@ import { StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
   return (
-    <StyledSearchBar>
+    <StyledSearchBar
+      gridColumn={{
+        S: "2/3",
+      }}
+    >
       <Input placeholder="Search" />
     </StyledSearchBar>
   );

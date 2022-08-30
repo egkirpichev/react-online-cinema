@@ -7,7 +7,7 @@ export const StyledHeader = styled.header<GridProps & SpaceProps>`
   position: sticky;
   top: 0;
   display: grid;
-  grid-template-columns: 162px 56px;
+  grid-template-columns: 3fr 1fr;
   grid-gap: ${Space.L} ${Space.LARGEST};
   align-items: center;
   ${grid};

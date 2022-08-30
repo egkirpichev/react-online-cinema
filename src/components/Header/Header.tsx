@@ -28,8 +28,8 @@ export const Header = () => {
       }}
     >
       <Logo />
+      {screenWidth < 768 && <BurgerMenu />}
       <SearchBar />
-      {screenWidth < 1440 && <BurgerMenu />}
     </StyledHeader>
   );
 };

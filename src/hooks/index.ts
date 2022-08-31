@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -20,4 +20,17 @@ export const useWindowSize = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return windowSize;
+};
+
+export const useInput = (initialValue: string = "") => {
+  const [value, setInputValue] = useState<string>("");
+
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  return {
+    value,
+    onChange,
+  };
 };

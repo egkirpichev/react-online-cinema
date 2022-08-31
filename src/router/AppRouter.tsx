@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { AuthTemplate } from "../components/AuthTemplate/AuthTemplate";
 import { MainTemplate } from "../components/MainTemplate";
 import { RequareAuth } from "../components/RequireAuth";
 import {
@@ -27,9 +28,11 @@ export const AppRouter = () => {
         <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
         <Route path={ROUTE.SETTINGS} element={<Settings />} />
       </Route>
-      <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
-      <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
-      <Route path={ROUTE.RESET_PASSWORD} element={<ResetPassword />} />
+      <Route path={ROUTE.HOME} element={<AuthTemplate />}>
+        <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
+        <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
+        <Route path={ROUTE.RESET_PASSWORD} element={<ResetPassword />} />
+      </Route>
     </Routes>
   );
 };

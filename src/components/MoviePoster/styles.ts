@@ -1,15 +1,10 @@
 import styled from "styled-components";
-import { Space } from "../../ui/theme";
+import { layout, LayoutProps } from "styled-system";
 
-interface IProps {
-  poster: string;
-}
-
-export const StyledMoviePoster = styled.div<IProps>`
-  flex-grow: 1;
-  height: 357px;
-  padding: ${Space.S};
-  background: no-repeat url(${(props) => props.poster});
-  background-size: cover;
+export const StyledMoviePoster = styled.img<LayoutProps>`
+  justify-self: center;
+  max-height: 365px;
+  max-width: 100%;
+  ${layout};
   border-radius: 20px;
 `;

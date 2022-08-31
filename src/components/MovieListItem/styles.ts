@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { layout, LayoutProps } from "styled-system";
 import { Body2, Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
-export const StyledMovieCard = styled.div`
+export const StyledMovieCard = styled.div<LayoutProps>`
   justify-self: stretch;
   display: flex;
   flex-direction: column;
   gap: ${Space.S};
-  height: 433px;
+  max-height: 437px;
+  ${layout}
+  max-width: 272px;
+  margin: 0 auto;
 `;
 
 export const Description = styled.div`
@@ -31,6 +35,8 @@ export const MovieTitle = styled(Link)`
 `;
 
 export const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
   text-decoration: none;
 `;
 

@@ -4,7 +4,13 @@ import { IMovieFull, IMovieListItem, IMovieShort } from "../../types";
 import { Color } from "../../ui";
 import { getShortMovieDescription } from "../../mappers";
 import { RatingBadge } from "../RatingBadge";
-import { Description, MovieTitle, Released, StyledMovieCard } from "./styles";
+import {
+  Description,
+  MovieTitle,
+  Released,
+  StyledLink,
+  StyledMovieCard,
+} from "./styles";
 import { MovieGenre } from "../MovieGenre";
 import { MoviePoster } from "../MoviePoster";
 import { Link } from "react-router-dom";
@@ -22,9 +28,11 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
 
   return (
     <StyledMovieCard>
-      <Link to={createRoute(Endpoint.MOVIE, { imdbID: movieListItem.imdbID })}>
+      <StyledLink
+        to={createRoute(Endpoint.MOVIE, { imdbID: movieListItem.imdbID })}
+      >
         <MoviePoster poster={movieListItem.Poster}></MoviePoster>
-      </Link>
+      </StyledLink>
       <Description>
         <MovieTitle
           to={createRoute(Endpoint.MOVIE, { imdbID: movieListItem.imdbID })}

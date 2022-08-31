@@ -1,5 +1,4 @@
-import { Subtitle3 } from "../../ui/typography";
-import { StyledInput, Wrapper } from "./styles";
+import { StyledInput, Title, Wrapper } from "./styles";
 
 interface IProps {
   title?: string;
@@ -9,7 +8,7 @@ interface IProps {
 export const Input = ({ title, placeholder }: IProps) => {
   return (
     <Wrapper>
-      {title && <Subtitle3>{title}</Subtitle3>}
+      {title && <Title>{title}</Title>}
       <StyledInput placeholder={placeholder} type="text" />
     </Wrapper>
   );

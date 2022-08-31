@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Color } from "../../ui";
+import { Color, Subtitle3 } from "../../ui";
 
 export const StyledInput = styled.input`
   padding: 16px 20px;
@@ -22,4 +22,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+export const Title = styled(Subtitle3)`
+  color: ${Color.White};
 `;

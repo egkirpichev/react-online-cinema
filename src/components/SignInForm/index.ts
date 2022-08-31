@@ -1,3 +1,3 @@
-import { StyledForm } from "./styles";
+import { SignInForm } from "./SignInForm";
 
-export { StyledForm };
+export { SignInForm };

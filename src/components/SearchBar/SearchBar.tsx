@@ -7,6 +7,9 @@ export const SearchBar = () => {
       gridColumn={{
         S: "2/3",
       }}
+      gridRow={{
+        S: "1/2",
+      }}
     >
       <Input placeholder="Search" />
     </StyledSearchBar>

@@ -1,9 +1,4 @@
-import { useEffect, useState } from "react";
-import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieShort } from "../../types/types";
-import { Color } from "../../ui";
-import { CustomSpinner } from "../CustomSpinner";
-import { ErrorMessage } from "../ErrorMessage";
 import { MovieListItem } from "../MovieListItem";
 import { StyledMovieList } from "./styles";
 

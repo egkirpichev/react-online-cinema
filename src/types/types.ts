@@ -39,10 +39,10 @@ export interface IMovieFull {
 }
 
 export interface IMovieShort {
-  poster: string;
-  title: string;
-  type: string;
-  year: string;
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
   imdbID: string;
 }
 

@@ -1,5 +1,5 @@
-import { StyledHeader } from "./styles";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
+import { StyledHeader, StyledLogo } from "./styles";
+
 import { SearchBar } from "../SearchBar";
 import { Space } from "../../ui/theme";
 import { useWindowSize } from "../../hooks";
@@ -27,8 +27,8 @@ export const Header = () => {
         XL: `${Space.L}`,
       }}
     >
-      <Logo />
-      {screenWidth < 768 && <BurgerMenu />}
+      <StyledLogo />
+      {screenWidth < 1440 && <BurgerMenu />}
       <SearchBar />
     </StyledHeader>
   );

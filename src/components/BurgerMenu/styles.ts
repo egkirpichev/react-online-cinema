@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { slide } from "react-burger-menu";
+import { grid, GridProps } from "styled-system";
 
-export const StyledMenu = styled(slide)`
+export const MenuWrap = styled.div<GridProps>`
   grid-column: 2/3;
-  justify-self: end;
+  ${grid}
 `;

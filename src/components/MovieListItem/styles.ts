@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Color, H2 } from "../../ui";
+import { Body2, Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 export const StyledMovieCard = styled.div`
@@ -33,3 +33,5 @@ export const MovieTitle = styled(Link)`
 export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+
+export const Released = styled(Body2)``;

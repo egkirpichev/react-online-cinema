@@ -1,9 +1,4 @@
-import { useEffect, useState } from "react";
-import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieFull, IMovieListItem, IMovieShort } from "../../types";
-import { Color } from "../../ui";
-import { getShortMovieDescription } from "../../mappers";
-import { RatingBadge } from "../RatingBadge";
+import { IMovieShort } from "../../types";
 import {
   Description,
   MovieTitle,
@@ -11,13 +6,9 @@ import {
   StyledLink,
   StyledMovieCard,
 } from "./styles";
-import { MovieGenre } from "../MovieGenre";
 import { MoviePoster } from "../MoviePoster";
-import { Link } from "react-router-dom";
 import { createRoute } from "../../utils";
-import { Endpoint } from "../../router";
-import { CustomSpinner } from "../CustomSpinner";
-import { ErrorMessage } from "../ErrorMessage";
+import { ROUTE } from "../../router";
 
 interface IProps {
   movieListItem: IMovieShort;
@@ -29,13 +20,13 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
   return (
     <StyledMovieCard>
       <StyledLink
-        to={createRoute(Endpoint.MOVIE, { imdbID: movieListItem.imdbID })}
+        to={createRoute(ROUTE.MOVIE, { imdbID: movieListItem.imdbID })}
       >
         <MoviePoster poster={movieListItem.Poster}></MoviePoster>
       </StyledLink>
       <Description>
         <MovieTitle
-          to={createRoute(Endpoint.MOVIE, { imdbID: movieListItem.imdbID })}
+          to={createRoute(ROUTE.MOVIE, { imdbID: movieListItem.imdbID })}
         >
           {movieListItem.Title}
         </MovieTitle>

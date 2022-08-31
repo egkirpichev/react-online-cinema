@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { useMatch } from "react-router-dom";
-import { Endpoint } from "../../router";
+import { ROUTE } from "../../router";
 import { StyledLink } from "./styles";
 
 interface IProps {
   text: string;
-  to: Endpoint;
+  to: ROUTE;
   children: ReactNode;
 }
 

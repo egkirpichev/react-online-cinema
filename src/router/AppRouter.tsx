@@ -1,20 +1,35 @@
 import { Route, Routes } from "react-router-dom";
-import { Endpoint } from ".";
 import { MainTemplate } from "../components/MainTemplate";
-import { Favourites, Home, NotFound, Settings, Trends } from "../pages";
+import { RequareAuth } from "../components/RequireAuth";
+import {
+  Favourites,
+  Home,
+  NotFound,
+  ResetPassword,
+  Settings,
+  SignIn,
+  SignUp,
+  Trends,
+} from "../pages";
 import { Movie } from "../pages/Movie";
+import { ROUTE } from "./routes";
 
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path={Endpoint.HOME} element={<MainTemplate />}>
+      <Route path={ROUTE.HOME} element={<MainTemplate />}>
         <Route index element={<Home />} />
-        <Route path={Endpoint.MOVIE} element={<Movie />} />
-        <Route path={Endpoint.FAVOURITES} element={<Favourites />} />
-        <Route path={Endpoint.TRENDS} element={<Trends />} />
-        <Route path={Endpoint.SETTINGS} element={<Settings />} />
+        <Route path={ROUTE.MOVIE} element={<Movie />} />
+        <Route path={ROUTE.TRENDS} element={<Trends />} />
         <Route path="*" element={<NotFound />} />
       </Route>
+      <Route element={<RequareAuth />}>
+        <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
+        <Route path={ROUTE.SETTINGS} element={<Settings />} />
+      </Route>
+      <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
+      <Route path={ROUTE.SIGN_IN} element={<SignIn />} />
+      <Route path={ROUTE.RESET_PASSWORD} element={<ResetPassword />} />
     </Routes>
   );
 };

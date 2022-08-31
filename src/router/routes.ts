@@ -1,4 +1,4 @@
-export enum Endpoint {
+export enum ROUTE {
   HOME = "/",
   MOVIE = "movie/:imdbID",
   TRENDS = "trends",

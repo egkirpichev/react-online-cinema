@@ -1,5 +1,5 @@
 import { Navigation, StyledNavBar } from "./styles";
-import { Endpoint } from "../../router";
+import { ROUTE } from "../../router";
 import { CustomLink } from "../CustomLink";
 import { RiHome6Line } from "react-icons/ri";
 import { IoMdFlame } from "react-icons/io";
@@ -17,16 +17,16 @@ export const NavBar = () => {
   return (
     <StyledNavBar>
       <Navigation offset={offset} ref={navBarRef}>
-        <CustomLink to={Endpoint.HOME} text="Home">
+        <CustomLink to={ROUTE.HOME} text="Home">
           <RiHome6Line />
         </CustomLink>
-        <CustomLink to={Endpoint.TRENDS} text="Trends">
+        <CustomLink to={ROUTE.TRENDS} text="Trends">
           <IoMdFlame />
         </CustomLink>
-        <CustomLink to={Endpoint.FAVOURITES} text="Favourites">
+        <CustomLink to={ROUTE.FAVOURITES} text="Favourites">
           <HiBookmark />
         </CustomLink>
-        <CustomLink to={Endpoint.SETTINGS} text="Settings">
+        <CustomLink to={ROUTE.SETTINGS} text="Settings">
           <IoMdSettings />
         </CustomLink>
       </Navigation>

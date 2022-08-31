@@ -1,4 +1,4 @@
-import { Endpoint } from "../router";
+import { ROUTE } from "../router";
 
 export enum Param {
   ApiKey = "apikey",
@@ -90,14 +90,14 @@ export interface IMovieFactsList {
 }
 
 export type RouteType =
-  | [Endpoint.HOME]
-  | [Endpoint, { imdbID: string }]
-  | [Endpoint.TRENDS]
-  | [Endpoint.FAVOURITES]
-  | [Endpoint.SETTINGS]
-  | [Endpoint.SIGN_IN]
-  | [Endpoint.SIGN_UP]
-  | [Endpoint.RESET_PASSWORD];
+  | [ROUTE.HOME]
+  | [ROUTE, { imdbID: string }]
+  | [ROUTE.TRENDS]
+  | [ROUTE.FAVOURITES]
+  | [ROUTE.SETTINGS]
+  | [ROUTE.SIGN_IN]
+  | [ROUTE.SIGN_UP]
+  | [ROUTE.RESET_PASSWORD];
 
 export interface IRequestParams {
   apikey: string | undefined;

@@ -1,5 +1,4 @@
-import { Input } from "../Input";
-import { StyledSearchBar } from "./styles";
+import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
   return (
@@ -11,7 +10,7 @@ export const SearchBar = () => {
         S: "1/2",
       }}
     >
-      <Input placeholder="Search" />
+      <StyledInput type="text" placeholder="Search" />
     </StyledSearchBar>
   );
 };

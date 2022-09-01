@@ -5,8 +5,8 @@ import { StyledLink } from "./styles";
 
 interface IProps {
   text: string;
-  to: ROUTE;
-  children: ReactNode;
+  to: ROUTE | `/${ROUTE}`;
+  children?: ReactNode;
 }
 
 export const CustomLink = ({ text, to, children }: IProps) => {

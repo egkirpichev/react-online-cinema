@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Color } from "./colors";
-import { Space } from "./theme";
 
 export const H1 = styled.h1`
   font-weight: 600;
@@ -103,5 +102,23 @@ export const ButtonSecondary = styled.button`
 
   :active {
     box-shadow: inset 5px 5px 5px ${Color.Black};
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  padding: 16px 20px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${Color.Secondary};
+  background-color: ${Color.Graphite};
+  border: 1px solid ${Color.Black};
+  border-radius: 10px;
+
+  :focus {
+    color: ${Color.White};
+    outline: none;
+    border: 1px solid ${Color.PrimaryDark};
   }
 `;

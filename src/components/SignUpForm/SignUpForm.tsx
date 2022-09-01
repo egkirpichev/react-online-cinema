@@ -1,29 +1,32 @@
+import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ROUTE } from "../../router";
-import { IUserSignIn } from "../../types/types";
+import { IUserSignUp } from "../../types/types";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
 import {
   Body,
   FieldTitle,
   InputField,
-  StyledInput,
-  ResetPassword,
-  SignUp,
-  SignUpLink,
   StyledForm,
   Title,
   Error,
+  StyledInput,
+  SignIn,
+  SignInLink,
 } from "./styles";
 
-export const SignInForm = () => {
+export const SignUpForm = () => {
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUserSignIn>();
+  } = useForm<IUserSignUp>();
 
-  const onSubmit: SubmitHandler<IUserSignIn> = (data) => console.log(data);
+  const passwordValue = watch("password", "");
+
+  const onSubmit: SubmitHandler<IUserSignUp> = (data) => console.log(data);
 
   return (
     <StyledForm
@@ -31,8 +34,17 @@ export const SignInForm = () => {
       padding={{ S: Space.L }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Title>Sign In</Title>
+      <Title>Sign Up</Title>
       <Body>
+        <InputField>
+          <FieldTitle>Name</FieldTitle>
+          <StyledInput
+            type="text"
+            placeholder="Your name"
+            {...register("name", { required: "Please, enter your name" })}
+          />
+          {errors.name && <Error>{errors.name.message}</Error>}
+        </InputField>
         <InputField>
           <FieldTitle>Email</FieldTitle>
           <StyledInput
@@ -56,17 +68,28 @@ export const SignInForm = () => {
             })}
           />
           {errors.password && <Error>{errors.password.message}</Error>}
-
-          <ResetPassword to={`/${ROUTE.RESET_PASSWORD}`}>
-            Forgot password?
-          </ResetPassword>
+        </InputField>
+        <InputField>
+          <FieldTitle>Password</FieldTitle>
+          <StyledInput
+            type="password"
+            placeholder="Confirm Password"
+            {...register("confirmPassword", {
+              required: "Please, confrim the password",
+              validate: (value) =>
+                value === passwordValue || "Entered passwords do not match",
+            })}
+          />
+          {errors.confirmPassword && (
+            <Error>{errors.confirmPassword.message}</Error>
+          )}
         </InputField>
       </Body>
       <ButtonPrimary>Sign In</ButtonPrimary>
-      <SignUp>
-        Dont have and account?&nbsp;&nbsp;
-        <SignUpLink to={`/${ROUTE.SIGN_UP}`}> Sign Up</SignUpLink>
-      </SignUp>
+      <SignIn>
+        Already have an account?&nbsp;&nbsp;
+        <SignInLink to={`/${ROUTE.SIGN_IN}`}>Sign In</SignInLink>
+      </SignIn>
     </StyledForm>
   );
 };

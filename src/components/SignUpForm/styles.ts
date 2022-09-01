@@ -11,9 +11,10 @@ export const StyledForm = styled.form<LayoutProps & SpaceProps>`
   gap: ${Space.L};
   align-self: center;
   width: 272px;
-  padding: ${Space.S};
   ${layout};
   ${space};
+  margin: 90px auto;
+  padding: ${Space.S};
   background: ${Color.Dark};
   border-radius: 10px;
 `;
@@ -22,24 +23,13 @@ export const Title = styled(H2)`
   color: ${Color.White};
 `;
 
-export const ResetPassword = styled(Link)`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-decoration: none;
-  color: ${Color.Secondary};
-  :hover {
-    color: ${Color.PrimaryDark};
-  }
-`;
-
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${Space.XS};
 `;
 
-export const SignUp = styled(Body2)`
+export const SignIn = styled(Body2)`
   display: flex;
   justify-content: center;
   font-size: 14px;
@@ -47,7 +37,7 @@ export const SignUp = styled(Body2)`
   color: ${Color.Secondary};
 `;
 
-export const SignUpLink = styled(Link)`
+export const SignInLink = styled(Link)`
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;

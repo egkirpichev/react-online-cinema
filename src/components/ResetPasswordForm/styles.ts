@@ -1,0 +1,45 @@
+import styled from "styled-components";
+import { layout, LayoutProps, space, SpaceProps } from "styled-system";
+import { Color, H2 } from "../../ui";
+import { Space } from "../../ui/theme";
+import { Body2, Input, Subtitle3 } from "../../ui/typography";
+
+export const StyledForm = styled.form<LayoutProps & SpaceProps>`
+  display: flex;
+  flex-direction: column;
+  gap: ${Space.L};
+  align-self: center;
+  width: 272px;
+  padding: ${Space.S};
+  ${layout};
+  ${space};
+  background: ${Color.Dark};
+  border-radius: 10px;
+`;
+export const Title = styled(H2)`
+  text-align: left;
+  color: ${Color.White};
+`;
+
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${Space.XS};
+`;
+
+export const StyledInput = styled(Input)``;
+
+export const FieldTitle = styled(Subtitle3)`
+  padding-bottom: 8px;
+  color: ${Color.White};
+`;
+
+export const InputField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${Space.SMALLEST};
+`;
+
+export const Error = styled(Body2)`
+  color: ${Color.Error};
+`;

@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../hooks";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
 import { signUp } from "../../store/slices/userSlice";
 import { IUserSignUp } from "../../types/types";
+import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
+import { AuthModal } from "../AuthModal";
+import { CustomSpinner } from "../CustomSpinner";
 import {
   Body,
   FieldTitle,
@@ -26,10 +31,19 @@ export const SignUpForm = () => {
   } = useForm<IUserSignUp>();
 
   const passwordValue = watch("password", "");
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+  const { isLoading, isLogged } = useAppSelector((userSlice) => userSlice.user);
 
-  const onSubmit: SubmitHandler<IUserSignUp> = (data) => dispatch(signUp(data));
+  const onSubmit: SubmitHandler<IUserSignUp> = (data) => {
+    dispatch(signUp(data));
+  };
+  useEffect(() => {
+    setTimeout(() => {
+      return navigate(ROUTE.HOME);
+    }, 5000);
+  }, [isLogged]);
 
   return (
     <StyledForm
@@ -75,7 +89,7 @@ export const SignUpForm = () => {
         <InputField>
           <FieldTitle>Password</FieldTitle>
           <StyledInput
-            type="confirmPassword"
+            type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", {
               required: "Please, confrim the password",
@@ -88,11 +102,17 @@ export const SignUpForm = () => {
           )}
         </InputField>
       </Body>
-      <ButtonPrimary>Sign Up</ButtonPrimary>
+      <ButtonPrimary>
+        Sign Up&nbsp;&nbsp;
+        {isLoading && (
+          <CustomSpinner color={Color.White} still={false} size="20px" />
+        )}
+      </ButtonPrimary>
       <SignIn>
         Already have an account?&nbsp;&nbsp;
-        <SignInLink to={`/${ROUTE.SIGN_IN}`}>Sign In</SignInLink>
+        <SignInLink to={`/${ROUTE.SIGN_IN}`}></SignInLink>
       </SignIn>
+      {isLogged && <AuthModal message="Signed Up successfully!" />}
     </StyledForm>
   );
 };

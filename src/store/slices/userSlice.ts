@@ -60,7 +60,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(signUp.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = true;
+        state.isLoading = false;
         state.error = payload;
       }
     });

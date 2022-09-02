@@ -1,3 +1,4 @@
+import { AuthModal } from "../../components/AuthModal";
 import { SignUpForm } from "../../components/SignUpForm";
 
 export const SignUp = () => {

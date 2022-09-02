@@ -1,4 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -23,7 +25,7 @@ export const useWindowSize = () => {
 };
 
 export const useInput = (initialValue: string = "") => {
-  const [value, setInputValue] = useState<string>("");
+  const [value, setInputValue] = useState<string>(initialValue);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -33,4 +35,13 @@ export const useInput = (initialValue: string = "") => {
     value,
     onChange,
   };
+};
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const useAuth = () => {
+  const { name, email, isLogged } = useAppSelector((state) => state.user);
+  return { name, email, isLogged };
 };

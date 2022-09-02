@@ -1,6 +1,7 @@
-import { useRef } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch } from "../../hooks";
 import { ROUTE } from "../../router";
+import { signUp } from "../../store/slices/userSlice";
 import { IUserSignUp } from "../../types/types";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
@@ -26,7 +27,9 @@ export const SignUpForm = () => {
 
   const passwordValue = watch("password", "");
 
-  const onSubmit: SubmitHandler<IUserSignUp> = (data) => console.log(data);
+  const dispatch = useAppDispatch();
+
+  const onSubmit: SubmitHandler<IUserSignUp> = (data) => dispatch(signUp(data));
 
   return (
     <StyledForm
@@ -62,8 +65,8 @@ export const SignUpForm = () => {
             {...register("password", {
               required: "Please, enter account password",
               minLength: {
-                value: 5,
-                message: "Password should be at leat 5 characters long",
+                value: 6,
+                message: "Password should be at leat 6 characters long",
               },
             })}
           />
@@ -72,7 +75,7 @@ export const SignUpForm = () => {
         <InputField>
           <FieldTitle>Password</FieldTitle>
           <StyledInput
-            type="password"
+            type="confirmPassword"
             placeholder="Confirm Password"
             {...register("confirmPassword", {
               required: "Please, confrim the password",
@@ -85,7 +88,7 @@ export const SignUpForm = () => {
           )}
         </InputField>
       </Body>
-      <ButtonPrimary>Sign In</ButtonPrimary>
+      <ButtonPrimary>Sign Up</ButtonPrimary>
       <SignIn>
         Already have an account?&nbsp;&nbsp;
         <SignInLink to={`/${ROUTE.SIGN_IN}`}>Sign In</SignInLink>

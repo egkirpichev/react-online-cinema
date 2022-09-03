@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
 
 export const RequareAuth = () => {
-  const isAuth = false;
-  return isAuth ? <Outlet /> : <Navigate to={ROUTE.SIGN_IN} />;
+  const { isLogged } = useAppSelector((userSlice) => userSlice.user);
+  return isLogged ? <Outlet /> : <Navigate to={ROUTE.SIGN_IN} />;
 };

@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
 
@@ -44,4 +44,10 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAuth = () => {
   const { name, email, isLogged } = useAppSelector((state) => state.user);
   return { name, email, isLogged };
+};
+
+export const useToggle = (initialState: boolean = false): [boolean, any] => {
+  const [state, setState] = useState<boolean>(initialState);
+  const toggle = useCallback((): void => setState((state) => !state), []);
+  return [state, toggle];
 };

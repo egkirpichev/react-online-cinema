@@ -18,3 +18,7 @@ export const createRoute = (...args: RouteType) => {
     return prev.replace(`:${param}`, "" + value);
   }, path);
 };
+
+export const getShortUserName = (name: string): string => {
+  return (name.charAt(0) + name.charAt(1)).toUpperCase();
+};

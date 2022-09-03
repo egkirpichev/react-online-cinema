@@ -40,9 +40,10 @@ export const SignUpForm = () => {
     dispatch(signUp(data));
   };
   useEffect(() => {
-    setTimeout(() => {
-      return navigate(ROUTE.HOME);
-    }, 5000);
+    isLogged &&
+      setTimeout(() => {
+        navigate(ROUTE.HOME);
+      }, 3000);
   }, [isLogged]);
 
   return (

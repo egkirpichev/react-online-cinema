@@ -4,6 +4,7 @@ import { SearchBar } from "../SearchBar";
 import { Space } from "../../ui/theme";
 import { useWindowSize } from "../../hooks";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
+import { User } from "../User";
 
 export const Header = () => {
   const { screenWidth } = useWindowSize();
@@ -28,7 +29,7 @@ export const Header = () => {
       }}
     >
       <StyledLogo />
-      {screenWidth < 1440 && <BurgerMenu />}
+      {screenWidth < 1440 ? <BurgerMenu /> : <User />}
       <SearchBar />
     </StyledHeader>
   );

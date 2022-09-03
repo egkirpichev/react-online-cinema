@@ -1,4 +1,4 @@
-import { useAppSelector, useToggle } from "../../hooks";
+import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
 import {
   ArrowIcon,
   Avatar,
@@ -13,12 +13,18 @@ import { getShortUserName } from "../../utils/utils";
 import { CustomLink } from "../CustomLink";
 import { ROUTE } from "../../router";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "../../store/slices/userSlice";
+import { getAuth } from "firebase/auth";
 
 export const User = () => {
   const { isLogged, name } = useAppSelector((userSlice) => userSlice.user);
   const [isOpen, setIsOpen] = useToggle();
   const navigate = useNavigate();
-  console.log(isLogged);
+  const dispatch = useAppDispatch();
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  console.log(user);
 
   return (
     <UserBadge>
@@ -43,8 +49,22 @@ export const User = () => {
 
       {isOpen && (
         <DropDownContainer>
-          <Button>Edit Profile</Button>
-          <Button>Log Out</Button>
+          <Button
+            onClick={() => {
+              navigate(ROUTE.SETTINGS);
+              setIsOpen();
+            }}
+          >
+            Edit Profile
+          </Button>
+          <Button
+            onClick={() => {
+              dispatch(signOut());
+              setIsOpen();
+            }}
+          >
+            Sign Out
+          </Button>
         </DropDownContainer>
       )}
     </UserBadge>

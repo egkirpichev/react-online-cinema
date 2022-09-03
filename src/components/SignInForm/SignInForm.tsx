@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
+import userSlice, { signIn } from "../../store/slices/userSlice";
 import { IUserSignIn } from "../../types/types";
+import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
+import { AuthModal } from "../AuthModal";
+import { CustomSpinner } from "../CustomSpinner";
 import {
   Body,
   FieldTitle,
@@ -23,7 +30,24 @@ export const SignInForm = () => {
     formState: { errors },
   } = useForm<IUserSignIn>();
 
-  const onSubmit: SubmitHandler<IUserSignIn> = (data) => console.log(data);
+  const dispatch = useAppDispatch();
+  const { isLogged, isLoading, name } = useAppSelector(
+    (userSlice) => userSlice.user
+  );
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<IUserSignIn> = (data) => {
+    dispatch(signIn(data));
+  };
+
+  useEffect(() => {
+    isLogged &&
+      setTimeout(() => {
+        navigate(ROUTE.HOME);
+      }, 3000);
+  }, [isLogged]);
+
+  console.log(name);
 
   return (
     <StyledForm
@@ -62,11 +86,17 @@ export const SignInForm = () => {
           </ResetPassword>
         </InputField>
       </Body>
-      <ButtonPrimary>Sign In</ButtonPrimary>
+      <ButtonPrimary>
+        Sign In&nbsp;&nbsp;
+        {isLoading && (
+          <CustomSpinner color={Color.White} still={false} size="20px" />
+        )}
+      </ButtonPrimary>
       <SignUp>
         Dont have and account?&nbsp;&nbsp;
         <SignUpLink to={`/${ROUTE.SIGN_UP}`}> Sign Up</SignUpLink>
       </SignUp>
+      {isLogged && <AuthModal message="Signed In successfully!" />}
     </StyledForm>
   );
 };

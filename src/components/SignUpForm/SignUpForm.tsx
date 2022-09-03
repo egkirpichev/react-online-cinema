@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
-import { signUp } from "../../store/slices/userSlice";
+import { signUp, updateUserProfile } from "../../store/slices/userSlice";
 import { IUserSignUp } from "../../types/types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
@@ -36,14 +36,16 @@ export const SignUpForm = () => {
   const dispatch = useAppDispatch();
   const { isLoading, isLogged } = useAppSelector((userSlice) => userSlice.user);
 
-  const onSubmit: SubmitHandler<IUserSignUp> = (data) => {
-    dispatch(signUp(data));
+  const onSubmit: SubmitHandler<IUserSignUp> = async (data) => {
+    await dispatch(signUp(data)).then(() => dispatch(updateUserProfile(data)));
   };
+
   useEffect(() => {
-    isLogged &&
+    if (isLogged) {
       setTimeout(() => {
         navigate(ROUTE.HOME);
       }, 3000);
+    }
   }, [isLogged]);
 
   return (

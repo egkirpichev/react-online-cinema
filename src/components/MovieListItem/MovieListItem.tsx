@@ -15,8 +15,6 @@ interface IProps {
 }
 
 export const MovieListItem = ({ movieListItem }: IProps) => {
-  console.log(movieListItem);
-
   return (
     <StyledMovieCard>
       <StyledLink

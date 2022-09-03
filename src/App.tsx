@@ -5,7 +5,7 @@ import "./services/FireBase/fireBase";
 export const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <AppRouter />;
+      <AppRouter />
     </ThemeProvider>
   );
 };

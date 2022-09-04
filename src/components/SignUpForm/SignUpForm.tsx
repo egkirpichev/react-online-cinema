@@ -3,13 +3,19 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
-import { signUp, updateUserProfile } from "../../store/slices/userSlice";
-import { IUserSignUp } from "../../types/types";
+import {
+  resetError,
+  signUp,
+  updateUserProfile,
+} from "../../store/slices/userSlice";
+import { IUserSignUp } from "../../types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
+import { getFirebaseErrorMessage } from "../../utils";
 import { AuthModal } from "../AuthModal";
 import { CustomSpinner } from "../CustomSpinner";
+import { ErrorMessage } from "../ErrorMessage";
 import {
   Body,
   FieldTitle,
@@ -34,11 +40,17 @@ export const SignUpForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  const { isLoading, isLogged } = useAppSelector((userSlice) => userSlice.user);
+  const { isLoading, isLogged, error } = useAppSelector(
+    (userSlice) => userSlice.user
+  );
 
   const onSubmit: SubmitHandler<IUserSignUp> = async (data) => {
     await dispatch(signUp(data)).then(() => dispatch(updateUserProfile(data)));
   };
+
+  useEffect(() => {
+    error && dispatch(resetError());
+  }, []);
 
   useEffect(() => {
     if (isLogged) {
@@ -55,6 +67,7 @@ export const SignUpForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Title>Sign Up</Title>
+      {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
           <FieldTitle>Name</FieldTitle>

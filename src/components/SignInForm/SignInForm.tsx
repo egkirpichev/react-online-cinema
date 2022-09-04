@@ -3,13 +3,14 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
-import userSlice, { signIn } from "../../store/slices/userSlice";
+import userSlice, { resetError, signIn } from "../../store/slices/userSlice";
 import { IUserSignIn } from "../../types/types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
 import { AuthModal } from "../AuthModal";
 import { CustomSpinner } from "../CustomSpinner";
+import { ErrorMessage } from "../ErrorMessage";
 import {
   Body,
   FieldTitle,
@@ -31,7 +32,7 @@ export const SignInForm = () => {
   } = useForm<IUserSignIn>();
 
   const dispatch = useAppDispatch();
-  const { isLogged, isLoading, name } = useAppSelector(
+  const { isLogged, isLoading, error } = useAppSelector(
     (userSlice) => userSlice.user
   );
   const navigate = useNavigate();
@@ -39,6 +40,10 @@ export const SignInForm = () => {
   const onSubmit: SubmitHandler<IUserSignIn> = (data) => {
     dispatch(signIn(data));
   };
+
+  useEffect(() => {
+    error && dispatch(resetError());
+  }, []);
 
   useEffect(() => {
     isLogged &&
@@ -54,6 +59,7 @@ export const SignInForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Title>Sign In</Title>
+      {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
           <FieldTitle>Email</FieldTitle>

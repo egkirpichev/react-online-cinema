@@ -1,4 +1,4 @@
-import { RouteType } from "../types/types";
+import { FirebaseErrorMessage, RouteType } from "../types";
 import { Color } from "../ui";
 
 export const getRatingBadgeColor = (rating: string): Color => {
@@ -21,4 +21,15 @@ export const createRoute = (...args: RouteType) => {
 
 export const getShortUserName = (name: string): string => {
   return (name.charAt(0) + name.charAt(1)).toUpperCase();
+};
+
+export const getFirebaseErrorMessage = (code: string): FirebaseErrorMessage => {
+  switch (code) {
+    case "auth/email-already-in-use":
+      return FirebaseErrorMessage.EMAIL_ALREADY_IN_USE;
+    case "auth/user-not-found":
+      return FirebaseErrorMessage.USER_NOT_FOUND;
+    default:
+      return FirebaseErrorMessage.UNKNOWN_ERROR;
+  }
 };

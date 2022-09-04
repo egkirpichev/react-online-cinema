@@ -7,7 +7,8 @@ import {
   updateProfile,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { IUserSignUp, IUserSignIn } from "../../types/types";
+import { IUserSignIn, IUserSignUp } from "../../types";
+import { getFirebaseErrorMessage } from "../../utils";
 
 export interface UserState {
   name: string | null;
@@ -45,7 +46,7 @@ export const signUp = createAsyncThunk<
     );
   } catch (error) {
     const firebaseError = error as FirebaseError;
-    return rejectWithValue(firebaseError.message);
+    return rejectWithValue(firebaseError.code);
   }
 });
 
@@ -69,7 +70,7 @@ export const signIn = createAsyncThunk<
     );
   } catch (error) {
     const firebaseError = error as FirebaseError;
-    return rejectWithValue(firebaseError.message);
+    return rejectWithValue(firebaseError.code);
   }
 });
 
@@ -84,7 +85,7 @@ export const updateUserProfile = createAsyncThunk<
       .then(() => {})
       .catch((error: FirebaseError) => {
         const firebaseError = error as FirebaseError;
-        return rejectWithValue(firebaseError.message);
+        return rejectWithValue(firebaseError.code);
       });
   }
 });
@@ -99,7 +100,7 @@ export const resetPassword = createAsyncThunk<
     .then(() => {})
     .catch((error: FirebaseError) => {
       const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.message);
+      return rejectWithValue(firebaseError.code);
     });
 });
 
@@ -116,6 +117,10 @@ export const userSlice = createSlice({
     },
     resetPasswordState: (state) => {
       state.isPasswordReset = false;
+      state.error = null;
+    },
+    resetError: (state) => {
+      state.error = null;
     },
   },
   extraReducers(builder) {
@@ -135,7 +140,7 @@ export const userSlice = createSlice({
     builder.addCase(signUp.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
-        state.error = payload;
+        state.error = getFirebaseErrorMessage(payload);
       }
     });
     builder.addCase(signIn.pending, (state) => {
@@ -154,7 +159,7 @@ export const userSlice = createSlice({
     builder.addCase(signIn.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
-        state.error = payload;
+        state.error = getFirebaseErrorMessage(payload);
       }
     });
     builder.addCase(resetPassword.pending, (state) => {
@@ -170,11 +175,11 @@ export const userSlice = createSlice({
     builder.addCase(resetPassword.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
-        state.error = payload;
+        state.error = getFirebaseErrorMessage(payload);
       }
     });
   },
 });
 
-export const { signOut, resetPasswordState } = userSlice.actions;
+export const { signOut, resetPasswordState, resetError } = userSlice.actions;
 export default userSlice.reducer;

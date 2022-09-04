@@ -116,3 +116,9 @@ export interface IUserSignUp {
   password: string;
   confirmPassword: string;
 }
+
+export enum FirebaseErrorMessage {
+  EMAIL_ALREADY_IN_USE = "The provided email is already in use by an existing user",
+  USER_NOT_FOUND = "There is no existing user cooresponding to the provided email",
+  UNKNOWN_ERROR = "Something went wrong, please try again",
+}

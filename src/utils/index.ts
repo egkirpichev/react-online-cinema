@@ -1,3 +1,13 @@
-import { getRatingBadgeColor, createRoute } from "./utils";
+import {
+  getRatingBadgeColor,
+  createRoute,
+  getFirebaseErrorMessage,
+  getShortUserName,
+} from "./utils";
 
-export { getRatingBadgeColor, createRoute };
+export {
+  getRatingBadgeColor,
+  createRoute,
+  getShortUserName,
+  getFirebaseErrorMessage,
+};

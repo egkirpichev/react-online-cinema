@@ -4,7 +4,25 @@ import {
   IMovieRating,
   IMovieShort,
   IMovieListItem,
+  FirebaseErrorMessage,
+  IRequestParams,
+  IUserSignIn,
+  IUserSignUp,
+  RouteType,
+  IMovieCard,
+  IMovieFactsList,
 } from "./types";
 
-export { Param };
-export type { IMovieFull, IMovieRating, IMovieShort, IMovieListItem };
+export { Param, FirebaseErrorMessage };
+export type {
+  IMovieFull,
+  IMovieRating,
+  IMovieShort,
+  IMovieListItem,
+  IRequestParams,
+  IUserSignIn,
+  IUserSignUp,
+  RouteType,
+  IMovieFactsList,
+  IMovieCard,
+};

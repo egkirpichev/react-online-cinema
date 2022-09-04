@@ -3,5 +3,5 @@ import { Color, H2 } from "../../ui";
 
 export const StyledErrorMessage = styled(H2)`
   place-self: center;
-  color: ${Color.PrimaryDark};
+  color: ${Color.Error};
 `;

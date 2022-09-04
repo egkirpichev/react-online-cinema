@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
 import {
+  resetError,
   resetPassword,
   resetPasswordState,
 } from "../../store/slices/userSlice";
@@ -13,6 +14,7 @@ import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
 import { AuthModal } from "../AuthModal";
 import { CustomSpinner } from "../CustomSpinner";
+import { ErrorMessage } from "../ErrorMessage";
 import {
   Body,
   FieldTitle,
@@ -31,7 +33,7 @@ export const ResetPasswordForm = () => {
   } = useForm<IUserSignIn>();
 
   const dispatch = useAppDispatch();
-  const { isLoading, isPasswordReset } = useAppSelector(
+  const { isLoading, isPasswordReset, error } = useAppSelector(
     (userSlice) => userSlice.user
   );
   const navigate = useNavigate();
@@ -39,6 +41,10 @@ export const ResetPasswordForm = () => {
   const onSubmit: SubmitHandler<{ email: string }> = (data) => {
     dispatch(resetPassword(data));
   };
+
+  useEffect(() => {
+    error && dispatch(resetError());
+  }, []);
 
   useEffect(() => {
     isPasswordReset &&
@@ -55,6 +61,7 @@ export const ResetPasswordForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Title>Reset Password</Title>
+      {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
           <FieldTitle>Email</FieldTitle>

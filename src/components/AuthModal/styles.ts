@@ -26,4 +26,17 @@ export const Window = styled.div`
   padding: ${Space.XS};
   background-color: ${Color.Graphite};
   border-radius: 10px;
+  animation: growDown 400ms ease-in-out;
+  transform-origin: top;
+  @keyframes growDown {
+    0% {
+      transform: scaleY(0);
+    }
+    50% {
+      transform: scaleY(1.1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
 `;

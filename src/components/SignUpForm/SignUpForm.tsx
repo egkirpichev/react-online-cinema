@@ -44,7 +44,7 @@ export const SignUpForm = () => {
     if (isLogged) {
       setTimeout(() => {
         navigate(ROUTE.HOME);
-      }, 3000);
+      }, 2000);
     }
   }, [isLogged]);
 

@@ -10,7 +10,6 @@ import {
 } from "./styles";
 import { FiUser } from "react-icons/fi";
 import { getShortUserName } from "../../utils/utils";
-import { CustomLink } from "../CustomLink";
 import { ROUTE } from "../../router";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../../store/slices/userSlice";
@@ -22,6 +21,8 @@ export const User = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  console.log(isLogged);
+
   const auth = getAuth();
   const user = auth.currentUser;
   console.log(user);
@@ -29,42 +30,41 @@ export const User = () => {
   return (
     <UserBadge>
       <Avatar>{name ? getShortUserName(name) : <FiUser />}</Avatar>
-      <Header>
-        {name ? name : <CustomLink text="Sign In" to={ROUTE.SIGN_IN} />}
-      </Header>
-      {isLogged ? (
-        <ArrowButton onClick={setIsOpen}>
-          <ArrowIcon />
-        </ArrowButton>
-      ) : (
-        <ArrowButton
-          isLogged={isLogged}
-          onClick={() => {
-            navigate(ROUTE.SIGN_IN);
-          }}
-        >
-          <ArrowIcon />
-        </ArrowButton>
-      )}
-
+      <Header>{name ? name : "Guest"}</Header>
+      <ArrowButton onClick={setIsOpen}>
+        <ArrowIcon />
+      </ArrowButton>
       {isOpen && (
         <DropDownContainer>
-          <Button
-            onClick={() => {
-              navigate(ROUTE.SETTINGS);
-              setIsOpen();
-            }}
-          >
-            Edit Profile
-          </Button>
-          <Button
-            onClick={() => {
-              dispatch(signOut());
-              setIsOpen();
-            }}
-          >
-            Sign Out
-          </Button>
+          {isLogged && (
+            <Button
+              onClick={() => {
+                navigate(ROUTE.SETTINGS);
+                setIsOpen();
+              }}
+            >
+              Edit Profile
+            </Button>
+          )}
+          {isLogged ? (
+            <Button
+              onClick={() => {
+                dispatch(signOut());
+                setIsOpen();
+              }}
+            >
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                navigate(ROUTE.SIGN_IN);
+                setIsOpen();
+              }}
+            >
+              Sign In
+            </Button>
+          )}
         </DropDownContainer>
       )}
     </UserBadge>

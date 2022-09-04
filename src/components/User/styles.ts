@@ -88,7 +88,6 @@ export const ArrowButton = styled.button<IProps>`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  ${({ isLogged }) => (isLogged ? "" : "transform: rotate(0.75turn)")};
   :hover {
     color: ${Color.PrimaryDark};
   }

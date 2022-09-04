@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { IUserSignUp, IUserSignIn } from "../../types/types";
 
@@ -15,6 +16,7 @@ export interface UserState {
   token: string | null;
   isLogged: boolean;
   isLoading: boolean;
+  isPasswordReset: boolean;
   error: string | null;
 }
 
@@ -25,6 +27,7 @@ const initialState: UserState = {
   token: null,
   isLogged: false,
   isLoading: false,
+  isPasswordReset: false,
   error: null,
 };
 
@@ -78,14 +81,26 @@ export const updateUserProfile = createAsyncThunk<
   const auth = getAuth();
   if (auth.currentUser) {
     return await updateProfile(auth.currentUser, { displayName: name })
-      .then((response) => {
-        console.log(response);
-      })
+      .then(() => {})
       .catch((error: FirebaseError) => {
         const firebaseError = error as FirebaseError;
         return rejectWithValue(firebaseError.message);
       });
   }
+});
+
+export const resetPassword = createAsyncThunk<
+  void,
+  { email: string },
+  { rejectValue: string }
+>("user/resetPassword", async ({ email }, { rejectWithValue }) => {
+  const auth = getAuth();
+  await sendPasswordResetEmail(auth, email)
+    .then(() => {})
+    .catch((error: FirebaseError) => {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.message);
+    });
 });
 
 export const userSlice = createSlice({
@@ -99,11 +114,15 @@ export const userSlice = createSlice({
       state.token = null;
       state.isLogged = false;
     },
+    resetPasswordState: (state) => {
+      state.isPasswordReset = false;
+    },
   },
   extraReducers(builder) {
     builder.addCase(signUp.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.isPasswordReset = false;
     });
     builder.addCase(signUp.fulfilled, (state, { payload }) => {
       state.isLoading = false;
@@ -122,6 +141,7 @@ export const userSlice = createSlice({
     builder.addCase(signIn.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.isPasswordReset = false;
     });
     builder.addCase(signIn.fulfilled, (state, { payload }) => {
       state.isLoading = false;
@@ -137,10 +157,24 @@ export const userSlice = createSlice({
         state.error = payload;
       }
     });
+    builder.addCase(resetPassword.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+      state.password = null;
+    });
+    builder.addCase(resetPassword.fulfilled, (state) => {
+      state.isLoading = false;
+      state.isLogged = false;
+      state.isPasswordReset = true;
+    });
+    builder.addCase(resetPassword.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.error = payload;
+      }
+    });
   },
 });
 
-// Action creators are generated for each case reducer function
-
-export const { signOut } = userSlice.actions;
+export const { signOut, resetPasswordState } = userSlice.actions;
 export default userSlice.reducer;

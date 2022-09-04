@@ -47,8 +47,6 @@ export const SignInForm = () => {
       }, 2000);
   }, [isLogged]);
 
-  console.log(name);
-
   return (
     <StyledForm
       width={{ S: "574px" }}

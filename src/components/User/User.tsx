@@ -21,11 +21,8 @@ export const User = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  console.log(isLogged);
-
   const auth = getAuth();
   const user = auth.currentUser;
-  console.log(user);
 
   return (
     <UserBadge>

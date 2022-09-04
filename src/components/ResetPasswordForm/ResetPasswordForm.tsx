@@ -1,7 +1,18 @@
+import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { ROUTE } from "../../router";
+import {
+  resetPassword,
+  resetPasswordState,
+} from "../../store/slices/userSlice";
 import { IUserSignIn } from "../../types/types";
+import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
+import { AuthModal } from "../AuthModal";
+import { CustomSpinner } from "../CustomSpinner";
 import {
   Body,
   FieldTitle,
@@ -19,7 +30,23 @@ export const ResetPasswordForm = () => {
     formState: { errors },
   } = useForm<IUserSignIn>();
 
-  const onSubmit: SubmitHandler<IUserSignIn> = (data) => console.log(data);
+  const dispatch = useAppDispatch();
+  const { isLoading, isPasswordReset } = useAppSelector(
+    (userSlice) => userSlice.user
+  );
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<{ email: string }> = (data) => {
+    dispatch(resetPassword(data));
+  };
+
+  useEffect(() => {
+    isPasswordReset &&
+      setTimeout(() => {
+        navigate(`/${ROUTE.SIGN_IN}`);
+        dispatch(resetPasswordState());
+      }, 2000);
+  }, [isPasswordReset]);
 
   return (
     <StyledForm
@@ -39,7 +66,13 @@ export const ResetPasswordForm = () => {
           {errors.email && <Error>{errors.email.message}</Error>}
         </InputField>
       </Body>
-      <ButtonPrimary>Reset</ButtonPrimary>
+      <ButtonPrimary>
+        Reset&nbsp;&nbsp;
+        {isLoading && (
+          <CustomSpinner color={Color.White} still={false} size="20px" />
+        )}
+      </ButtonPrimary>
+      {isPasswordReset && <AuthModal message="Email has been sent" />}
     </StyledForm>
   );
 };

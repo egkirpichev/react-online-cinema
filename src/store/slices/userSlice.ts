@@ -16,7 +16,7 @@ import { auth } from "../../services/FireBase/fireBase";
 import { ISettings, IUserSignIn, IUserSignUp } from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
-export interface UserState {
+export interface IUserState {
   name: string | null;
   email: string | null;
   error: string | null;
@@ -26,7 +26,7 @@ export interface UserState {
   isLightMode: boolean;
 }
 
-const initialState: UserState = {
+const initialState: IUserState = {
   name: null,
   email: null,
   error: null,

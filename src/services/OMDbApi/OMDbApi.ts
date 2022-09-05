@@ -53,7 +53,10 @@ class OMDbAPI {
     return data;
   }
 
-  public async loadMoreMovies(initialParams: IRequestParams): Promise<any> {
+  public async loadMoreMovies(initialParams: IRequestParams): Promise<{
+    Search: IMovieShort[];
+    params: IRequestParams;
+  }> {
     const { apikey, s, page } = initialParams;
     const params = { apikey, s, page: (Number(page) + 1).toString() };
     const {
@@ -63,7 +66,7 @@ class OMDbAPI {
       params,
     });
 
-    return { config, Search, params };
+    return { Search, params };
   }
 }
 

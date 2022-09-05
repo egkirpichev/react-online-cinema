@@ -14,6 +14,7 @@ export const MainTemplate = () => {
         S: `0 ${Space.L} ${Space.L}`,
         XXL: `0 ${Space.LARGEST} ${Space.L}`,
       }}
+      maxWidth={{ XXL: "1920px" }}
     >
       <Header />
       <Main

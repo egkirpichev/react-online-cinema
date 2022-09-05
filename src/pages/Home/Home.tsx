@@ -1,54 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CustomSpinner } from "../../components/CustomSpinner";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { Footer } from "../../components/Footer";
 import { MovieList } from "../../components/MovieList";
-import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieShort } from "../../types";
-import { IRequestParams } from "../../types/types";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { getRandomMovies } from "../../store/slices/movieSlice";
 import { Color } from "../../ui";
 
 export const Home = () => {
-  const [movieList, setMovieList] = useState<IMovieShort[]>([]);
-  const [initialParams, setInitialParams] = useState<IRequestParams>({
-    apikey: "",
-    s: "",
-    page: "",
-  });
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const { movies, isLoading, error } = useAppSelector(
+    (movieSlice) => movieSlice.movies
+  );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    OMDbApi.getRandomMovies()
-      .then(({ Search, params }) => {
-        setMovieList(Search);
-        setInitialParams(params);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setIsLoading(false);
-        setErrorMessage(error.message);
-      });
+    dispatch(getRandomMovies());
   }, []);
 
   if (isLoading) {
     return <CustomSpinner color={Color.PrimaryDark} />;
   }
 
-  if (errorMessage) {
+  if (error) {
     return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
   }
 
   return (
     <>
-      <MovieList movieList={movieList} />
-      {!isLoading && (
-        <Footer
-          initialParams={initialParams}
-          setInitialParams={setInitialParams}
-          setMovieList={setMovieList}
-        />
-      )}
+      <MovieList movieList={movies} />
+      {!isLoading && <Footer />}
     </>
   );
 };

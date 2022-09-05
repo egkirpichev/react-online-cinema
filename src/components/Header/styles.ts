@@ -11,7 +11,7 @@ export const StyledHeader = styled.header<GridProps & SpaceProps>`
   grid-template-columns: 3fr 1fr;
   grid-gap: ${Space.L} ${Space.LARGEST};
   align-items: center;
-  justify-items: end;
+  justify-items: space-between;
   ${grid};
   width: 100%;
   padding: ${Space.M} 0;

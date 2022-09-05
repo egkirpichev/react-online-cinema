@@ -19,6 +19,7 @@ export const BurgerMenu = () => {
       gridCplumn: 3 / 4,
       width: "56px",
       height: "56px",
+      margin: "0px 0px 0px auto",
       padding: "15px 10px",
       background: isOpen ? Color.PrimaryLight : Color.PrimaryDark,
       borderRadius: "10px",

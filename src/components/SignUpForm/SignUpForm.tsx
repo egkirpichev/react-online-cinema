@@ -6,13 +6,12 @@ import { ROUTE } from "../../router";
 import {
   resetError,
   signUp,
-  updateUserProfile,
+  updateUserName,
 } from "../../store/slices/userSlice";
 import { IUserSignUp } from "../../types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ButtonPrimary } from "../../ui/typography";
-import { getFirebaseErrorMessage } from "../../utils";
 import { AuthModal } from "../AuthModal";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
@@ -22,7 +21,6 @@ import {
   InputField,
   StyledForm,
   Title,
-  Error,
   StyledInput,
   SignIn,
   SignInLink,
@@ -45,7 +43,9 @@ export const SignUpForm = () => {
   );
 
   const onSubmit: SubmitHandler<IUserSignUp> = async (data) => {
-    await dispatch(signUp(data)).then(() => dispatch(updateUserProfile(data)));
+    dispatch(signUp(data)).then(() => {
+      error && dispatch(updateUserName(data));
+    });
   };
 
   useEffect(() => {
@@ -76,7 +76,9 @@ export const SignUpForm = () => {
             placeholder="Your name"
             {...register("name", { required: "Please, enter your name" })}
           />
-          {errors.name && <Error>{errors.name.message}</Error>}
+          {errors.name && errors.name.message && (
+            <ErrorMessage message={errors.name.message} />
+          )}
         </InputField>
         <InputField>
           <FieldTitle>Email</FieldTitle>
@@ -85,7 +87,9 @@ export const SignUpForm = () => {
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
           />
-          {errors.email && <Error>{errors.email.message}</Error>}
+          {errors.email && errors.email.message && (
+            <ErrorMessage message={errors.email.message} />
+          )}
         </InputField>
         <InputField>
           <FieldTitle>Password</FieldTitle>
@@ -100,7 +104,9 @@ export const SignUpForm = () => {
               },
             })}
           />
-          {errors.password && <Error>{errors.password.message}</Error>}
+          {errors.password && errors.password.message && (
+            <ErrorMessage message={errors.password.message} />
+          )}
         </InputField>
         <InputField>
           <FieldTitle>Password</FieldTitle>
@@ -113,12 +119,12 @@ export const SignUpForm = () => {
                 value === passwordValue || "Entered passwords do not match",
             })}
           />
-          {errors.confirmPassword && (
-            <Error>{errors.confirmPassword.message}</Error>
+          {errors.confirmPassword && errors.confirmPassword.message && (
+            <ErrorMessage message={errors.confirmPassword.message} />
           )}
         </InputField>
       </Body>
-      <ButtonPrimary>
+      <ButtonPrimary type="submit">
         Sign Up&nbsp;&nbsp;
         {isLoading && (
           <CustomSpinner color={Color.White} still={false} size="20px" />

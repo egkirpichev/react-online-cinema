@@ -70,7 +70,3 @@ export const InputField = styled.div`
   flex-direction: column;
   gap: ${Space.SMALLEST};
 `;
-
-export const Error = styled(Body2)`
-  color: ${Color.Error};
-`;

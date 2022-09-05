@@ -29,6 +29,8 @@ export const getFirebaseErrorMessage = (code: string): FirebaseErrorMessage => {
       return FirebaseErrorMessage.EMAIL_ALREADY_IN_USE;
     case "auth/user-not-found":
       return FirebaseErrorMessage.USER_NOT_FOUND;
+    case "auth/wrong-password":
+      return FirebaseErrorMessage.WRONG_PASSWORD;
     default:
       return FirebaseErrorMessage.UNKNOWN_ERROR;
   }

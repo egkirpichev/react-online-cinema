@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FirebaseError } from "firebase/app";
 import {
   signInWithEmailAndPassword,
@@ -6,8 +6,10 @@ import {
   getAuth,
   updateProfile,
   sendPasswordResetEmail,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
-import { IUserSignIn, IUserSignUp } from "../../types";
+import { ISettings, IUserSignIn, IUserSignUp } from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
 export interface UserState {
@@ -15,10 +17,11 @@ export interface UserState {
   email: string | null;
   password: string | null;
   token: string | null;
+  error: string | null;
   isLogged: boolean;
   isLoading: boolean;
   isPasswordReset: boolean;
-  error: string | null;
+  isLightMode: boolean;
 }
 
 const initialState: UserState = {
@@ -26,10 +29,11 @@ const initialState: UserState = {
   email: null,
   password: null,
   token: null,
+  error: null,
   isLogged: false,
   isLoading: false,
   isPasswordReset: false,
-  error: null,
+  isLightMode: false,
 };
 
 export const signUp = createAsyncThunk<
@@ -74,14 +78,46 @@ export const signIn = createAsyncThunk<
   }
 });
 
-export const updateUserProfile = createAsyncThunk<
+export const updateUserName = createAsyncThunk<
   void,
-  IUserSignUp,
+  { name: string },
   { rejectValue: string }
->("user/updateProfile", async ({ name }, { rejectWithValue }) => {
+>("user/updateUserName", async ({ name }, { rejectWithValue }) => {
   const auth = getAuth();
   if (auth.currentUser) {
     return await updateProfile(auth.currentUser, { displayName: name })
+      .then(() => {})
+      .catch((error: FirebaseError) => {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      });
+  }
+});
+
+export const updateUserEmail = createAsyncThunk<
+  void,
+  ISettings,
+  { rejectValue: string }
+>("user/updateUserEmail", async ({ email }, { rejectWithValue }) => {
+  const auth = getAuth();
+  if (auth.currentUser) {
+    return await updateEmail(auth.currentUser, email)
+      .then(() => {})
+      .catch((error: FirebaseError) => {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      });
+  }
+});
+
+export const updateUserPassword = createAsyncThunk<
+  void,
+  ISettings,
+  { rejectValue: string }
+>("user/updateUserPassword", async ({ newPassword }, { rejectWithValue }) => {
+  const auth = getAuth();
+  if (auth.currentUser) {
+    return await updatePassword(auth.currentUser, newPassword)
       .then(() => {})
       .catch((error: FirebaseError) => {
         const firebaseError = error as FirebaseError;
@@ -121,6 +157,14 @@ export const userSlice = createSlice({
     },
     resetError: (state) => {
       state.error = null;
+    },
+    updateUserCredentials: (state, { payload }: PayloadAction<ISettings>) => {
+      const { currentUser } = getAuth();
+      if (currentUser) {
+        state.name = currentUser.displayName;
+        state.email = currentUser.email;
+        state.password = payload.newPassword;
+      }
     },
   },
   extraReducers(builder) {
@@ -178,8 +222,44 @@ export const userSlice = createSlice({
         state.error = getFirebaseErrorMessage(payload);
       }
     });
+    builder.addCase(updateUserName.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(updateUserName.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(updateUserName.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.error = getFirebaseErrorMessage(payload);
+      }
+    });
+    builder.addCase(updateUserEmail.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(updateUserEmail.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.error = getFirebaseErrorMessage(payload);
+      }
+    });
+    builder.addCase(updateUserPassword.fulfilled, (state) => {
+      state.isLoading = false;
+    });
+    builder.addCase(updateUserPassword.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.error = payload;
+      }
+    });
   },
 });
 
-export const { signOut, resetPasswordState, resetError } = userSlice.actions;
+export const {
+  signOut,
+  resetPasswordState,
+  resetError,
+  updateUserCredentials,
+} = userSlice.actions;
 export default userSlice.reducer;

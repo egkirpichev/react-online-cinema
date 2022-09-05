@@ -121,4 +121,14 @@ export enum FirebaseErrorMessage {
   EMAIL_ALREADY_IN_USE = "The provided email is already in use by an existing user",
   USER_NOT_FOUND = "There is no existing user cooresponding to the provided email",
   UNKNOWN_ERROR = "Something went wrong, please try again",
+  WRONG_PASSWORD = "Please, enter the correct password",
+}
+
+export interface ISettings {
+  name: string;
+  email: string;
+  password: string;
+  newPassword: string;
+  confirmPassword: string;
+  islightMode: boolean;
 }

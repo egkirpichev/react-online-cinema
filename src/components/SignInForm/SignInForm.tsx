@@ -21,7 +21,6 @@ import {
   SignUpLink,
   StyledForm,
   Title,
-  Error,
 } from "./styles";
 
 export const SignInForm = () => {
@@ -68,7 +67,9 @@ export const SignInForm = () => {
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
           />
-          {errors.email && <Error>{errors.email.message}</Error>}
+          {errors.email && errors.email.message && (
+            <ErrorMessage message={errors.email.message} />
+          )}
         </InputField>
         <InputField>
           <FieldTitle>Password</FieldTitle>
@@ -83,14 +84,15 @@ export const SignInForm = () => {
               },
             })}
           />
-          {errors.password && <Error>{errors.password.message}</Error>}
-
+          {errors.password && errors.password.message && (
+            <ErrorMessage message={errors.password.message} />
+          )}
           <ResetPassword to={`/${ROUTE.RESET_PASSWORD}`}>
             Forgot password?
           </ResetPassword>
         </InputField>
       </Body>
-      <ButtonPrimary>
+      <ButtonPrimary type="submit">
         Sign In&nbsp;&nbsp;
         {isLoading && (
           <CustomSpinner color={Color.White} still={false} size="20px" />

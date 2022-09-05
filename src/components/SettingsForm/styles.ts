@@ -1,51 +1,43 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { layout, LayoutProps, space, SpaceProps } from "styled-system";
 import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
-import { Body2, Input, Subtitle3 } from "../../ui/typography";
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+  Input,
+  Subtitle3,
+} from "../../ui/typography";
 
 export const StyledForm = styled.form<LayoutProps & SpaceProps>`
   display: flex;
   flex-direction: column;
-  gap: ${Space.L};
-  align-self: center;
-  width: 272px;
+  gap: ${Space.M};
+  width: 100%;
   ${layout};
   ${space};
-  margin: 90px auto;
-  padding: ${Space.S};
-  background: ${Color.Dark};
   border-radius: 10px;
 `;
+
 export const Title = styled(H2)`
   text-align: left;
   color: ${Color.White};
 `;
 
-export const Body = styled.div`
+export const Field = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${Space.XS};
+  gap: 18px;
 `;
 
-export const SignIn = styled(Body2)`
+export const Body = styled.div`
   display: flex;
-  justify-content: center;
-  font-size: 14px;
-  line-height: 20px;
-  color: ${Color.Secondary};
-`;
-
-export const SignInLink = styled(Link)`
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-decoration: none;
-  color: ${Color.PrimaryLight};
-  :hover {
-    color: ${Color.PrimaryDark};
-  }
+  flex-wrap: wrap;
+  gap: ${Space.XS};
+  width: 100%;
+  padding: ${Space.S};
+  background: ${Color.Dark};
+  border-radius: 10px;
 `;
 
 export const StyledInput = styled(Input)``;
@@ -59,4 +51,14 @@ export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${Space.SMALLEST};
+  width: 100%;
+  min-width: 234px;
 `;
+
+export const Control = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+export const Cancel = styled(ButtonSecondary)``;
+export const Save = styled(ButtonPrimary)``;

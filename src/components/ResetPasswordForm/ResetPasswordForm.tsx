@@ -73,7 +73,7 @@ export const ResetPasswordForm = () => {
           {errors.email && <Error>{errors.email.message}</Error>}
         </InputField>
       </Body>
-      <ButtonPrimary>
+      <ButtonPrimary type="submit">
         Reset&nbsp;&nbsp;
         {isLoading && (
           <CustomSpinner color={Color.White} still={false} size="20px" />

@@ -11,6 +11,7 @@ import {
   RouteType,
   IMovieCard,
   IMovieFactsList,
+  ISettings,
 } from "./types";
 
 export { Param, FirebaseErrorMessage };
@@ -25,4 +26,5 @@ export type {
   RouteType,
   IMovieFactsList,
   IMovieCard,
+  ISettings,
 };

@@ -23,11 +23,12 @@ export const AppRouter = () => {
         <Route path={ROUTE.MOVIE} element={<Movie />} />
         <Route path={ROUTE.TRENDS} element={<Trends />} />
         <Route path="*" element={<NotFound />} />
+        <Route element={<RequareAuth />}>
+          <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
+          <Route path={ROUTE.SETTINGS} element={<Settings />} />
+        </Route>
       </Route>
-      <Route element={<RequareAuth />}>
-        <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
-        <Route path={ROUTE.SETTINGS} element={<Settings />} />
-      </Route>
+
       <Route path={ROUTE.HOME} element={<AuthTemplate />}>
         <Route path={ROUTE.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTE.SIGN_IN} element={<SignIn />} />

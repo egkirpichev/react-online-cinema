@@ -3,20 +3,22 @@ import { FirebaseError } from "firebase/app";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  getAuth,
   updateProfile,
   sendPasswordResetEmail,
   updateEmail,
   updatePassword,
+  signOut,
+  User,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
+import { auth } from "../../services/FireBase/fireBase";
 import { ISettings, IUserSignIn, IUserSignUp } from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
 export interface UserState {
   name: string | null;
   email: string | null;
-  password: string | null;
-  token: string | null;
   error: string | null;
   isLogged: boolean;
   isLoading: boolean;
@@ -27,11 +29,9 @@ export interface UserState {
 const initialState: UserState = {
   name: null,
   email: null,
-  password: null,
-  token: null,
   error: null,
   isLogged: false,
-  isLoading: false,
+  isLoading: true,
   isPasswordReset: false,
   isLightMode: false,
 };
@@ -41,7 +41,6 @@ export const signUp = createAsyncThunk<
   IUserSignUp,
   { rejectValue: string }
 >("user/signUp", async ({ email, password, name }, { rejectWithValue }) => {
-  const auth = getAuth();
   try {
     return await createUserWithEmailAndPassword(auth, email, password).then(
       ({ user: { refreshToken } }) => {
@@ -64,7 +63,6 @@ export const signIn = createAsyncThunk<
   IUserSignIn,
   { rejectValue: string }
 >("user/signIn", async ({ email, password }, { rejectWithValue }) => {
-  const auth = getAuth();
   try {
     return await signInWithEmailAndPassword(auth, email, password).then(
       ({ user: { refreshToken, displayName } }) => {
@@ -78,20 +76,50 @@ export const signIn = createAsyncThunk<
   }
 });
 
+export const signUserOut = createAsyncThunk<
+  void,
+  undefined,
+  { rejectValue: string }
+>("user/signUserOut", async (_, { rejectWithValue }) => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(firebaseError.code);
+  }
+});
+
+export const reauthentificate = createAsyncThunk<
+  void,
+  ISettings,
+  { rejectValue: string }
+>("user/reauthentificate", async ({ password }, { rejectWithValue }) => {
+  const user = auth.currentUser as User;
+  const credential = EmailAuthProvider.credential(
+    user.email as string,
+    password
+  );
+  try {
+    await reauthenticateWithCredential(auth.currentUser as User, credential);
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(firebaseError.code);
+  }
+});
+
 export const updateUserName = createAsyncThunk<
   void,
   { name: string },
   { rejectValue: string }
 >("user/updateUserName", async ({ name }, { rejectWithValue }) => {
-  const auth = getAuth();
-  if (auth.currentUser) {
-    return await updateProfile(auth.currentUser, { displayName: name })
-      .then(() => {})
-      .catch((error: FirebaseError) => {
-        const firebaseError = error as FirebaseError;
-        return rejectWithValue(firebaseError.code);
-      });
-  }
+  // if (auth.currentUser)
+  if (auth.currentUser)
+    try {
+      await updateProfile(auth.currentUser, { displayName: name });
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
 });
 
 export const updateUserEmail = createAsyncThunk<
@@ -99,15 +127,13 @@ export const updateUserEmail = createAsyncThunk<
   ISettings,
   { rejectValue: string }
 >("user/updateUserEmail", async ({ email }, { rejectWithValue }) => {
-  const auth = getAuth();
-  if (auth.currentUser) {
-    return await updateEmail(auth.currentUser, email)
-      .then(() => {})
-      .catch((error: FirebaseError) => {
-        const firebaseError = error as FirebaseError;
-        return rejectWithValue(firebaseError.code);
-      });
-  }
+  if (auth.currentUser)
+    try {
+      await updateEmail(auth.currentUser, email);
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
 });
 
 export const updateUserPassword = createAsyncThunk<
@@ -115,15 +141,13 @@ export const updateUserPassword = createAsyncThunk<
   ISettings,
   { rejectValue: string }
 >("user/updateUserPassword", async ({ newPassword }, { rejectWithValue }) => {
-  const auth = getAuth();
-  if (auth.currentUser) {
-    return await updatePassword(auth.currentUser, newPassword)
-      .then(() => {})
-      .catch((error: FirebaseError) => {
-        const firebaseError = error as FirebaseError;
-        return rejectWithValue(firebaseError.code);
-      });
-  }
+  if (auth.currentUser)
+    try {
+      await updatePassword(auth.currentUser, newPassword);
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      return rejectWithValue(firebaseError.code);
+    }
 });
 
 export const resetPassword = createAsyncThunk<
@@ -131,25 +155,27 @@ export const resetPassword = createAsyncThunk<
   { email: string },
   { rejectValue: string }
 >("user/resetPassword", async ({ email }, { rejectWithValue }) => {
-  const auth = getAuth();
-  await sendPasswordResetEmail(auth, email)
-    .then(() => {})
-    .catch((error: FirebaseError) => {
-      const firebaseError = error as FirebaseError;
-      return rejectWithValue(firebaseError.code);
-    });
+  try {
+    await sendPasswordResetEmail(auth, email);
+  } catch (error) {
+    const firebaseError = error as FirebaseError;
+    return rejectWithValue(firebaseError.code);
+  }
 });
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    signOut: (state) => {
-      state.name = null;
-      state.email = null;
-      state.password = null;
-      state.token = null;
-      state.isLogged = false;
+    authenticate: (state, { payload }: PayloadAction<User | null>) => {
+      if (payload) {
+        state.name = payload.displayName;
+        state.email = payload.email;
+        state.isLogged = true;
+        state.isLoading = false;
+      } else {
+        state.isLoading = false;
+      }
     },
     resetPasswordState: (state) => {
       state.isPasswordReset = false;
@@ -158,14 +184,10 @@ export const userSlice = createSlice({
     resetError: (state) => {
       state.error = null;
     },
-    updateUserCredentials: (state, { payload }: PayloadAction<ISettings>) => {
-      const { currentUser } = getAuth();
-      if (currentUser) {
-        state.name = currentUser.displayName;
-        state.email = currentUser.email;
-        state.password = payload.newPassword
-          ? payload.newPassword
-          : state.password;
+    updateUserCredentials: (state) => {
+      if (auth.currentUser) {
+        state.name = auth.currentUser.displayName;
+        state.email = auth.currentUser.email;
       }
     },
   },
@@ -180,8 +202,6 @@ export const userSlice = createSlice({
       state.isLogged = true;
       state.name = payload.name;
       state.email = payload.email;
-      state.password = payload.password;
-      state.token = payload.refreshToken;
     });
     builder.addCase(signUp.rejected, (state, { payload }) => {
       if (payload) {
@@ -199,10 +219,25 @@ export const userSlice = createSlice({
       state.isLogged = true;
       state.name = payload.name;
       state.email = payload.email;
-      state.password = payload.password;
-      state.token = payload.refreshToken;
     });
     builder.addCase(signIn.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = false;
+        state.error = getFirebaseErrorMessage(payload);
+      }
+    });
+    builder.addCase(signUserOut.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+      state.isPasswordReset = false;
+    });
+    builder.addCase(signUserOut.fulfilled, (state) => {
+      state.isLoading = false;
+      state.isLogged = false;
+      state.name = null;
+      state.email = null;
+    });
+    builder.addCase(signUserOut.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
         state.error = getFirebaseErrorMessage(payload);
@@ -211,7 +246,6 @@ export const userSlice = createSlice({
     builder.addCase(resetPassword.pending, (state) => {
       state.isLoading = true;
       state.error = null;
-      state.password = null;
     });
     builder.addCase(resetPassword.fulfilled, (state) => {
       state.isLoading = false;
@@ -224,21 +258,28 @@ export const userSlice = createSlice({
         state.error = getFirebaseErrorMessage(payload);
       }
     });
-    builder.addCase(updateUserName.pending, (state) => {
+    builder.addCase(reauthentificate.pending, (state) => {
       state.isLoading = true;
       state.error = null;
     });
-    builder.addCase(updateUserName.fulfilled, (state) => {
-      state.isLoading = false;
-    });
-    builder.addCase(updateUserName.rejected, (state, { payload }) => {
+    builder.addCase(reauthentificate.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
         state.error = getFirebaseErrorMessage(payload);
       }
     });
+    builder.addCase(updateUserName.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(updateUserName.rejected, (state, { payload }) => {
+      if (payload) {
+        state.isLoading = true;
+        state.error = getFirebaseErrorMessage(payload);
+      }
+    });
     builder.addCase(updateUserEmail.fulfilled, (state) => {
-      state.isLoading = false;
+      state.isLoading = true;
     });
     builder.addCase(updateUserEmail.rejected, (state, { payload }) => {
       if (payload) {
@@ -259,9 +300,9 @@ export const userSlice = createSlice({
 });
 
 export const {
-  signOut,
   resetPasswordState,
   resetError,
   updateUserCredentials,
+  authenticate,
 } = userSlice.actions;
 export default userSlice.reducer;

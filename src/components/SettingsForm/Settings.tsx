@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
 import {
+  reauthentificate,
   updateUserCredentials,
   updateUserEmail,
   updateUserName,
@@ -36,17 +37,19 @@ export const SettingsForm = () => {
   } = useForm<ISettings>();
   const newPasswordValue = watch("newPassword", "");
 
-  const { name, email, isLightMode, isLoading, error, password } =
-    useAppSelector((userSlice) => userSlice.user);
+  const { name, email, isLightMode, isLoading, error } = useAppSelector(
+    (userSlice) => userSlice.user
+  );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const onSumbit: SubmitHandler<ISettings> = (data) => {
-    dispatch(updateUserName(data))
+    dispatch(reauthentificate(data))
       .unwrap()
+      .then(() => dispatch(updateUserName(data)).unwrap())
       .then(() => dispatch(updateUserEmail(data)).unwrap())
       .then(() => dispatch(updateUserPassword(data)).unwrap())
-      .then(() => dispatch(updateUserCredentials(data)))
+      .then(() => dispatch(updateUserCredentials()))
       .finally(() => {
         resetField("password");
         resetField("newPassword");
@@ -101,8 +104,6 @@ export const SettingsForm = () => {
               placeholder="Your password"
               {...register("password", {
                 required: "Please, enter your current password first",
-                validate: (value) =>
-                  value === password || "Please, enter the correct password",
               })}
             />
             {errors.password && errors.password.message && (

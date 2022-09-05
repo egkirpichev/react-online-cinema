@@ -12,14 +12,7 @@ export const MainTemplate = () => {
     <Wrapper
       margin={{
         S: `0 ${Space.L} ${Space.L}`,
-        M: `0 ${Space.XL} ${Space.L}`,
-        L: `0 auto ${Space.L}`,
         XXL: `0 ${Space.LARGEST} ${Space.L}`,
-      }}
-      maxWidth={{
-        L: "928px",
-        XL: "1184px",
-        XXL: "1920px",
       }}
     >
       <Header />

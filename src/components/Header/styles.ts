@@ -6,12 +6,12 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 
 export const StyledHeader = styled.header<GridProps & SpaceProps>`
   position: sticky;
-  top: 0;
+  top: -1px;
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-gap: ${Space.L} ${Space.LARGEST};
   align-items: center;
-  justify-items: space-between;
+  justify-items: end;
   ${grid};
   width: 100%;
   padding: ${Space.M} 0;

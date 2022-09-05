@@ -12,7 +12,7 @@ export const MovieList = ({ movieList }: IProps) => {
       gridTemplateColumns={{
         default: "1fr",
         S: "repeat(3, 1fr)",
-        XL: "repeat(3, 1fr)",
+        L: "repeat(4, 1fr)",
         XXL: "repeat(5, 1fr)",
       }}
     >

@@ -5,5 +5,6 @@ export const StyledErrorMessage = styled(H2)`
   place-self: center;
   font-size: 16px;
   line-height: 20px;
+  text-align: left;
   color: ${Color.Error};
 `;

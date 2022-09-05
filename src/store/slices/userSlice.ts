@@ -163,7 +163,9 @@ export const userSlice = createSlice({
       if (currentUser) {
         state.name = currentUser.displayName;
         state.email = currentUser.email;
-        state.password = payload.newPassword;
+        state.password = payload.newPassword
+          ? payload.newPassword
+          : state.password;
       }
     },
   },

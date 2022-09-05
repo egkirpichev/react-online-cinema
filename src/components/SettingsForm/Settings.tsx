@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
 import {
   updateUserCredentials,
   updateUserEmail,
@@ -11,11 +11,13 @@ import { ISettings } from "../../types";
 import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
+import Switch from "react-switch";
 import {
   Body,
   Cancel,
   Control,
   Field,
+  FieldDescription,
   FieldTitle,
   InputField,
   Save,
@@ -32,32 +34,34 @@ export const SettingsForm = () => {
     resetField,
     formState: { errors },
   } = useForm<ISettings>();
+  const newPasswordValue = watch("newPassword", "");
 
   const { name, email, isLightMode, isLoading, error, password } =
     useAppSelector((userSlice) => userSlice.user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const newPasswordValue = watch("newPassword", "");
   const onSumbit: SubmitHandler<ISettings> = (data) => {
     dispatch(updateUserName(data))
       .unwrap()
       .then(() => dispatch(updateUserEmail(data)).unwrap())
       .then(() => dispatch(updateUserPassword(data)).unwrap())
-      .then(() => dispatch(updateUserCredentials(data)));
-
-    resetField("password");
-    resetField("newPassword");
-    resetField("confirmPassword");
+      .then(() => dispatch(updateUserCredentials(data)))
+      .finally(() => {
+        resetField("password");
+        resetField("newPassword");
+        resetField("confirmPassword");
+      });
   };
-  const navigate = useNavigate();
 
-  const dispatch = useAppDispatch();
+  const [isChecked, setIsChecked] = useToggle();
 
   return (
     <StyledForm onSubmit={handleSubmit(onSumbit)}>
       <Field>
         <Title>Profile</Title>
         <Body>
-          <InputField>
+          <InputField maxWidth={{ S: "45%" }}>
             <FieldTitle>Name</FieldTitle>
             <StyledInput
               type="text"
@@ -71,7 +75,7 @@ export const SettingsForm = () => {
               <ErrorMessage message={errors.name.message} />
             )}
           </InputField>
-          <InputField>
+          <InputField width={{ S: "45%" }}>
             <FieldTitle>Email</FieldTitle>
             <StyledInput
               type="email"
@@ -90,7 +94,7 @@ export const SettingsForm = () => {
       <Field>
         <Title>Password</Title>
         <Body>
-          <InputField>
+          <InputField width={{ S: "45%" }}>
             <FieldTitle>Password</FieldTitle>
             <StyledInput
               type="password"
@@ -105,7 +109,7 @@ export const SettingsForm = () => {
               <ErrorMessage message={errors.password.message} />
             )}
           </InputField>
-          <InputField>
+          <InputField width={{ S: "45%" }}>
             <FieldTitle>New Password</FieldTitle>
             <StyledInput
               type="password"
@@ -117,8 +121,11 @@ export const SettingsForm = () => {
                 },
               })}
             />
+            {errors.newPassword && errors.newPassword.message && (
+              <ErrorMessage message={errors.newPassword.message} />
+            )}
           </InputField>
-          <InputField>
+          <InputField width={{ S: "45%" }} margin="0 0 0 auto">
             <FieldTitle>Confirm Password</FieldTitle>
             <StyledInput
               type="password"
@@ -137,10 +144,17 @@ export const SettingsForm = () => {
       </Field>
       <Field>
         <Title>Color mode</Title>
-        <Body>
-          <InputField>
+        <Body justifyContent="space-between" alignItems="center">
+          <InputField width="120px">
             <FieldTitle>Light</FieldTitle>
+            <FieldDescription>Use light thema</FieldDescription>
           </InputField>
+          <Switch
+            onChange={setIsChecked}
+            checked={isChecked}
+            onColor={Color.PrimaryDark}
+            offColor={Color.Secondary}
+          />
         </Body>
       </Field>
       {error && <ErrorMessage message={error} />}

@@ -5,6 +5,8 @@ import { Space } from "../../ui/theme";
 import { useWindowSize } from "../../hooks";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
 import { User } from "../User";
+import { CustomLink } from "../CustomLink";
+import { ROUTE } from "../../router";
 
 export const Header = () => {
   const { screenWidth } = useWindowSize();
@@ -28,7 +30,9 @@ export const Header = () => {
         XL: `${Space.L}`,
       }}
     >
-      <StyledLogo />
+      <CustomLink text="" to={ROUTE.HOME}>
+        <StyledLogo />
+      </CustomLink>
       {screenWidth < 1440 ? <BurgerMenu /> : <User />}
       <SearchBar />
     </StyledHeader>

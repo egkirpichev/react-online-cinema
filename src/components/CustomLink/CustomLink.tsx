@@ -4,7 +4,7 @@ import { ROUTE } from "../../router";
 import { StyledLink } from "./styles";
 
 interface IProps {
-  text: string;
+  text?: string;
   to: ROUTE | `/${ROUTE}`;
   children?: ReactNode;
 }
@@ -15,7 +15,7 @@ export const CustomLink = ({ text, to, children }: IProps) => {
   return (
     <StyledLink to={to} isactive={isActive}>
       {children}
-      <span>{text}</span>
+      {text && <span>{text}</span>}
     </StyledLink>
   );
 };

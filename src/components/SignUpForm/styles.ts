@@ -57,6 +57,10 @@ export const StyledInput = styled(Input)<IProps>`
     isLightMode ? Color.White : Color.Dark};
   border-color: ${({ isLightMode }) =>
     isLightMode ? Color.Secondary : Color.Black};
+
+  :focus {
+    color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  }
 `;
 
 export const FieldTitle = styled(Subtitle3)<IProps>`

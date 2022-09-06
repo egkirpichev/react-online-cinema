@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { justifyItems } from "styled-system";
 import { getMovieCardInfo, getMovieFacts } from "../../mappers/mappers";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieCard, IMovieFactsList } from "../../types/types";
 import { Color } from "../../ui";
+import { Space } from "../../ui/theme";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
 import { MovieFactsList } from "../MovieFactsList";
@@ -53,7 +55,10 @@ export const MovieCard = () => {
 
   if (movie && movieFactsList) {
     return (
-      <StyledMovieCard>
+      <StyledMovieCard
+        gridTemplateColumns={{ S: "1fr 2fr", L: "1fr 3fr" }}
+        justifyItems={{ XL: "start" }}
+      >
         <Control>
           <MoviePoster poster={movie.poster}></MoviePoster>
         </Control>

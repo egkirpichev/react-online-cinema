@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Body1, Color, Subtitle3 } from "../../ui";
+import { Body1, Color } from "../../ui";
 import { IoIosArrowDown } from "react-icons/io";
-import { Space } from "../../ui/theme";
 
 interface IProps {
   isOpen?: boolean;

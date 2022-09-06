@@ -8,6 +8,7 @@ import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
+import { MovieControl } from "../MovieControl";
 import { MovieFactsList } from "../MovieFactsList";
 import { MovieGenre } from "../MovieGenre";
 import { MoviePoster } from "../MoviePoster";
@@ -55,12 +56,10 @@ export const MovieCard = () => {
 
   if (movie && movieFactsList) {
     return (
-      <StyledMovieCard
-        gridTemplateColumns={{ S: "1fr 2fr", L: "1fr 3fr" }}
-        justifyItems={{ XL: "start" }}
-      >
+      <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", L: "1fr 3fr" }}>
         <Control>
-          <MoviePoster poster={movie.poster}></MoviePoster>
+          <MoviePoster poster={movie.poster} />
+          <MovieControl></MovieControl>
         </Control>
         <Description>
           <Header>

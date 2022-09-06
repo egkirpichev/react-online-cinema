@@ -1,29 +1,25 @@
 import styled from "styled-components";
 import {
   grid,
-  gridGap,
-  GridGapProps,
   GridProps,
   justifyItems,
   JustifyItemsProps,
-  LayoutProps,
-  SpaceProps,
 } from "styled-system";
 import { Body2, Color, H1 } from "../../ui";
 import { Space } from "../../ui/theme";
 
-export const StyledMovieCard = styled.div<GridProps & JustifyItemsProps>`
+export const StyledMovieCard = styled.div<GridProps>`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: ${Space.M};
-  justify-items: center;
   ${grid}
-  ${justifyItems}
-	width: 100%;
+  width: 100%;
 `;
 
 export const Control = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: ${Space.M};
 `;
 

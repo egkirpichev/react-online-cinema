@@ -56,12 +56,12 @@ export const MovieCard = () => {
 
   if (movie && movieFactsList) {
     return (
-      <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", L: "1fr 3fr" }}>
+      <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
         <Control>
           <MoviePoster poster={movie.poster} />
           <MovieControl></MovieControl>
         </Control>
-        <Description>
+        <Description maxWidth={{ S: "80%" }}>
           <Header>
             <MovieGenre genres={movie.genres} />
             <Title>{movie.title}</Title>

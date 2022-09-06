@@ -1,8 +1,8 @@
-import { StyledHeader, StyledLogo } from "./styles";
+import { StyledHeader, StyledLightLogo, StyledLogo } from "./styles";
 
 import { SearchBar } from "../SearchBar";
 import { Space } from "../../ui/theme";
-import { useWindowSize } from "../../hooks";
+import { useAppSelector, useWindowSize } from "../../hooks";
 import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
 import { User } from "../User";
 import { CustomLink } from "../CustomLink";
@@ -10,9 +10,11 @@ import { ROUTE } from "../../router";
 
 export const Header = () => {
   const { screenWidth } = useWindowSize();
+  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
 
   return (
     <StyledHeader
+      isLightMode={isLightMode}
       p={{
         S: `${Space.L} 0 ${Space.XL}`,
         XL: `${Space.L} 0 ${Space.XXL}`,
@@ -31,7 +33,7 @@ export const Header = () => {
       }}
     >
       <CustomLink text="" to={ROUTE.HOME}>
-        <StyledLogo />
+        {isLightMode ? <StyledLightLogo /> : <StyledLogo />}
       </CustomLink>
       {screenWidth < 1440 ? <BurgerMenu /> : <User />}
       <SearchBar />

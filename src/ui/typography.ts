@@ -113,7 +113,7 @@ export const Input = styled.input`
   line-height: 24px;
   color: ${Color.Secondary};
   background-color: ${Color.Graphite};
-  border: 1px solid ${Color.Black};
+  border: 1px solid ${Color.Secondary};
   border-radius: 10px;
 
   :focus {

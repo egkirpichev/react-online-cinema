@@ -38,7 +38,7 @@ export const SignUpForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
-  const { isLoading, isLogged, error } = useAppSelector(
+  const { isLoading, isLogged, error, isLightMode } = useAppSelector(
     (userSlice) => userSlice.user
   );
 
@@ -62,16 +62,18 @@ export const SignUpForm = () => {
 
   return (
     <StyledForm
+      isLightMode={isLightMode}
       width={{ S: "574px" }}
       padding={{ S: Space.L }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Title>Sign Up</Title>
+      <Title isLightMode={isLightMode}>Sign Up</Title>
       {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
-          <FieldTitle>Name</FieldTitle>
+          <FieldTitle isLightMode={isLightMode}>Name</FieldTitle>
           <StyledInput
+            isLightMode={isLightMode}
             type="text"
             placeholder="Your name"
             {...register("name", { required: "Please, enter your name" })}
@@ -81,8 +83,9 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle>Email</FieldTitle>
+          <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
           <StyledInput
+            isLightMode={isLightMode}
             type="email"
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
@@ -92,8 +95,9 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle>Password</FieldTitle>
+          <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
           <StyledInput
+            isLightMode={isLightMode}
             type="password"
             placeholder="Your Password"
             {...register("password", {
@@ -109,8 +113,9 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle>Password</FieldTitle>
+          <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
           <StyledInput
+            isLightMode={isLightMode}
             type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", {
@@ -132,7 +137,7 @@ export const SignUpForm = () => {
       </ButtonPrimary>
       <SignIn>
         Already have an account?&nbsp;&nbsp;
-        <SignInLink to={`/${ROUTE.SIGN_IN}`}></SignInLink>
+        <SignInLink to={`/${ROUTE.SIGN_IN}`}>Sign In</SignInLink>
       </SignIn>
       {isLogged && <AuthModal message="Signed Up successfully!" />}
     </StyledForm>

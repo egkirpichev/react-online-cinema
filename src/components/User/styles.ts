@@ -6,6 +6,7 @@ import { Space } from "../../ui/theme";
 interface IProps {
   isOpen?: boolean;
   isLogged?: boolean;
+  isLightMode: boolean;
 }
 
 export const UserBadge = styled.div`
@@ -30,7 +31,7 @@ export const Avatar = styled.div`
   border-radius: 10px;
 `;
 
-export const DropDownContainer = styled.div`
+export const DropDownContainer = styled.div<IProps>`
   position: absolute;
   top: 65px;
   display: flex;
@@ -39,7 +40,8 @@ export const DropDownContainer = styled.div`
   overflow: hidden;
   width: 100%;
   background-color: ${Color.Graphite};
-  border: none;
+  border: ${({ isLightMode }) =>
+    isLightMode ? `1px solid ${Color.Graphite}` : "none"};
   border-radius: 10px;
   animation: growDown 300ms ease-in-out;
   transform-origin: top;
@@ -56,7 +58,7 @@ export const DropDownContainer = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<IProps>`
   display: block;
   width: 100%;
   padding: 15px;
@@ -64,8 +66,9 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 24px;
   text-align: left;
-  color: ${Color.White};
-  background-color: ${Color.Dark};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  background-color: ${({ isLightMode }) =>
+    isLightMode ? Color.White : Color.Dark};
   border: none;
   cursor: pointer;
 
@@ -74,17 +77,17 @@ export const Button = styled.button`
   }
 `;
 
-export const Header = styled(Body1)`
+export const Header = styled(Body1)<IProps>`
   max-width: 130px;
   padding: 10px;
   align-self: center;
   text-align: center;
-  color: ${Color.White};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const ArrowButton = styled.button<IProps>`
   width: 20px;
-  color: ${Color.White};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Light : Color.White)};
   background-color: transparent;
   border: none;
   cursor: pointer;

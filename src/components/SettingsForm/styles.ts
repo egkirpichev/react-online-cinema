@@ -19,6 +19,10 @@ import {
   Subtitle3,
 } from "../../ui/typography";
 
+interface IProps {
+  isLightMode: boolean;
+}
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -28,7 +32,7 @@ export const StyledForm = styled.form`
   border-radius: 10px;
 `;
 
-export const Title = styled(H2)`
+export const Title = styled(H2)<IProps>`
   text-align: left;
   color: ${Color.White};
 `;
@@ -39,7 +43,7 @@ export const Field = styled.div`
   gap: 18px;
 `;
 
-export const Body = styled.div<JustifyContentProps & AlignItemsProps>`
+export const Body = styled.div<JustifyContentProps & AlignItemsProps & IProps>`
   display: flex;
   flex-wrap: wrap;
   gap: ${Space.XS};
@@ -49,15 +53,20 @@ export const Body = styled.div<JustifyContentProps & AlignItemsProps>`
   ${alignItems}
   width: 100%;
   padding: ${Space.S};
-  background: ${Color.Dark};
+  background: ${({ isLightMode }) => (isLightMode ? Color.Light : Color.Dark)};
   border-radius: 10px;
 `;
 
-export const StyledInput = styled(Input)``;
+export const StyledInput = styled(Input)<IProps>`
+  background-color: ${({ isLightMode }) =>
+    isLightMode ? Color.White : Color.Dark};
+  border-color: ${({ isLightMode }) =>
+    isLightMode ? Color.Secondary : Color.Black};
+`;
 
-export const FieldTitle = styled(Subtitle3)`
+export const FieldTitle = styled(Subtitle3)<IProps>`
   padding-bottom: 8px;
-  color: ${Color.White};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const InputField = styled.div<LayoutProps & SpaceProps>`
@@ -80,4 +89,6 @@ export const Control = styled.div`
 export const Cancel = styled(ButtonSecondary)``;
 export const Save = styled(ButtonPrimary)``;
 
-export const FieldDescription = styled(Body2)``;
+export const FieldDescription = styled(Body2)<IProps>`
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.Light)};
+`;

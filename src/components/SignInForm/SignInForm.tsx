@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
-import userSlice, { resetError, signIn } from "../../store/slices/userSlice";
+import { resetError, signIn } from "../../store/slices/userSlice";
 import { IUserSignIn } from "../../types/types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
@@ -31,7 +31,7 @@ export const SignInForm = () => {
   } = useForm<IUserSignIn>();
 
   const dispatch = useAppDispatch();
-  const { isLogged, isLoading, error } = useAppSelector(
+  const { isLogged, isLoading, error, isLightMode } = useAppSelector(
     (userSlice) => userSlice.user
   );
   const navigate = useNavigate();
@@ -56,13 +56,15 @@ export const SignInForm = () => {
       width={{ S: "574px" }}
       padding={{ S: Space.L }}
       onSubmit={handleSubmit(onSubmit)}
+      isLightMode={isLightMode}
     >
-      <Title>Sign In</Title>
+      <Title isLightMode={isLightMode}>Sign In</Title>
       {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
-          <FieldTitle>Email</FieldTitle>
+          <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
           <StyledInput
+            isLightMode={isLightMode}
             type="email"
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
@@ -72,8 +74,9 @@ export const SignInForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle>Password</FieldTitle>
+          <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
           <StyledInput
+            isLightMode={isLightMode}
             type="password"
             placeholder="Your Password"
             {...register("password", {

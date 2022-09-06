@@ -1,4 +1,4 @@
-import { useToggle, useWindowSize } from "../../hooks";
+import { useAppSelector, useToggle, useWindowSize } from "../../hooks";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { slide as StyledMenu } from "react-burger-menu";
@@ -12,6 +12,7 @@ import { HiBookmark } from "react-icons/hi";
 export const BurgerMenu = () => {
   const { screenWidth } = useWindowSize();
   const [isOpen, setIsOpen] = useToggle();
+  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
 
   const byrgerStyles = {
     bmBurgerButton: {
@@ -39,7 +40,7 @@ export const BurgerMenu = () => {
     },
     bmMenu: {
       display: "flex",
-      background: Color.Black,
+      background: isLightMode ? Color.White : Color.Black,
       padding: `${
         screenWidth > 767 ? `150px ${Space.XXL}` : `150px ${Space.M}`
       }`,

@@ -5,7 +5,11 @@ import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
 import { Body2, Input, Subtitle3 } from "../../ui/typography";
 
-export const StyledForm = styled.form<LayoutProps & SpaceProps>`
+interface IProps {
+  isLightMode: boolean;
+}
+
+export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
   display: flex;
   flex-direction: column;
   gap: ${Space.L};
@@ -14,12 +18,12 @@ export const StyledForm = styled.form<LayoutProps & SpaceProps>`
   padding: ${Space.S};
   ${layout};
   ${space};
-  background: ${Color.Dark};
+  background: ${({ isLightMode }) => (isLightMode ? Color.White : Color.Dark)};
   border-radius: 10px;
 `;
-export const Title = styled(H2)`
+export const Title = styled(H2)<IProps>`
   text-align: left;
-  color: ${Color.White};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const ResetPassword = styled(Link)`
@@ -58,11 +62,16 @@ export const SignUpLink = styled(Link)`
   }
 `;
 
-export const StyledInput = styled(Input)``;
+export const StyledInput = styled(Input)<IProps>`
+  background-color: ${({ isLightMode }) =>
+    isLightMode ? Color.White : Color.Dark};
+  border-color: ${({ isLightMode }) =>
+    isLightMode ? Color.Secondary : Color.Black};
+`;
 
-export const FieldTitle = styled(Subtitle3)`
+export const FieldTitle = styled(Subtitle3)<IProps>`
   padding-bottom: 8px;
-  color: ${Color.White};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const InputField = styled.div`

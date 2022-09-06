@@ -130,5 +130,5 @@ export interface ISettings {
   password: string;
   newPassword: string;
   confirmPassword: string;
-  islightMode: boolean;
+  isLightMode: boolean;
 }

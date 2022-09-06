@@ -9,12 +9,15 @@ import {
 import { MoviePoster } from "../MoviePoster";
 import { createRoute } from "../../utils";
 import { ROUTE } from "../../router";
+import { useAppSelector } from "../../hooks";
 
 interface IProps {
   movieListItem: IMovieShort;
 }
 
 export const MovieListItem = ({ movieListItem }: IProps) => {
+  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
+
   return (
     <StyledMovieCard>
       <StyledLink
@@ -24,12 +27,15 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
       </StyledLink>
       <Description>
         <MovieTitle
+          isLightMode={isLightMode}
           to={createRoute(ROUTE.MOVIE, { imdbID: movieListItem.imdbID })}
         >
           {movieListItem.Title}
         </MovieTitle>
 
-        <Released>{`Released: ${movieListItem.Year}`}</Released>
+        <Released
+          isLightMode={isLightMode}
+        >{`Released: ${movieListItem.Year}`}</Released>
       </Description>
     </StyledMovieCard>
   );

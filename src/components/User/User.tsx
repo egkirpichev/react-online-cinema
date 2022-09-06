@@ -15,7 +15,9 @@ import { useNavigate } from "react-router-dom";
 import { signUserOut } from "../../store/slices/userSlice";
 
 export const User = () => {
-  const { isLogged, name } = useAppSelector((userSlice) => userSlice.user);
+  const { isLogged, name, isLightMode } = useAppSelector(
+    (userSlice) => userSlice.user
+  );
   const [isOpen, setIsOpen] = useToggle();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -23,14 +25,15 @@ export const User = () => {
   return (
     <UserBadge>
       <Avatar>{name ? getShortUserName(name) : <FiUser />}</Avatar>
-      <Header>{name ? name : "Guest"}</Header>
-      <ArrowButton onClick={setIsOpen}>
+      <Header isLightMode={isLightMode}>{name ? name : "Guest"}</Header>
+      <ArrowButton onClick={setIsOpen} isLightMode={isLightMode}>
         <ArrowIcon />
       </ArrowButton>
       {isOpen && (
-        <DropDownContainer>
+        <DropDownContainer isLightMode={isLightMode}>
           {isLogged && (
             <Button
+              isLightMode={isLightMode}
               onClick={() => {
                 navigate(ROUTE.SETTINGS);
                 setIsOpen();
@@ -41,6 +44,7 @@ export const User = () => {
           )}
           {isLogged ? (
             <Button
+              isLightMode={isLightMode}
               onClick={() => {
                 dispatch(signUserOut());
                 setIsOpen();
@@ -50,6 +54,7 @@ export const User = () => {
             </Button>
           ) : (
             <Button
+              isLightMode={isLightMode}
               onClick={() => {
                 navigate(ROUTE.SIGN_IN);
                 setIsOpen();

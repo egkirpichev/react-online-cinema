@@ -1,8 +1,9 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import {
   reauthentificate,
+  toggleColorMode,
   updateUserCredentials,
   updateUserEmail,
   updateUserName,
@@ -31,13 +32,14 @@ export const SettingsForm = () => {
   const {
     watch,
     register,
+    control,
     handleSubmit,
     resetField,
     formState: { errors },
   } = useForm<ISettings>();
   const newPasswordValue = watch("newPassword", "");
 
-  const { name, email, isLightMode, isLoading, error } = useAppSelector(
+  const { name, email, isLoading, error, isLightMode } = useAppSelector(
     (userSlice) => userSlice.user
   );
   const dispatch = useAppDispatch();
@@ -51,22 +53,22 @@ export const SettingsForm = () => {
       .then(() => dispatch(updateUserPassword(data)).unwrap())
       .then(() => dispatch(updateUserCredentials()))
       .finally(() => {
+        dispatch(toggleColorMode());
         resetField("password");
         resetField("newPassword");
         resetField("confirmPassword");
       });
   };
 
-  const [isChecked, setIsChecked] = useToggle();
-
   return (
     <StyledForm onSubmit={handleSubmit(onSumbit)}>
       <Field>
-        <Title>Profile</Title>
-        <Body>
+        <Title isLightMode={isLightMode}>Profile</Title>
+        <Body isLightMode={isLightMode}>
           <InputField maxWidth={{ S: "45%" }}>
-            <FieldTitle>Name</FieldTitle>
+            <FieldTitle isLightMode={isLightMode}>Name</FieldTitle>
             <StyledInput
+              isLightMode={isLightMode}
               type="text"
               placeholder="Your name"
               {...register("name", {
@@ -79,8 +81,9 @@ export const SettingsForm = () => {
             )}
           </InputField>
           <InputField width={{ S: "45%" }}>
-            <FieldTitle>Email</FieldTitle>
+            <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
             <StyledInput
+              isLightMode={isLightMode}
               type="email"
               placeholder="Your Email"
               {...register("email", {
@@ -95,11 +98,12 @@ export const SettingsForm = () => {
         </Body>
       </Field>
       <Field>
-        <Title>Password</Title>
-        <Body>
+        <Title isLightMode={isLightMode}>Password</Title>
+        <Body isLightMode={isLightMode}>
           <InputField width={{ S: "45%" }}>
-            <FieldTitle>Password</FieldTitle>
+            <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
             <StyledInput
+              isLightMode={isLightMode}
               type="password"
               placeholder="Your password"
               {...register("password", {
@@ -111,8 +115,9 @@ export const SettingsForm = () => {
             )}
           </InputField>
           <InputField width={{ S: "45%" }}>
-            <FieldTitle>New Password</FieldTitle>
+            <FieldTitle isLightMode={isLightMode}>New Password</FieldTitle>
             <StyledInput
+              isLightMode={isLightMode}
               type="password"
               placeholder="New password"
               {...register("newPassword", {
@@ -127,8 +132,9 @@ export const SettingsForm = () => {
             )}
           </InputField>
           <InputField width={{ S: "45%" }} margin="0 0 0 auto">
-            <FieldTitle>Confirm Password</FieldTitle>
+            <FieldTitle isLightMode={isLightMode}>Confirm Password</FieldTitle>
             <StyledInput
+              isLightMode={isLightMode}
               type="password"
               placeholder="Confirm password"
               {...register("confirmPassword", {
@@ -144,17 +150,29 @@ export const SettingsForm = () => {
         </Body>
       </Field>
       <Field>
-        <Title>Color mode</Title>
-        <Body justifyContent="space-between" alignItems="center">
+        <Title isLightMode={isLightMode}>Color mode</Title>
+        <Body
+          isLightMode={isLightMode}
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <InputField width="120px">
-            <FieldTitle>Light</FieldTitle>
-            <FieldDescription>Use light thema</FieldDescription>
+            <FieldTitle isLightMode={isLightMode}>Light</FieldTitle>
+            <FieldDescription isLightMode={isLightMode}>
+              Use light thema
+            </FieldDescription>
           </InputField>
-          <Switch
-            onChange={setIsChecked}
-            checked={isChecked}
-            onColor={Color.PrimaryDark}
-            offColor={Color.Secondary}
+          <Controller
+            control={control}
+            name="isLightMode"
+            render={({ field: { onChange, value = isLightMode } }) => (
+              <Switch
+                onChange={onChange}
+                checked={value}
+                onColor={Color.PrimaryDark}
+                offColor={Color.Secondary}
+              />
+            )}
           />
         </Body>
       </Field>

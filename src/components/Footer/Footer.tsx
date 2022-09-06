@@ -1,14 +1,12 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
-import { OMDbApi } from "../../services/OMDbApi";
 import { loadMoreMovies } from "../../store/slices/movieSlice";
-import { IMovieShort, IRequestParams } from "../../types/types";
 import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { LoadMore, StyledFooter, Text } from "./styles";
 
 export const Footer = () => {
   const { initialParams } = useAppSelector((movieSlice) => movieSlice.movies);
+  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
   const dispatch = useAppDispatch();
 
   const [isLoading, setIsLoading] = useToggle();
@@ -20,7 +18,7 @@ export const Footer = () => {
 
   return (
     <StyledFooter gridColumn={{ XL: "2/3" }}>
-      <LoadMore type="button" onClick={handleClick}>
+      <LoadMore type="button" onClick={handleClick} isLightMode={isLightMode}>
         <Text>Load More</Text>
         {isLoading && (
           <CustomSpinner color={Color.White} still={false} size="20px" />

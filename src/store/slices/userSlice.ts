@@ -13,6 +13,10 @@ import {
   EmailAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../services/FireBase/fireBase";
+import {
+  getColorMode,
+  setColorMode,
+} from "../../services/localStorageAPI/localStorageAPI";
 import { ISettings, IUserSignIn, IUserSignUp } from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
@@ -33,7 +37,7 @@ const initialState: IUserState = {
   isLogged: false,
   isLoading: true,
   isPasswordReset: false,
-  isLightMode: false,
+  isLightMode: getColorMode(),
 };
 
 export const signUp = createAsyncThunk<
@@ -112,7 +116,6 @@ export const updateUserName = createAsyncThunk<
   { name: string },
   { rejectValue: string }
 >("user/updateUserName", async ({ name }, { rejectWithValue }) => {
-  // if (auth.currentUser)
   if (auth.currentUser)
     try {
       await updateProfile(auth.currentUser, { displayName: name });
@@ -189,6 +192,9 @@ export const userSlice = createSlice({
         state.name = auth.currentUser.displayName;
         state.email = auth.currentUser.email;
       }
+    },
+    toggleColorMode: (state) => {
+      state.isLightMode = setColorMode();
     },
   },
   extraReducers(builder) {
@@ -304,5 +310,6 @@ export const {
   resetError,
   updateUserCredentials,
   authenticate,
+  toggleColorMode,
 } = userSlice.actions;
 export default userSlice.reducer;

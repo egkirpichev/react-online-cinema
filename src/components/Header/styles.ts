@@ -3,8 +3,13 @@ import { grid, GridProps, space, SpaceProps } from "styled-system";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import { ReactComponent as LightLogo } from "../../assets/logo-light.svg";
 
-export const StyledHeader = styled.header<GridProps & SpaceProps>`
+interface IProps {
+  isLightMode: boolean;
+}
+
+export const StyledHeader = styled.header<GridProps & SpaceProps & IProps>`
   position: sticky;
   top: -1px;
   display: grid;
@@ -16,9 +21,14 @@ export const StyledHeader = styled.header<GridProps & SpaceProps>`
   width: 100%;
   padding: ${Space.M} 0;
   ${space}
-  background-color: ${Color.Black};
+  background-color: ${({ isLightMode }) =>
+    isLightMode ? Color.White : Color.Black};
 `;
 
 export const StyledLogo = styled(Logo)`
+  justify-self: start;
+`;
+
+export const StyledLightLogo = styled(LightLogo)`
   justify-self: start;
 `;

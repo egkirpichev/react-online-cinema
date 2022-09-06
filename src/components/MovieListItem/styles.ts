@@ -4,6 +4,10 @@ import { layout, LayoutProps } from "styled-system";
 import { Body2, Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
+interface IProps {
+  isLightMode: boolean;
+}
+
 export const StyledMovieCard = styled.div<LayoutProps>`
   justify-self: stretch;
   display: flex;
@@ -23,12 +27,12 @@ export const Description = styled.div`
   gap: 4px;
 `;
 
-export const MovieTitle = styled(Link)`
+export const MovieTitle = styled(Link)<IProps>`
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   text-decoration: none;
-  color: ${Color.White};
+  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
   :hover {
     color: ${Color.PrimaryDark};
   }
@@ -40,4 +44,6 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const Released = styled(Body2)``;
+export const Released = styled(Body2)<IProps>`
+  color: ${({ isLightMode }) => (isLightMode ? Color.Secondary : Color.Light)};
+`;

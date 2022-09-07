@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { CustomSpinner } from "../../components/CustomSpinner";
 import { ErrorMessage } from "../../components/ErrorMessage";
 import { Footer } from "../../components/Footer";
@@ -8,14 +8,16 @@ import { getRandomMovies } from "../../store/slices/movieSlice";
 import { Color } from "../../ui";
 
 export const Home = () => {
-  const { movies, isLoading, error } = useAppSelector(
+  const { movieList, requestParams, isLoading, error } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.movies
   );
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getRandomMovies());
-  }, [dispatch]);
+  useMemo(() => {
+    if (movieList.length === 0 && !isLoading) {
+      dispatch(getRandomMovies());
+    }
+  }, []);
 
   if (isLoading) {
     return <CustomSpinner color={Color.PrimaryDark} />;
@@ -27,8 +29,8 @@ export const Home = () => {
 
   return (
     <>
-      <MovieList movieList={movies} />
-      {!isLoading && <Footer />}
+      <MovieList movieList={movieList} />
+      {!isLoading && <Footer requestParams={requestParams} />}
     </>
   );
 };

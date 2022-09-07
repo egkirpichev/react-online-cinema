@@ -1,13 +1,15 @@
 import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
 import { loadMoreMovies } from "../../store/slices/movieSlice";
+import { IRequestParams } from "../../types";
 import { Color } from "../../ui";
 import { CustomSpinner } from "../CustomSpinner";
 import { LoadMore, StyledFooter, Text } from "./styles";
 
-export const Footer = () => {
-  const { initialParams } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.movies
-  );
+interface IProps {
+  requestParams: IRequestParams;
+}
+
+export const Footer = ({ requestParams }: IProps) => {
   const { isLightMode } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
   );
@@ -17,7 +19,7 @@ export const Footer = () => {
 
   const handleClick = async () => {
     setIsLoading();
-    await dispatch(loadMoreMovies(initialParams)).then(() => setIsLoading());
+    await dispatch(loadMoreMovies(requestParams)).then(() => setIsLoading());
   };
 
   return (

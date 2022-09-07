@@ -3,7 +3,7 @@ import { layout, LayoutProps } from "styled-system";
 
 export const StyledMoviePoster = styled.img<LayoutProps>`
   justify-self: center;
-  max-height: 365px;
+  height: 365px;
   max-width: 100%;
   ${layout};
   border-radius: 20px;

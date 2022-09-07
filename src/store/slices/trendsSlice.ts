@@ -1,43 +1,43 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ROUTE } from "../../router";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieShort, IRequestParams } from "../../types";
 
-interface IMoviesState {
+interface ITrendsState {
   movieList: IMovieShort[];
   requestParams: IRequestParams;
   isLoading: boolean;
   error: string | null;
 }
 
-const initialState: IMoviesState = {
+const initialState: ITrendsState = {
   movieList: [],
   requestParams: {
     apikey: "",
     s: "",
     page: "",
+    y: "",
   },
   isLoading: false,
   error: null,
 };
 
-export const getRandomMovies = createAsyncThunk<
+export const getTrends = createAsyncThunk<
   { Search: IMovieShort[]; params: IRequestParams },
   undefined,
   { rejectValue: string }
->("movies/getRandomMovies", async (_, { rejectWithValue }) => {
+>("trends/getTrends", async (_, { rejectWithValue }) => {
   try {
-    return await OMDbApi.getRandomMovies();
+    return await OMDbApi.getTrends();
   } catch (error) {
     return rejectWithValue(error as string);
   }
 });
 
-export const loadMoreMovies = createAsyncThunk<
+export const loadMoreTrends = createAsyncThunk<
   { Search: IMovieShort[]; params: IRequestParams },
   IRequestParams,
   { rejectValue: string }
->("movies/loadMoreMovies", async (requestParams, { rejectWithValue }) => {
+>("trends/loadMoreMovies", async (requestParams, { rejectWithValue }) => {
   try {
     return await OMDbApi.loadMoreMovies(requestParams);
   } catch (error) {
@@ -45,39 +45,41 @@ export const loadMoreMovies = createAsyncThunk<
   }
 });
 
-export const movieSlice = createSlice({
-  name: "movies",
+export const trendsSlice = createSlice({
+  name: "trends",
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(getRandomMovies.pending, (state) => {
+    builder.addCase(getTrends.pending, (state) => {
       state.isLoading = true;
       state.error = null;
     });
-    builder.addCase(getRandomMovies.fulfilled, (state, { payload }) => {
+    builder.addCase(getTrends.fulfilled, (state, { payload }) => {
+      console.log(payload);
+
       state.isLoading = false;
       payload.Search.forEach((movie) => state.movieList.push(movie));
       state.requestParams = payload.params;
     });
-    builder.addCase(getRandomMovies.rejected, (state, { payload }) => {
+    builder.addCase(getTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
     });
-    builder.addCase(loadMoreMovies.pending, (state) => {
+    builder.addCase(loadMoreTrends.pending, (state) => {
       state.error = null;
     });
     builder.addCase(
-      loadMoreMovies.fulfilled,
+      loadMoreTrends.fulfilled,
       (state, { payload: { Search, params } }) => {
         Search.forEach((movie) => state.movieList.push(movie));
         state.requestParams = params;
       }
     );
-    builder.addCase(loadMoreMovies.rejected, (state, { payload }) => {
+    builder.addCase(loadMoreTrends.rejected, (state, { payload }) => {
       state.error = payload ? payload : state.error;
     });
   },
 });
 
-export const {} = movieSlice.actions;
-export default movieSlice.reducer;
+export const {} = trendsSlice.actions;
+export default trendsSlice.reducer;

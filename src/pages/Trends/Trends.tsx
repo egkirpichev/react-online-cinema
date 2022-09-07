@@ -1,3 +1,38 @@
+import { useMemo } from "react";
+import { CustomSpinner } from "../../components/CustomSpinner";
+import { ErrorMessage } from "../../components/ErrorMessage";
+import { Footer } from "../../components/Footer";
+import { MovieList } from "../../components/MovieList";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { getTrends } from "../../store/slices/trendsSlice";
+import { Color } from "../../ui";
+
 export const Trends = () => {
-  return <div>Trends</div>;
+  const { movieList, requestParams, isLoading, error } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.trends
+  );
+  const dispatch = useAppDispatch();
+
+  console.log(movieList);
+
+  useMemo(() => {
+    if (movieList.length === 0 && !isLoading) {
+      dispatch(getTrends());
+    }
+  }, []);
+
+  if (isLoading) {
+    return <CustomSpinner color={Color.PrimaryDark} />;
+  }
+
+  if (error) {
+    return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
+  }
+
+  return (
+    <>
+      <MovieList movieList={movieList} />
+      {!isLoading && <Footer requestParams={requestParams} />}
+    </>
+  );
 };

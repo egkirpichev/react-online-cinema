@@ -103,6 +103,7 @@ export interface IRequestParams {
   apikey: string | undefined;
   s: string;
   page: string;
+  y?: string;
 }
 
 export interface IUserSignIn {

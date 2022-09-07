@@ -25,8 +25,9 @@ export const AppRouter = () => {
         <Route path={ROUTE.TRENDS} element={<Trends />} />
         <Route path="*" element={<NotFound />} />
         <Route element={<RequareAuth />}>
-          <Route path={ROUTE.FAVOURITES} element={<Favourites />}></Route>
+          <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
           <Route path={ROUTE.FAVOURITE_MOVIE} element={<Movie />} />
+          <Route path={ROUTE.TRENDING_MOVIE} element={<Movie />} />
           <Route path={ROUTE.SETTINGS} element={<Settings />} />
         </Route>
       </Route>

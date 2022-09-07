@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { justifyItems } from "styled-system";
-import { getMovieCardInfo, getMovieFacts } from "../../mappers/mappers";
+import {
+  getMovieCardInfo,
+  getMovieFacts,
+  getShortMovieDescription,
+} from "../../mappers/mappers";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieCard, IMovieFactsList } from "../../types/types";
 import { Color } from "../../ui";
-import { Space } from "../../ui/theme";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
 import { MovieControl } from "../MovieControl";
@@ -59,7 +61,7 @@ export const MovieCard = () => {
       <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
         <Control>
           <MoviePoster poster={movie.poster} />
-          <MovieControl></MovieControl>
+          <MovieControl movie={movie} />
         </Control>
         <Description maxWidth={{ S: "80%" }}>
           <Header>

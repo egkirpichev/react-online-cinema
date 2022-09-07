@@ -1,4 +1,4 @@
-import { FirebaseErrorMessage, RouteType } from "../types";
+import { FirebaseErrorMessage, IMovieShort, RouteType } from "../types";
 import { Color } from "../ui";
 
 export const getRatingBadgeColor = (rating: string): Color => {
@@ -34,4 +34,15 @@ export const getFirebaseErrorMessage = (code: string): FirebaseErrorMessage => {
     default:
       return FirebaseErrorMessage.UNKNOWN_ERROR;
   }
+};
+
+export const checkIfInFavorites = (
+  favorites: IMovieShort[],
+  movie: IMovieShort
+): boolean => {
+  return favorites.reduce(
+    (isInFavorites, favorite) =>
+      favorite.imdbID === movie.imdbID ? !isInFavorites : isInFavorites,
+    false
+  );
 };

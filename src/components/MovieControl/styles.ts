@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
+interface IProps {
+  isInFavorites?: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   gap: 2px;
@@ -9,15 +13,17 @@ export const Container = styled.div`
   border-radius: 10px;
 `;
 
-export const ControlButton = styled.button`
+export const ControlButton = styled.button<IProps>`
   padding: ${`${Space.XXS} ${Space.XXL}`};
-  color: ${Color.Light};
+  color: ${({ isInFavorites }) =>
+    isInFavorites ? Color.PrimaryDark : Color.Light};
   background-color: ${Color.Graphite};
   border: none;
   cursor: pointer;
 
   :hover {
-    color: ${Color.White};
+    color: ${({ isInFavorites }) =>
+      isInFavorites ? Color.PrimaryDark : Color.White};
   }
 
   :active {

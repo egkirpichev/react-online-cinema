@@ -13,12 +13,13 @@ import {
   EmailAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../services/FireBase/fireBase";
-import { ISettings, IUserSignIn, IUserSignUp } from "../../types";
+import { IMovieShort, ISettings, IUserSignIn, IUserSignUp } from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
 export interface IUserState {
   name: string | null;
   email: string | null;
+  favorites: IMovieShort[];
   error: string | null;
   isLogged: boolean;
   isLoading: boolean;
@@ -29,6 +30,7 @@ export interface IUserState {
 const initialState: IUserState = {
   name: null,
   email: null,
+  favorites: [],
   error: null,
   isLogged: false,
   isLoading: true,
@@ -192,6 +194,14 @@ export const userSlice = createSlice({
     toggleColorMode: (state) => {
       state.isLightMode = !state.isLightMode;
     },
+    addToFavorites: (state, { payload }: PayloadAction<IMovieShort>) => {
+      state.favorites.push(payload);
+    },
+    removeFromFavorites: (state, { payload }: PayloadAction<IMovieShort>) => {
+      state.favorites = state.favorites.filter(
+        (movie) => movie.imdbID !== payload.imdbID
+      );
+    },
   },
   extraReducers(builder) {
     builder.addCase(signUp.pending, (state) => {
@@ -307,5 +317,7 @@ export const {
   updateUserCredentials,
   authenticate,
   toggleColorMode,
+  addToFavorites,
+  removeFromFavorites,
 } = userSlice.actions;
 export default userSlice.reducer;

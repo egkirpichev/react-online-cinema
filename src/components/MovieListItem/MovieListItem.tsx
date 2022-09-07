@@ -20,6 +20,8 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
     ({ persistedReducer }) => persistedReducer.user
   );
 
+  console.log(movieListItem);
+
   return (
     <StyledMovieCard>
       <StyledLink

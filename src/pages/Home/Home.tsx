@@ -15,7 +15,7 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getRandomMovies());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return <CustomSpinner color={Color.PrimaryDark} />;

@@ -1,5 +1,5 @@
 import { IMovieFull, IMovieListItem } from "../types";
-import { IMovieCard, IMovieFactsList } from "../types/types";
+import { IMovieCard, IMovieFactsList, IMovieShort } from "../types/types";
 
 export const getShortMovieDescription = ({
   Poster,
@@ -74,5 +74,21 @@ export const getMovieFacts = ({
     Actors: actors,
     Director: director,
     Writers: writers,
+  };
+};
+
+export const transformForFavorites = ({
+  poster,
+  title,
+  type,
+  year,
+  imdbID,
+}: IMovieCard): IMovieShort => {
+  return {
+    Poster: poster,
+    Title: title,
+    Type: type,
+    Year: year,
+    imdbID: imdbID,
   };
 };

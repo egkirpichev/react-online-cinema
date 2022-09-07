@@ -60,7 +60,7 @@ export const MovieCard = () => {
     return (
       <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
         <Control>
-          <MoviePoster poster={movie.poster} />
+          <MoviePoster poster={movie.poster} id={movie.imdbID} />
           <MovieControl movie={movie} />
         </Control>
         <Description maxWidth={{ S: "80%" }}>

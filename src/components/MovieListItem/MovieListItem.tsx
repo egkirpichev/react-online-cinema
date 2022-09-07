@@ -12,34 +12,30 @@ import { ROUTE } from "../../router";
 import { useAppSelector } from "../../hooks";
 
 interface IProps {
-  movieListItem: IMovieShort;
+  movie: IMovieShort;
 }
 
-export const MovieListItem = ({ movieListItem }: IProps) => {
+export const MovieListItem = ({ movie }: IProps) => {
   const { isLightMode } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
   );
 
-  console.log(movieListItem);
-
   return (
     <StyledMovieCard>
-      <StyledLink
-        to={createRoute(ROUTE.MOVIE, { imdbID: movieListItem.imdbID })}
-      >
-        <MoviePoster poster={movieListItem.Poster}></MoviePoster>
+      <StyledLink to={createRoute(ROUTE.MOVIE, { imdbID: movie.imdbID })}>
+        <MoviePoster poster={movie.Poster} id={movie.imdbID}></MoviePoster>
       </StyledLink>
       <Description>
         <MovieTitle
           $isLightMode={isLightMode}
-          to={createRoute(ROUTE.MOVIE, { imdbID: movieListItem.imdbID })}
+          to={createRoute(ROUTE.MOVIE, { imdbID: movie.imdbID })}
         >
-          {movieListItem.Title}
+          {movie.Title}
         </MovieTitle>
 
         <Released
           $isLightMode={isLightMode}
-        >{`Released: ${movieListItem.Year}`}</Released>
+        >{`Released: ${movie.Year}`}</Released>
       </Description>
     </StyledMovieCard>
   );

@@ -12,8 +12,8 @@ export const MovieFactsList = ({ movieFactsList }: IProps) => {
         ([fact, value]) =>
           value !== "N/A" && (
             <>
-              <Fact>{fact}</Fact>
-              <Value>{value}</Value>
+              <Fact key={fact}>{fact}</Fact>
+              <Value key={value}>{value}</Value>
             </>
           )
       )}

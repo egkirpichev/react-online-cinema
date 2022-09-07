@@ -38,11 +38,11 @@ export const getFirebaseErrorMessage = (code: string): FirebaseErrorMessage => {
 
 export const checkIfInFavorites = (
   favorites: IMovieShort[],
-  movie: IMovieShort
+  id: string
 ): boolean => {
   return favorites.reduce(
     (isInFavorites, favorite) =>
-      favorite.imdbID === movie.imdbID ? !isInFavorites : isInFavorites,
+      favorite.imdbID === id ? !isInFavorites : isInFavorites,
     false
   );
 };

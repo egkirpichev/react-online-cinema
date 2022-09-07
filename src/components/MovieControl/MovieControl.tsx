@@ -1,6 +1,5 @@
 import { BsFillShareFill, BsFillBookmarkFill } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getShortMovieDescription } from "../../mappers";
 import { transformForFavorites } from "../../mappers/mappers";
 import {
   addToFavorites,
@@ -20,7 +19,7 @@ export const MovieControl = ({ movie }: IProps) => {
     ({ persistedReducer }) => persistedReducer.user
   );
   const forFavourites = transformForFavorites(movie);
-  const isInFavorites = checkIfInFavorites(favorites, forFavourites);
+  const isInFavorites = checkIfInFavorites(favorites, movie.imdbID);
 
   return (
     <Container>

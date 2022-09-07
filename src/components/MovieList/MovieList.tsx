@@ -18,10 +18,7 @@ export const MovieList = ({ movieList }: IProps) => {
     >
       {movieList.map((movieListItem) => {
         return (
-          <MovieListItem
-            key={movieListItem.imdbID}
-            movieListItem={movieListItem}
-          />
+          <MovieListItem key={movieListItem.imdbID} movie={movieListItem} />
         );
       })}
     </StyledMovieList>

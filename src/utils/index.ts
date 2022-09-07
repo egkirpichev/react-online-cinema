@@ -3,6 +3,7 @@ import {
   createRoute,
   getFirebaseErrorMessage,
   getShortUserName,
+  checkIfInFavorites,
 } from "./utils";
 
 export {
@@ -10,4 +11,5 @@ export {
   createRoute,
   getShortUserName,
   getFirebaseErrorMessage,
+  checkIfInFavorites,
 };

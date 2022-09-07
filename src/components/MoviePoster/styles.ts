@@ -8,3 +8,5 @@ export const StyledMoviePoster = styled.img<LayoutProps>`
   ${layout};
   border-radius: 20px;
 `;
+
+export const Poster = styled.div``;

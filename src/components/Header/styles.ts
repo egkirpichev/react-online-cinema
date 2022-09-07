@@ -12,6 +12,7 @@ interface IProps {
 export const StyledHeader = styled.header<GridProps & SpaceProps & IProps>`
   position: sticky;
   top: -1px;
+  z-index: 10;
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-gap: ${Space.L} ${Space.LARGEST};

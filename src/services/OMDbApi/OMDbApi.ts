@@ -18,13 +18,15 @@ class OMDbAPI {
     return defaultParams[Math.floor(Math.random() * defaultParams.length)];
   }
 
+  private initialParam = this.getRandomParam();
+
   public async getRandomMovies(): Promise<{
     Search: IMovieShort[];
     params: IRequestParams;
   }> {
     const params = {
       [Param.ApiKey]: this.API_KEY,
-      [Param.Search]: this.getRandomParam(),
+      [Param.Search]: this.initialParam,
       [Param.Page]: "1",
     };
 
@@ -43,7 +45,8 @@ class OMDbAPI {
   }> {
     const params = {
       [Param.ApiKey]: this.API_KEY,
-      [Param.Search]: this.getRandomParam(),
+      [Param.Search]: this.initialParam,
+      [Param.Type]: "movie",
       [Param.Year]: "2022",
       [Param.Page]: "1",
     };

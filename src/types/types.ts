@@ -104,6 +104,7 @@ export interface IRequestParams {
   s: string;
   page: string;
   y?: string;
+  type?: string;
 }
 
 export interface IUserSignIn {

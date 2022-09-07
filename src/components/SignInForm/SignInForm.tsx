@@ -32,7 +32,7 @@ export const SignInForm = () => {
 
   const dispatch = useAppDispatch();
   const { isLogged, isLoading, error, isLightMode } = useAppSelector(
-    (userSlice) => userSlice.user
+    ({ persistedReducer }) => persistedReducer.user
   );
   const navigate = useNavigate();
 
@@ -56,15 +56,15 @@ export const SignInForm = () => {
       width={{ S: "574px" }}
       padding={{ S: Space.L }}
       onSubmit={handleSubmit(onSubmit)}
-      isLightMode={isLightMode}
+      $isLightMode={isLightMode}
     >
-      <Title isLightMode={isLightMode}>Sign In</Title>
+      <Title $isLightMode={isLightMode}>Sign In</Title>
       {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="email"
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
@@ -74,9 +74,9 @@ export const SignInForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="password"
             placeholder="Your Password"
             {...register("password", {

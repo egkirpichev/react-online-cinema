@@ -10,11 +10,13 @@ import { ROUTE } from "../../router";
 
 export const Header = () => {
   const { screenWidth } = useWindowSize();
-  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
 
   return (
     <StyledHeader
-      isLightMode={isLightMode}
+      $isLightMode={isLightMode}
       p={{
         S: `${Space.L} 0 ${Space.XL}`,
         XL: `${Space.L} 0 ${Space.XXL}`,

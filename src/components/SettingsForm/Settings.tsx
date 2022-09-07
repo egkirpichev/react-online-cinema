@@ -40,7 +40,7 @@ export const SettingsForm = () => {
   const newPasswordValue = watch("newPassword", "");
 
   const { name, email, isLoading, error, isLightMode } = useAppSelector(
-    (userSlice) => userSlice.user
+    ({ persistedReducer }) => persistedReducer.user
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -63,12 +63,12 @@ export const SettingsForm = () => {
   return (
     <StyledForm onSubmit={handleSubmit(onSumbit)}>
       <Field>
-        <Title isLightMode={isLightMode}>Profile</Title>
-        <Body isLightMode={isLightMode}>
+        <Title $isLightMode={isLightMode}>Profile</Title>
+        <Body $isLightMode={isLightMode}>
           <InputField maxWidth={{ S: "45%" }}>
-            <FieldTitle isLightMode={isLightMode}>Name</FieldTitle>
+            <FieldTitle $isLightMode={isLightMode}>Name</FieldTitle>
             <StyledInput
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               type="text"
               placeholder="Your name"
               {...register("name", {
@@ -81,9 +81,9 @@ export const SettingsForm = () => {
             )}
           </InputField>
           <InputField width={{ S: "45%" }}>
-            <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
+            <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
             <StyledInput
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               type="email"
               placeholder="Your Email"
               {...register("email", {
@@ -98,12 +98,12 @@ export const SettingsForm = () => {
         </Body>
       </Field>
       <Field>
-        <Title isLightMode={isLightMode}>Password</Title>
-        <Body isLightMode={isLightMode}>
+        <Title $isLightMode={isLightMode}>Password</Title>
+        <Body $isLightMode={isLightMode}>
           <InputField width={{ S: "45%" }}>
-            <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
+            <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
             <StyledInput
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               type="password"
               placeholder="Your password"
               {...register("password", {
@@ -115,9 +115,9 @@ export const SettingsForm = () => {
             )}
           </InputField>
           <InputField width={{ S: "45%" }}>
-            <FieldTitle isLightMode={isLightMode}>New Password</FieldTitle>
+            <FieldTitle $isLightMode={isLightMode}>New Password</FieldTitle>
             <StyledInput
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               type="password"
               placeholder="New password"
               {...register("newPassword", {
@@ -132,9 +132,9 @@ export const SettingsForm = () => {
             )}
           </InputField>
           <InputField width={{ S: "45%" }} margin="0 0 0 auto">
-            <FieldTitle isLightMode={isLightMode}>Confirm Password</FieldTitle>
+            <FieldTitle $isLightMode={isLightMode}>Confirm Password</FieldTitle>
             <StyledInput
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               type="password"
               placeholder="Confirm password"
               {...register("confirmPassword", {
@@ -150,15 +150,15 @@ export const SettingsForm = () => {
         </Body>
       </Field>
       <Field>
-        <Title isLightMode={isLightMode}>Color mode</Title>
+        <Title $isLightMode={isLightMode}>Color mode</Title>
         <Body
-          isLightMode={isLightMode}
+          $isLightMode={isLightMode}
           justifyContent="space-between"
           alignItems="center"
         >
           <InputField width="120px">
-            <FieldTitle isLightMode={isLightMode}>Light</FieldTitle>
-            <FieldDescription isLightMode={isLightMode}>
+            <FieldTitle $isLightMode={isLightMode}>Light</FieldTitle>
+            <FieldDescription $isLightMode={isLightMode}>
               Use light thema
             </FieldDescription>
           </InputField>

@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { ReactComponent as LightLogo } from "../../assets/logo-light.svg";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const StyledHeader = styled.header<GridProps & SpaceProps & IProps>`
@@ -21,8 +21,8 @@ export const StyledHeader = styled.header<GridProps & SpaceProps & IProps>`
   width: 100%;
   padding: ${Space.M} 0;
   ${space}
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Black};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Black};
 `;
 
 export const StyledLogo = styled(Logo)`

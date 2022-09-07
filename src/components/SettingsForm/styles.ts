@@ -20,7 +20,7 @@ import {
 } from "../../ui/typography";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const StyledForm = styled.form`
@@ -34,7 +34,7 @@ export const StyledForm = styled.form`
 
 export const Title = styled(H2)<IProps>`
   text-align: left;
-  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const Field = styled.div`
@@ -53,24 +53,25 @@ export const Body = styled.div<JustifyContentProps & AlignItemsProps & IProps>`
   ${alignItems}
   width: 100%;
   padding: ${Space.S};
-  background: ${({ isLightMode }) => (isLightMode ? Color.Light : Color.Dark)};
+  background: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Light : Color.Dark};
   border-radius: 10px;
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ isLightMode }) =>
-    isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Dark};
+  border-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Secondary : Color.Black};
 
   :focus {
-    color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+    color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
   }
 `;
 
 export const FieldTitle = styled(Subtitle3)<IProps>`
   padding-bottom: 8px;
-  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const InputField = styled.div<LayoutProps & SpaceProps>`
@@ -94,5 +95,5 @@ export const Cancel = styled(ButtonSecondary)``;
 export const Save = styled(ButtonPrimary)``;
 
 export const FieldDescription = styled(Body2)<IProps>`
-  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.Light)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.Light)};
 `;

@@ -16,7 +16,7 @@ import { signUserOut } from "../../store/slices/userSlice";
 
 export const User = () => {
   const { isLogged, name, isLightMode } = useAppSelector(
-    (userSlice) => userSlice.user
+    ({ persistedReducer }) => persistedReducer.user
   );
   const [isOpen, setIsOpen] = useToggle();
   const navigate = useNavigate();
@@ -25,15 +25,15 @@ export const User = () => {
   return (
     <UserBadge>
       <Avatar>{name ? getShortUserName(name) : <FiUser />}</Avatar>
-      <Header isLightMode={isLightMode}>{name ? name : "Guest"}</Header>
-      <ArrowButton onClick={setIsOpen} isLightMode={isLightMode}>
+      <Header $isLightMode={isLightMode}>{name ? name : "Guest"}</Header>
+      <ArrowButton onClick={setIsOpen} $isLightMode={isLightMode}>
         <ArrowIcon />
       </ArrowButton>
       {isOpen && (
-        <DropDownContainer isLightMode={isLightMode}>
+        <DropDownContainer $isLightMode={isLightMode}>
           {isLogged && (
             <Button
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               onClick={() => {
                 navigate(ROUTE.SETTINGS);
                 setIsOpen();
@@ -44,7 +44,7 @@ export const User = () => {
           )}
           {isLogged ? (
             <Button
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               onClick={() => {
                 dispatch(signUserOut());
                 setIsOpen();
@@ -54,7 +54,7 @@ export const User = () => {
             </Button>
           ) : (
             <Button
-              isLightMode={isLightMode}
+              $isLightMode={isLightMode}
               onClick={() => {
                 navigate(ROUTE.SIGN_IN);
                 setIsOpen();

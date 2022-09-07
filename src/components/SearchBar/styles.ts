@@ -4,7 +4,7 @@ import { Color } from "../../ui";
 import { Input } from "../../ui/typography";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const StyledSearchBar = styled.div<GridProps>`
@@ -14,12 +14,12 @@ export const StyledSearchBar = styled.div<GridProps>`
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ isLightMode }) =>
-    isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Dark};
+  border-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Secondary : Color.Black};
 
   :focus {
-    color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+    color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
   }
 `;

@@ -7,17 +7,19 @@ import { Background, Main, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
   const { screenWidth } = useWindowSize();
-  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
 
   return (
     <Background
-      isLightMode={isLightMode}
+      $isLightMode={isLightMode}
       padding={{
         S: `0 ${Space.L} ${Space.L}`,
         XXL: `0 ${Space.LARGEST} ${Space.L}`,
       }}
     >
-      <Wrapper maxWidth={{ XXL: "1920px" }} isLightMode={isLightMode}>
+      <Wrapper maxWidth={{ XXL: "1920px" }} $isLightMode={isLightMode}>
         <Header />
         <Main
           gridTemplateColumns={{

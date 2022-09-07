@@ -2,7 +2,9 @@ import { useAppSelector } from "../../hooks";
 import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
-  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
 
   return (
     <StyledSearchBar
@@ -13,7 +15,11 @@ export const SearchBar = () => {
         S: "1/2",
       }}
     >
-      <StyledInput isLightMode={isLightMode} type="text" placeholder="Search" />
+      <StyledInput
+        $isLightMode={isLightMode}
+        type="text"
+        placeholder="Search"
+      />
     </StyledSearchBar>
   );
 };

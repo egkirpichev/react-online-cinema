@@ -8,7 +8,9 @@ import { auth } from "./services/FireBase/fireBase";
 import { useEffect } from "react";
 
 export const App = () => {
-  const { isLogged } = useAppSelector((userSlice) => userSlice.user);
+  const { isLogged } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {

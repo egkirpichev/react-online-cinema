@@ -9,7 +9,7 @@ import { Color } from "../../ui";
 
 export const Home = () => {
   const { movies, isLoading, error } = useAppSelector(
-    (movieSlice) => movieSlice.movies
+    ({ persistedReducer }) => persistedReducer.movies
   );
   const dispatch = useAppDispatch();
 

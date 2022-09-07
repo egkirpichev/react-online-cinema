@@ -6,7 +6,7 @@ import { Space } from "../../ui/theme";
 import { Body2, Input, Subtitle3 } from "../../ui/typography";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
@@ -18,12 +18,13 @@ export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
   padding: ${Space.S};
   ${layout};
   ${space};
-  background: ${({ isLightMode }) => (isLightMode ? Color.White : Color.Dark)};
+  background: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Dark};
   border-radius: 10px;
 `;
 export const Title = styled(H2)<IProps>`
   text-align: left;
-  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const ResetPassword = styled(Link)`
@@ -63,19 +64,19 @@ export const SignUpLink = styled(Link)`
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ isLightMode }) =>
-    isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Dark};
+  border-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Secondary : Color.Black};
 
   :focus {
-    color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+    color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
   }
 `;
 
 export const FieldTitle = styled(Subtitle3)<IProps>`
   padding-bottom: 8px;
-  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
 `;
 
 export const InputField = styled.div`

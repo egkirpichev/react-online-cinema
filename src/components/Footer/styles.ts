@@ -4,7 +4,7 @@ import { Body2, Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const StyledFooter = styled.footer<GridProps>`
@@ -20,8 +20,8 @@ export const LoadMore = styled.button<IProps>`
   margin: 0 auto;
   padding: ${Space.SMALLEST} ${Space.S};
   width: 161px;
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.Light : Color.Graphite};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Light : Color.Graphite};
   border: none;
   border-radius: 40px;
   cursor: pointer;

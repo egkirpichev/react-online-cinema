@@ -5,8 +5,12 @@ import { CustomSpinner } from "../CustomSpinner";
 import { LoadMore, StyledFooter, Text } from "./styles";
 
 export const Footer = () => {
-  const { initialParams } = useAppSelector((movieSlice) => movieSlice.movies);
-  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
+  const { initialParams } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.movies
+  );
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
   const dispatch = useAppDispatch();
 
   const [isLoading, setIsLoading] = useToggle();
@@ -18,7 +22,7 @@ export const Footer = () => {
 
   return (
     <StyledFooter gridColumn={{ XL: "2/3" }}>
-      <LoadMore type="button" onClick={handleClick} isLightMode={isLightMode}>
+      <LoadMore type="button" onClick={handleClick} $isLightMode={isLightMode}>
         <Text>Load More</Text>
         {isLoading && (
           <CustomSpinner color={Color.White} still={false} size="20px" />

@@ -4,7 +4,6 @@ import {
   GridProps,
   layout,
   LayoutProps,
-  padding,
   space,
   SpaceProps,
 } from "styled-system";
@@ -12,7 +11,7 @@ import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const Wrapper = styled.div<LayoutProps & IProps>`
@@ -21,8 +20,8 @@ export const Wrapper = styled.div<LayoutProps & IProps>`
   max-width: 100vw;
   margin: 0 auto;
   ${layout};
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Black};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Black};
 `;
 
 export const Main = styled.main<GridProps>`
@@ -35,6 +34,6 @@ export const Background = styled.div<IProps & SpaceProps>`
   height: 100%;
   padding: 0 ${Space.S} ${Space.M};
   ${space};
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Black};
+  background-color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.White : Color.Black};
 `;

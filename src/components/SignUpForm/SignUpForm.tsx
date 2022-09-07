@@ -39,7 +39,7 @@ export const SignUpForm = () => {
 
   const dispatch = useAppDispatch();
   const { isLoading, isLogged, error, isLightMode } = useAppSelector(
-    (userSlice) => userSlice.user
+    ({ persistedReducer }) => persistedReducer.user
   );
 
   const onSubmit: SubmitHandler<IUserSignUp> = async (data) => {
@@ -62,18 +62,18 @@ export const SignUpForm = () => {
 
   return (
     <StyledForm
-      isLightMode={isLightMode}
+      $isLightMode={isLightMode}
       width={{ S: "574px" }}
       padding={{ S: Space.L }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Title isLightMode={isLightMode}>Sign Up</Title>
+      <Title $isLightMode={isLightMode}>Sign Up</Title>
       {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Name</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Name</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="text"
             placeholder="Your name"
             {...register("name", { required: "Please, enter your name" })}
@@ -83,9 +83,9 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="email"
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
@@ -95,9 +95,9 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="password"
             placeholder="Your Password"
             {...register("password", {
@@ -113,9 +113,9 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Password</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", {

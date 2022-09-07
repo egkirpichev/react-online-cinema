@@ -34,7 +34,7 @@ export const ResetPasswordForm = () => {
 
   const dispatch = useAppDispatch();
   const { isLoading, isPasswordReset, error, isLightMode } = useAppSelector(
-    (userSlice) => userSlice.user
+    ({ persistedReducer }) => persistedReducer.user
   );
   const navigate = useNavigate();
 
@@ -56,18 +56,18 @@ export const ResetPasswordForm = () => {
 
   return (
     <StyledForm
-      isLightMode={isLightMode}
+      $isLightMode={isLightMode}
       width={{ S: "574px" }}
       padding={{ S: Space.L }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Title isLightMode={isLightMode}>Reset Password</Title>
+      <Title $isLightMode={isLightMode}>Reset Password</Title>
       {error && <ErrorMessage message={error} />}
       <Body>
         <InputField>
-          <FieldTitle isLightMode={isLightMode}>Email</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
           <StyledInput
-            isLightMode={isLightMode}
+            $isLightMode={isLightMode}
             type="email"
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}

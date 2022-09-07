@@ -5,7 +5,7 @@ import { Body2, Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 interface IProps {
-  isLightMode: boolean;
+  $isLightMode: boolean;
 }
 
 export const StyledMovieCard = styled.div<LayoutProps>`
@@ -32,7 +32,7 @@ export const MovieTitle = styled(Link)<IProps>`
   font-size: 16px;
   line-height: 24px;
   text-decoration: none;
-  color: ${({ isLightMode }) => (isLightMode ? Color.Dark : Color.White)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
   :hover {
     color: ${Color.PrimaryDark};
   }
@@ -45,5 +45,6 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Released = styled(Body2)<IProps>`
-  color: ${({ isLightMode }) => (isLightMode ? Color.Secondary : Color.Light)};
+  color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Secondary : Color.Light};
 `;

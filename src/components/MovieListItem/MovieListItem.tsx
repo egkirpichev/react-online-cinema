@@ -16,7 +16,9 @@ interface IProps {
 }
 
 export const MovieListItem = ({ movieListItem }: IProps) => {
-  const { isLightMode } = useAppSelector((userSlice) => userSlice.user);
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
 
   return (
     <StyledMovieCard>
@@ -27,14 +29,14 @@ export const MovieListItem = ({ movieListItem }: IProps) => {
       </StyledLink>
       <Description>
         <MovieTitle
-          isLightMode={isLightMode}
+          $isLightMode={isLightMode}
           to={createRoute(ROUTE.MOVIE, { imdbID: movieListItem.imdbID })}
         >
           {movieListItem.Title}
         </MovieTitle>
 
         <Released
-          isLightMode={isLightMode}
+          $isLightMode={isLightMode}
         >{`Released: ${movieListItem.Year}`}</Released>
       </Description>
     </StyledMovieCard>

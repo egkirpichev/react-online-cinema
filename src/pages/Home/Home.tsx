@@ -1,11 +1,10 @@
 import { useMemo } from "react";
-import { CustomSpinner } from "../../components/CustomSpinner";
-import { ErrorMessage } from "../../components/ErrorMessage";
 import { Footer } from "../../components/Footer";
 import { MovieList } from "../../components/MovieList";
+import { SearchError } from "../../components/SearchError";
+import { SearchSpinner } from "../../components/SearchSpinner";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getRandomMovies } from "../../store/slices/movieSlice";
-import { Color } from "../../ui";
 
 export const Home = () => {
   const { movieList, requestParams, isLoading, error, disableLoader } =
@@ -26,12 +25,12 @@ export const Home = () => {
   }, [movieList, isLoading, dispatch]);
 
   if (isLoading || pending) {
-    return <CustomSpinner color={Color.PrimaryDark} />;
+    return <SearchSpinner />;
   }
 
   if (error || searchEerror) {
     return (
-      <ErrorMessage message={(error as string) || (searchEerror as string)} />
+      <SearchError message={(error as string) || (searchEerror as string)} />
     );
   }
 

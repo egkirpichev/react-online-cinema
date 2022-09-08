@@ -1,11 +1,10 @@
 import { useMemo } from "react";
-import { CustomSpinner } from "../../components/CustomSpinner";
-import { ErrorMessage } from "../../components/ErrorMessage";
 import { Footer } from "../../components/Footer";
 import { MovieList } from "../../components/MovieList";
+import { SearchError } from "../../components/SearchError";
+import { SearchSpinner } from "../../components/SearchSpinner";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getTrends } from "../../store/slices/trendsSlice";
-import { Color } from "../../ui";
 import { TrendingMovieList, TrendingPageTitle } from "./styles";
 
 export const Trends = () => {
@@ -33,12 +32,12 @@ export const Trends = () => {
   }, [movieList, isLoading, dispatch]);
 
   if (isLoading || pending) {
-    return <CustomSpinner color={Color.PrimaryDark} />;
+    return <SearchSpinner />;
   }
 
   if (error || searchEerror) {
     return (
-      <ErrorMessage message={(error as string) || (searchEerror as string)} />
+      <SearchError message={(error as string) || (searchEerror as string)} />
     );
   }
   if (searchResults && searchResults.length ^ 0) {

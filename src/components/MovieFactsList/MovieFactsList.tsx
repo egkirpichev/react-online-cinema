@@ -10,6 +10,7 @@ export const MovieFactsList = ({ movieFactsList }: IProps) => {
     <MovieFacts>
       {Object.entries(movieFactsList).map(
         ([fact, value]) =>
+          value &&
           value !== "N/A" && (
             <>
               <Fact key={fact}>{fact}</Fact>

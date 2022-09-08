@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getMovieCardInfo,
-  getMovieFacts,
-  getShortMovieDescription,
-} from "../../mappers/mappers";
+import { getMovieCardInfo, getMovieFacts } from "../../mappers/mappers";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieCard, IMovieFactsList } from "../../types/types";
 import { Color } from "../../ui";
+import { ReactComponent as ImdbIcon } from "../../assets/imdb-icon.svg";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
 import { MovieControl } from "../MovieControl";
@@ -22,6 +19,8 @@ import {
   Header,
   StyledMovieCard,
   Title,
+  Stats,
+  StatsBadge,
 } from "./styles";
 
 export const MovieCard = () => {
@@ -67,7 +66,15 @@ export const MovieCard = () => {
           <Header>
             <MovieGenre genres={movie.genres} />
             <Title>{movie.title}</Title>
-            <RatingBadge rating={movie.imdbRating} />
+            <Stats>
+              <RatingBadge rating={movie.imdbRating} />
+              <StatsBadge>
+                <ImdbIcon />
+                {"  "}
+                {movie.imdbRating}
+              </StatsBadge>
+              <StatsBadge>{movie.runtime}</StatsBadge>
+            </Stats>
           </Header>
           <Plot>{movie.plot}</Plot>
           <MovieFactsList movieFactsList={movieFactsList} />

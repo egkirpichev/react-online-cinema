@@ -3,9 +3,10 @@ import { Fact, MovieFacts, Value } from "./styles";
 
 interface IProps {
   movieFactsList: IMovieFactsList;
+  $isLightMode: boolean;
 }
 
-export const MovieFactsList = ({ movieFactsList }: IProps) => {
+export const MovieFactsList = ({ movieFactsList, $isLightMode }: IProps) => {
   return (
     <MovieFacts>
       {Object.entries(movieFactsList).map(
@@ -14,7 +15,9 @@ export const MovieFactsList = ({ movieFactsList }: IProps) => {
           value !== "N/A" && (
             <>
               <Fact key={fact}>{fact}</Fact>
-              <Value key={value}>{value}</Value>
+              <Value $isLightMode key={value}>
+                {value}
+              </Value>
             </>
           )
       )}

@@ -1,14 +1,11 @@
 import styled from "styled-components";
-import {
-  grid,
-  GridProps,
-  justifyItems,
-  JustifyItemsProps,
-  layout,
-  LayoutProps,
-} from "styled-system";
+import { grid, GridProps, layout, LayoutProps } from "styled-system";
 import { Body2, Color, H1, Subtitle3 } from "../../ui";
 import { Space } from "../../ui/theme";
+
+interface IProps {
+  $isLightMode: boolean;
+}
 
 export const StyledMovieCard = styled.div<GridProps>`
   display: grid;
@@ -26,9 +23,9 @@ export const Control = styled.div`
   gap: ${Space.M};
 `;
 
-export const Title = styled(H1)`
-  color: ${Color.White};
+export const Title = styled(H1)<IProps>`
   margin-bottom: ${Space.XS};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Black : Color.White)};
 `;
 export const Description = styled.div<LayoutProps>`
   display: flex;
@@ -43,8 +40,8 @@ export const Header = styled.header`
   flex-direction: column;
 `;
 
-export const Plot = styled(Body2)`
-  color: ${Color.White};
+export const Plot = styled(Body2)<IProps>`
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Black : Color.White)};
 `;
 
 export const Stats = styled.div`

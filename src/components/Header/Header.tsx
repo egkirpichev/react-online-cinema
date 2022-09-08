@@ -1,5 +1,4 @@
 import { StyledHeader, StyledLightLogo, StyledLogo } from "./styles";
-
 import { SearchBar } from "../SearchBar";
 import { Space } from "../../ui/theme";
 import { useAppSelector, useWindowSize } from "../../hooks";

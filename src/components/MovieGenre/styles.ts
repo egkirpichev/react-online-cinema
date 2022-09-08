@@ -14,7 +14,7 @@ export const Genre = styled.li`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: ${Color.Light};
+  color: ${Color.Secondary};
   :first-child {
     list-style: none;
   }

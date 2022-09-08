@@ -11,7 +11,6 @@ import { TrendingMovieList, TrendingPageTitle } from "./styles";
 export const Trends = () => {
   const { movieList, requestParams, isLoading, error, disableLoader, trend } =
     useAppSelector(({ persistedReducer }) => persistedReducer.trends);
-  const dispatch = useAppDispatch();
 
   const {
     searchResults,
@@ -20,6 +19,12 @@ export const Trends = () => {
     searchEerror,
     disableSearchLoader,
   } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
+
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
+
+  const dispatch = useAppDispatch();
 
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
@@ -54,7 +59,7 @@ export const Trends = () => {
     return (
       <>
         <TrendingMovieList>
-          <TrendingPageTitle textAlign={{ XL: "left" }}>
+          <TrendingPageTitle $isLightMode textAlign={{ XL: "left" }}>
             {trend}
           </TrendingPageTitle>
           <MovieList movieList={movieList} />

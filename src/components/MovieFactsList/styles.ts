@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Body2, Color, Subtitle3 } from "../../ui";
 import { Space } from "../../ui/theme";
 
+interface IProps {
+  $isLightMode: boolean;
+}
+
 export const MovieFacts = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -9,9 +13,10 @@ export const MovieFacts = styled.div`
   max-width: 80%;
 `;
 export const Fact = styled(Subtitle3)`
-  color: ${Color.Light};
+  color: ${Color.Secondary};
 `;
 
-export const Value = styled(Body2)`
-  color: ${Color.White};
+export const Value = styled(Body2)<IProps>`
+  color: ${({ $isLightMode }) =>
+    $isLightMode ? Color.Secondary : Color.White};
 `;

@@ -3,8 +3,12 @@ import { textAlign, TextAlignProps } from "styled-system";
 import { Color, H1 } from "../../ui";
 import { Space } from "../../ui/theme";
 
-export const TrendingPageTitle = styled(H1)<TextAlignProps>`
-  color: ${Color.White};
+interface IProps {
+  $isLightMode?: boolean;
+}
+
+export const TrendingPageTitle = styled(H1)<TextAlignProps & IProps>`
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Black : Color.White)};
   text-align: center;
   line-height: 30px;
   ${textAlign};

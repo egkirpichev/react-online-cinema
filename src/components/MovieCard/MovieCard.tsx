@@ -22,13 +22,16 @@ import {
   Stats,
   StatsBadge,
 } from "./styles";
+import { useAppSelector } from "../../hooks";
 
 export const MovieCard = () => {
   const [movie, setMovie] = useState<IMovieCard>();
   const [movieFactsList, setMovieFactsList] = useState<IMovieFactsList>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>("");
-
+  const { isLightMode } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.user
+  );
   const { imdbID } = useParams();
 
   useEffect(() => {
@@ -65,7 +68,7 @@ export const MovieCard = () => {
         <Description maxWidth={{ S: "80%" }}>
           <Header>
             <MovieGenre genres={movie.genres} />
-            <Title>{movie.title}</Title>
+            <Title $isLightMode>{movie.title}</Title>
             <Stats>
               <RatingBadge rating={movie.imdbRating} />
               <StatsBadge>
@@ -76,8 +79,8 @@ export const MovieCard = () => {
               <StatsBadge>{movie.runtime}</StatsBadge>
             </Stats>
           </Header>
-          <Plot>{movie.plot}</Plot>
-          <MovieFactsList movieFactsList={movieFactsList} />
+          <Plot $isLightMode>{movie.plot}</Plot>
+          <MovieFactsList $isLightMode movieFactsList={movieFactsList} />
         </Description>
       </StyledMovieCard>
     );

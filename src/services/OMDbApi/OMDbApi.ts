@@ -65,7 +65,11 @@ class OMDbAPI {
   }
 
   public async getMovieById(id: string): Promise<IMovieFull> {
-    const params = { [Param.ApiKey]: this.API_KEY, [Param.Id]: id };
+    const params = {
+      [Param.ApiKey]: this.API_KEY,
+      [Param.Plot]: "full",
+      [Param.Id]: id,
+    };
     const { data } = await this.API.get("", {
       params,
     });

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import {
   IMovieFull,
   IMovieShort,
@@ -18,7 +18,13 @@ class OMDbAPI {
     return defaultParams[Math.floor(Math.random() * defaultParams.length)];
   }
 
+  private getTrend() {
+    const defaultParams = ["star wars", "man"];
+    return defaultParams[Math.floor(Math.random() * defaultParams.length)];
+  }
+
   private initialParam = this.getRandomParam();
+  private trend = this.getTrend();
 
   public async getRandomMovies(): Promise<{
     Search: IMovieShort[];
@@ -45,9 +51,8 @@ class OMDbAPI {
   }> {
     const params = {
       [Param.ApiKey]: this.API_KEY,
-      [Param.Search]: this.initialParam,
+      [Param.Search]: this.trend,
       [Param.Type]: "movie",
-      [Param.Year]: "2022",
       [Param.Page]: "1",
     };
     const {
@@ -67,19 +72,48 @@ class OMDbAPI {
     return data;
   }
 
-  public async loadMoreMovies(initialParams: IRequestParams): Promise<{
-    Search: IMovieShort[];
-    params: IRequestParams;
-  }> {
-    const { apikey, s, page, y } = initialParams;
-    const params = { apikey, s, y, page: (Number(page) + 1).toString() };
-    const {
-      data: { Search },
-    } = await this.API.get("", {
+  public async searchMovies(searchRequest: string) {
+    const params = {
+      [Param.ApiKey]: this.API_KEY,
+      [Param.Search]: searchRequest,
+      [Param.Page]: "1",
+    };
+    console.log(
+      await this.API.get<{
+        Search: IMovieShort[];
+        params: IRequestParams;
+      }>("", {
+        params,
+      })
+    );
+
+    return await this.API.get<{
+      Search: IMovieShort[];
+      params: IRequestParams;
+    }>("", {
       params,
     });
+  }
 
-    return { Search, params };
+  public async loadMoreMovies(initialParams: IRequestParams) {
+    const { apikey, s, page, y } = initialParams;
+    const params = { apikey, s, y, page: (Number(page) + 1).toString() };
+
+    console.log(
+      await this.API.get<{
+        Search: IMovieShort[];
+        params: IRequestParams;
+      }>("", {
+        params,
+      })
+    );
+
+    return await this.API.get<{
+      Search: IMovieShort[];
+      params: IRequestParams;
+    }>("", {
+      params,
+    });
   }
 }
 

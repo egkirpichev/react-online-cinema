@@ -11,8 +11,6 @@ interface IProps {
 }
 
 export const MoviePoster = ({ poster, id }: IProps) => {
-  console.log(poster);
-
   const { favorites } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
   );

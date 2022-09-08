@@ -7,6 +7,7 @@ interface ITrendsState {
   requestParams: IRequestParams;
   isLoading: boolean;
   error: string | null;
+  disableLoader: boolean;
 }
 
 const initialState: ITrendsState = {
@@ -19,6 +20,7 @@ const initialState: ITrendsState = {
   },
   isLoading: false,
   error: null,
+  disableLoader: false,
 };
 
 export const getTrends = createAsyncThunk<
@@ -37,9 +39,13 @@ export const loadMoreTrends = createAsyncThunk<
   { Search: IMovieShort[]; params: IRequestParams },
   IRequestParams,
   { rejectValue: string }
->("trends/loadMoreMovies", async (requestParams, { rejectWithValue }) => {
+>("movies/loadMoreTrends", async (requestParams, { rejectWithValue }) => {
   try {
-    return await OMDbApi.loadMoreMovies(requestParams);
+    const {
+      data: { Search },
+      config: { params },
+    } = await OMDbApi.loadMoreMovies(requestParams);
+    return { Search, params };
   } catch (error) {
     return rejectWithValue(error as string);
   }
@@ -54,13 +60,14 @@ export const trendsSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     });
-    builder.addCase(getTrends.fulfilled, (state, { payload }) => {
-      console.log(payload);
-
-      state.isLoading = false;
-      payload.Search.forEach((movie) => state.movieList.push(movie));
-      state.requestParams = payload.params;
-    });
+    builder.addCase(
+      getTrends.fulfilled,
+      (state, { payload: { Search, params } }) => {
+        state.isLoading = false;
+        Search.forEach((movie) => state.movieList.push(movie));
+        state.requestParams = params;
+      }
+    );
     builder.addCase(getTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
@@ -71,7 +78,11 @@ export const trendsSlice = createSlice({
     builder.addCase(
       loadMoreTrends.fulfilled,
       (state, { payload: { Search, params } }) => {
-        Search.forEach((movie) => state.movieList.push(movie));
+        if (Search) {
+          Search.forEach((movie) => state.movieList.push(movie));
+        } else {
+          state.disableLoader = true;
+        }
         state.requestParams = params;
       }
     );

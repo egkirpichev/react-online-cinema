@@ -7,6 +7,7 @@ interface IMoviesState {
   requestParams: IRequestParams;
   isLoading: boolean;
   error: string | null;
+  disableLoader: boolean;
 }
 
 const initialState: IMoviesState = {
@@ -18,6 +19,7 @@ const initialState: IMoviesState = {
   },
   isLoading: false,
   error: null,
+  disableLoader: false,
 };
 
 export const getRandomMovies = createAsyncThunk<
@@ -38,7 +40,11 @@ export const loadMoreMovies = createAsyncThunk<
   { rejectValue: string }
 >("movies/loadMoreMovies", async (requestParams, { rejectWithValue }) => {
   try {
-    return await OMDbApi.loadMoreMovies(requestParams);
+    const {
+      data: { Search },
+      config: { params },
+    } = await OMDbApi.loadMoreMovies(requestParams);
+    return { Search, params };
   } catch (error) {
     return rejectWithValue(error as string);
   }
@@ -53,11 +59,14 @@ export const movieSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     });
-    builder.addCase(getRandomMovies.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      payload.Search.forEach((movie) => state.movieList.push(movie));
-      state.requestParams = payload.params;
-    });
+    builder.addCase(
+      getRandomMovies.fulfilled,
+      (state, { payload: { Search, params } }) => {
+        state.isLoading = false;
+        Search.forEach((movie) => state.movieList.push(movie));
+        state.requestParams = params;
+      }
+    );
     builder.addCase(getRandomMovies.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
@@ -68,7 +77,11 @@ export const movieSlice = createSlice({
     builder.addCase(
       loadMoreMovies.fulfilled,
       (state, { payload: { Search, params } }) => {
-        Search.forEach((movie) => state.movieList.push(movie));
+        if (Search) {
+          Search.forEach((movie) => state.movieList.push(movie));
+        } else {
+          state.disableLoader = true;
+        }
         state.requestParams = params;
       }
     );

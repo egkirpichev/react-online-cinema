@@ -8,31 +8,50 @@ import { getTrends } from "../../store/slices/trendsSlice";
 import { Color } from "../../ui";
 
 export const Trends = () => {
-  const { movieList, requestParams, isLoading, error } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.trends
-  );
+  const { movieList, requestParams, isLoading, error, disableLoader } =
+    useAppSelector(({ persistedReducer }) => persistedReducer.trends);
   const dispatch = useAppDispatch();
 
-  console.log(movieList);
+  const {
+    searchResults,
+    searchParams,
+    pending,
+    searchEerror,
+    disableSearchLoader,
+  } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
 
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getTrends());
     }
-  }, []);
+  }, [movieList, isLoading, dispatch]);
 
-  if (isLoading) {
+  if (isLoading || pending) {
     return <CustomSpinner color={Color.PrimaryDark} />;
   }
 
-  if (error) {
-    return <ErrorMessage message={"Something went wrong, try again 🍿"} />;
+  if (error || searchEerror) {
+    return (
+      <ErrorMessage message={(error as string) || (searchEerror as string)} />
+    );
   }
-
-  return (
-    <>
-      <MovieList movieList={movieList} />
-      {!isLoading && <Footer requestParams={requestParams} />}
-    </>
-  );
+  if (searchResults && searchResults.length ^ 0) {
+    return (
+      <>
+        <MovieList movieList={searchResults} />
+        {!disableSearchLoader && !isLoading && (
+          <Footer requestParams={searchParams} />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <MovieList movieList={movieList} />
+        {!disableLoader && !isLoading && (
+          <Footer requestParams={requestParams} />
+        )}
+      </>
+    );
+  }
 };

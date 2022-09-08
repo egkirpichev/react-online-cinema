@@ -9,4 +9,15 @@ export const StyledMoviePoster = styled.img<LayoutProps>`
   border-radius: 20px;
 `;
 
-export const Poster = styled.div``;
+export const Poster = styled.div`
+  position: relative;
+`;
+
+export const Badges = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 10px;
+`;

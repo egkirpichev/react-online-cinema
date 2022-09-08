@@ -3,7 +3,7 @@ import { Color } from "../../ui";
 
 export const StyledBadge = styled.div`
   padding: 4px 10px;
-  color: ${Color.PrimaryDark};
-  background-color: ${Color.Graphite};
+  color: ${Color.White};
+  background-color: ${Color.PrimaryLight};
   border-radius: 5px;
 `;

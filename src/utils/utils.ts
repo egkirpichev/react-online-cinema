@@ -46,3 +46,11 @@ export const checkIfInFavorites = (
     false
   );
 };
+
+export const checkIfInTrends = (trends: IMovieShort[], id: string): boolean => {
+  return trends.reduce(
+    (isInFavorites, trending) =>
+      trending.imdbID === id ? !isInFavorites : isInFavorites,
+    false
+  );
+};

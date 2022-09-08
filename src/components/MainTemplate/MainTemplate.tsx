@@ -23,8 +23,7 @@ export const MainTemplate = () => {
         <Header />
         <Main
           gridTemplateColumns={{
-            XL: "25% 75%",
-            XXL: "17% 83%",
+            XL: "15% 85%",
           }}
           gridRowGap={{
             default: `${Space.M}`,

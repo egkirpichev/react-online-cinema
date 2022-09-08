@@ -23,8 +23,7 @@ export const Header = () => {
       }}
       gridTemplateColumns={{
         S: "25% auto 8%",
-        XL: "21% auto 17%",
-        XXL: "15% auto 15%",
+        XL: "13% auto 17%",
       }}
       gridColumn={{
         XL: "1/3",

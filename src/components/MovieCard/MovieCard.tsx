@@ -68,7 +68,7 @@ export const MovieCard = () => {
         <Description maxWidth={{ S: "80%" }}>
           <Header>
             <MovieGenre genres={movie.genres} />
-            <Title $isLightMode>{movie.title}</Title>
+            <Title $isLightMode={isLightMode}>{movie.title}</Title>
             <Stats>
               <RatingBadge rating={movie.imdbRating} />
               <StatsBadge>
@@ -79,8 +79,11 @@ export const MovieCard = () => {
               <StatsBadge>{movie.runtime}</StatsBadge>
             </Stats>
           </Header>
-          <Plot $isLightMode>{movie.plot}</Plot>
-          <MovieFactsList $isLightMode movieFactsList={movieFactsList} />
+          <Plot $isLightMode={isLightMode}>{movie.plot}</Plot>
+          <MovieFactsList
+            $isLightMode={isLightMode}
+            movieFactsList={movieFactsList}
+          />
         </Description>
       </StyledMovieCard>
     );

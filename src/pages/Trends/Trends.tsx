@@ -59,7 +59,10 @@ export const Trends = () => {
     return (
       <>
         <TrendingMovieList>
-          <TrendingPageTitle $isLightMode textAlign={{ XL: "left" }}>
+          <TrendingPageTitle
+            $isLightMode={isLightMode}
+            textAlign={{ XL: "left" }}
+          >
             {trend}
           </TrendingPageTitle>
           <MovieList movieList={movieList} />

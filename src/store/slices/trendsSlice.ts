@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieShort, IRequestParams } from "../../types";
+import { getTrendingPageTitle } from "../../utils";
 
 interface ITrendsState {
+  trend: string | null;
   movieList: IMovieShort[];
   requestParams: IRequestParams;
   isLoading: boolean;
@@ -11,6 +13,7 @@ interface ITrendsState {
 }
 
 const initialState: ITrendsState = {
+  trend: null,
   movieList: [],
   requestParams: {
     apikey: "",
@@ -59,6 +62,7 @@ export const trendsSlice = createSlice({
     builder.addCase(getTrends.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.trend = null;
     });
     builder.addCase(
       getTrends.fulfilled,
@@ -66,6 +70,7 @@ export const trendsSlice = createSlice({
         state.isLoading = false;
         Search.forEach((movie) => state.movieList.push(movie));
         state.requestParams = params;
+        state.trend = getTrendingPageTitle(OMDbApi.trend);
       }
     );
     builder.addCase(getTrends.rejected, (state, { payload }) => {

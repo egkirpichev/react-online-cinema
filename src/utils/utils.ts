@@ -54,3 +54,16 @@ export const checkIfInTrends = (trends: IMovieShort[], id: string): boolean => {
     false
   );
 };
+
+export const getTrendingPageTitle = (trend: string): string => {
+  switch (trend) {
+    case "man":
+      return "Action";
+    case "star wars":
+      return "Star Wars saga";
+    case "love":
+      return "Right in the feels";
+    default:
+      return "Currently trending";
+  }
+};

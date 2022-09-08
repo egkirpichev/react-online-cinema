@@ -4,6 +4,7 @@ import {
   getFirebaseErrorMessage,
   getShortUserName,
   checkIfInFavorites,
+  getTrendingPageTitle,
 } from "./utils";
 
 export {
@@ -12,4 +13,5 @@ export {
   getShortUserName,
   getFirebaseErrorMessage,
   checkIfInFavorites,
+  getTrendingPageTitle,
 };

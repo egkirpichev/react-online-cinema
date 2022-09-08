@@ -6,9 +6,10 @@ import { MovieList } from "../../components/MovieList";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getTrends } from "../../store/slices/trendsSlice";
 import { Color } from "../../ui";
+import { TrendingMovieList, TrendingPageTitle } from "./styles";
 
 export const Trends = () => {
-  const { movieList, requestParams, isLoading, error, disableLoader } =
+  const { movieList, requestParams, isLoading, error, disableLoader, trend } =
     useAppSelector(({ persistedReducer }) => persistedReducer.trends);
   const dispatch = useAppDispatch();
 
@@ -38,7 +39,12 @@ export const Trends = () => {
   if (searchResults && searchResults.length ^ 0) {
     return (
       <>
-        <MovieList movieList={searchResults} />
+        <TrendingMovieList>
+          <TrendingPageTitle textAlign={{ XL: "left" }}>
+            {trend}
+          </TrendingPageTitle>
+          <MovieList movieList={searchResults} />
+        </TrendingMovieList>
         {!disableSearchLoader && !isLoading && (
           <Footer requestParams={searchParams} />
         )}
@@ -47,7 +53,12 @@ export const Trends = () => {
   } else {
     return (
       <>
-        <MovieList movieList={movieList} />
+        <TrendingMovieList>
+          <TrendingPageTitle textAlign={{ XL: "left" }}>
+            {trend}
+          </TrendingPageTitle>
+          <MovieList movieList={movieList} />
+        </TrendingMovieList>
         {!disableLoader && !isLoading && (
           <Footer requestParams={requestParams} />
         )}

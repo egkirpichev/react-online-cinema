@@ -19,12 +19,12 @@ class OMDbAPI {
   }
 
   private getTrend() {
-    const defaultParams = ["star wars", "man"];
+    const defaultParams = ["star wars", "man", "love"];
     return defaultParams[Math.floor(Math.random() * defaultParams.length)];
   }
 
   private initialParam = this.getRandomParam();
-  private trend = this.getTrend();
+  readonly trend = this.getTrend();
 
   public async getRandomMovies(): Promise<{
     Search: IMovieShort[];

@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ROUTE } from "../../router";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieShort, IRequestParams } from "../../types";
 

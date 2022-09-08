@@ -3,6 +3,7 @@ import { checkIfInFavorites } from "../../utils";
 import { FavoriteBadge } from "../FavoriteBadge";
 import { TrendingBadge } from "../TrendingBadge";
 import { Badges, Poster, StyledMoviePoster } from "./styles";
+import posterSubstitute from "../../assets/no-poster.png";
 
 interface IProps {
   poster: string;
@@ -10,6 +11,8 @@ interface IProps {
 }
 
 export const MoviePoster = ({ poster, id }: IProps) => {
+  console.log(poster);
+
   const { favorites } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
   );
@@ -26,7 +29,10 @@ export const MoviePoster = ({ poster, id }: IProps) => {
         {isInTrends && <TrendingBadge />}
       </Badges>
 
-      <StyledMoviePoster maxHeight={{ S: "279px", XL: "357px" }} src={poster} />
+      <StyledMoviePoster
+        maxHeight={{ S: "279px", XL: "357px" }}
+        src={poster === "N/A" ? posterSubstitute : poster}
+      />
     </Poster>
   );
 };

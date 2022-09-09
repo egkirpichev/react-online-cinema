@@ -1,3 +1,3 @@
-import { StyledMovieCard } from "../MovieListItem/styles";
+import { MovieCard } from "./MovieCard";
 
-export { StyledMovieCard };
+export { MovieCard };

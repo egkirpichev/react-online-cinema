@@ -5,7 +5,7 @@ import {
   useDebounce,
   useInput,
 } from "../../hooks";
-import { resetSearch, searchMovies } from "../../store/slices/searchSlice";
+import { setSearchRequest } from "../../store/slices/searchSlice";
 import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
@@ -14,16 +14,12 @@ export const SearchBar = () => {
   );
 
   const searchInput = useInput();
-  const searchRequest = useDebounce(searchInput.value, 1000);
+  const searchRequestValue = useDebounce(searchInput.value, 1000);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (searchRequest) {
-      dispatch(searchMovies(searchRequest));
-    } else {
-      dispatch(resetSearch());
-    }
-  }, [searchRequest]);
+    dispatch(setSearchRequest(searchRequestValue));
+  }, [searchRequestValue]);
 
   return (
     <StyledSearchBar

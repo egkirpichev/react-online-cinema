@@ -4,20 +4,28 @@ import { MovieList } from "../../components/MovieList";
 import { SearchError } from "../../components/SearchError";
 import { SearchSpinner } from "../../components/SearchSpinner";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getTrends } from "../../store/slices/trendsSlice";
+import {
+  getTrends,
+  resetSearch,
+  searchTrends,
+} from "../../store/slices/trendsSlice";
 import { TrendingMovieList, TrendingPageTitle } from "./styles";
 
 export const Trends = () => {
-  const { movieList, requestParams, isLoading, error, disableLoader, trend } =
-    useAppSelector(({ persistedReducer }) => persistedReducer.trends);
-
   const {
+    movieList,
+    requestParams,
     searchResults,
     searchParams,
-    pending,
-    searchEerror,
-    disableSearchLoader,
-  } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
+    isLoading,
+    error,
+    disableLoader,
+    trend,
+  } = useAppSelector(({ persistedReducer }) => persistedReducer.trends);
+
+  const { searchRequest } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.search
+  );
 
   const { isLightMode } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
@@ -28,28 +36,25 @@ export const Trends = () => {
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getTrends());
+    } else if (searchRequest && !isLoading) {
+      dispatch(searchTrends(searchRequest));
+    } else if (!searchRequest && searchResults.length > 0) {
+      dispatch(resetSearch());
     }
-  }, [movieList, isLoading, dispatch]);
+  }, [searchRequest]);
 
-  if (isLoading || pending) {
+  if (isLoading) {
     return <SearchSpinner />;
   }
 
-  if (error || searchEerror) {
-    return (
-      <SearchError message={(error as string) || (searchEerror as string)} />
-    );
+  if (error) {
+    return <SearchError message={error as string} />;
   }
-  if (searchResults && searchResults.length ^ 0) {
+  if (searchRequest && searchResults.length ^ 0) {
     return (
       <>
-        <TrendingMovieList>
-          <TrendingPageTitle textAlign={{ XL: "left" }}>
-            {trend}
-          </TrendingPageTitle>
-          <MovieList movieList={searchResults} />
-        </TrendingMovieList>
-        {!disableSearchLoader && !isLoading && (
+        <MovieList movieList={searchResults} />
+        {!disableLoader && !isLoading && (
           <Footer requestParams={searchParams} />
         )}
       </>

@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 import { OMDbApi } from "../../services/OMDbApi";
 import { IMovieShort, IRequestParams } from "../../types";
 
 interface IMoviesState {
   movieList: IMovieShort[];
   requestParams: IRequestParams;
+  searchParams: IRequestParams;
+  searchResults: IMovieShort[];
   isLoading: boolean;
   error: string | null;
   disableLoader: boolean;
@@ -17,6 +20,12 @@ const initialState: IMoviesState = {
     s: "",
     page: "",
   },
+  searchParams: {
+    apikey: "",
+    s: "",
+    page: "",
+  },
+  searchResults: [],
   isLoading: false,
   error: null,
   disableLoader: false,
@@ -50,10 +59,37 @@ export const loadMoreMovies = createAsyncThunk<
   }
 });
 
+export const searchMovies = createAsyncThunk<
+  { Search: IMovieShort[]; params: IRequestParams },
+  string,
+  { rejectValue: string }
+>("movies/searchMovies", async (searchRequest, { rejectWithValue }) => {
+  try {
+    const {
+      data: { Search },
+      config: { params },
+    } = await OMDbApi.searchMovies(searchRequest);
+    return { Search, params };
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return rejectWithValue(axiosError.message);
+  }
+});
+
 export const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    resetSearch: (state) => {
+      state.error = null;
+      state.searchResults = [];
+      state.searchParams = {
+        apikey: "",
+        s: "",
+        page: "",
+      };
+    },
+  },
   extraReducers(builder) {
     builder.addCase(getRandomMovies.pending, (state) => {
       state.isLoading = true;
@@ -77,19 +113,47 @@ export const movieSlice = createSlice({
     builder.addCase(
       loadMoreMovies.fulfilled,
       (state, { payload: { Search, params } }) => {
-        if (Search) {
-          Search.forEach((movie) => state.movieList.push(movie));
+        if (state.searchResults.length > 0) {
+          if (Search) {
+            Search.forEach((movie) => state.searchResults.push(movie));
+          } else {
+            state.disableLoader = true;
+          }
+          state.searchParams = params;
         } else {
-          state.disableLoader = true;
+          if (Search) {
+            Search.forEach((movie) => state.movieList.push(movie));
+          } else {
+            state.disableLoader = true;
+          }
+          state.requestParams = params;
         }
-        state.requestParams = params;
       }
     );
     builder.addCase(loadMoreMovies.rejected, (state, { payload }) => {
       state.error = payload ? payload : state.error;
     });
+    builder.addCase(searchMovies.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+      state.disableLoader = false;
+    });
+    builder.addCase(
+      searchMovies.fulfilled,
+      (state, { payload: { Search, params } }) => {
+        state.isLoading = false;
+        Search
+          ? (state.searchResults = Search)
+          : (state.error = "Please, specify your search request");
+        state.searchParams = params;
+      }
+    );
+    builder.addCase(searchMovies.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload ? payload : state.error;
+    });
   },
 });
 
-export const {} = movieSlice.actions;
+export const { resetSearch } = movieSlice.actions;
 export default movieSlice.reducer;

@@ -4,41 +4,52 @@ import { MovieList } from "../../components/MovieList";
 import { SearchError } from "../../components/SearchError";
 import { SearchSpinner } from "../../components/SearchSpinner";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getRandomMovies } from "../../store/slices/movieSlice";
+import {
+  getRandomMovies,
+  resetSearch,
+  searchMovies,
+} from "../../store/slices/movieSlice";
 
 export const Home = () => {
-  const { movieList, requestParams, isLoading, error, disableLoader } =
-    useAppSelector(({ persistedReducer }) => persistedReducer.movies);
   const {
+    movieList,
+    requestParams,
     searchResults,
     searchParams,
-    pending,
-    searchEerror,
-    disableSearchLoader,
-  } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
+    isLoading,
+    error,
+    disableLoader,
+  } = useAppSelector(({ persistedReducer }) => persistedReducer.movies);
+
+  const { searchRequest } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.search
+  );
+
   const dispatch = useAppDispatch();
 
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getRandomMovies());
+    } else if (searchRequest && !isLoading) {
+      dispatch(searchMovies(searchRequest));
+    } else if (!searchRequest && searchResults.length > 0) {
+      dispatch(resetSearch());
     }
-  }, [movieList, isLoading, dispatch]);
+  }, [searchRequest]);
 
-  if (isLoading || pending) {
+  if (isLoading) {
     return <SearchSpinner />;
   }
 
-  if (error || searchEerror) {
-    return (
-      <SearchError message={(error as string) || (searchEerror as string)} />
-    );
+  if (error) {
+    return <SearchError message={error as string} />;
   }
 
-  if (searchResults && searchResults.length ^ 0) {
+  if (searchRequest && searchResults.length > 0) {
     return (
       <>
         <MovieList movieList={searchResults} />
-        {!disableSearchLoader && !isLoading && (
+        {!disableLoader && !isLoading && (
           <Footer requestParams={searchParams} />
         )}
       </>

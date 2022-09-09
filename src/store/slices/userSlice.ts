@@ -20,6 +20,7 @@ export interface IUserState {
   name: string | null;
   email: string | null;
   favorites: IMovieShort[];
+  searchResults: IMovieShort[];
   error: string | null;
   isLogged: boolean;
   isLoading: boolean;
@@ -31,6 +32,7 @@ const initialState: IUserState = {
   name: null,
   email: null,
   favorites: [],
+  searchResults: [],
   error: null,
   isLogged: false,
   isLoading: true,
@@ -202,6 +204,11 @@ export const userSlice = createSlice({
         (movie) => movie.imdbID !== payload.imdbID
       );
     },
+    searchInFavourites: (state, { payload }: PayloadAction<string>) => {
+      state.searchResults = state.favorites.filter((movie) =>
+        movie.Title.toLowerCase().match(payload.toLowerCase())
+      );
+    },
   },
   extraReducers(builder) {
     builder.addCase(signUp.pending, (state) => {
@@ -319,5 +326,6 @@ export const {
   toggleColorMode,
   addToFavorites,
   removeFromFavorites,
+  searchInFavourites,
 } = userSlice.actions;
 export default userSlice.reducer;

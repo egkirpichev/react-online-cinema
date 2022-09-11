@@ -1,3 +1,13 @@
-import { getShortMovieDescription } from "./mappers";
+import {
+  getMovieCardInfo,
+  getShortMovieDescription,
+  getMovieFacts,
+  transformForFavorites,
+} from "./mappers";
 
-export { getShortMovieDescription };
+export {
+  getShortMovieDescription,
+  getMovieCardInfo,
+  getMovieFacts,
+  transformForFavorites,
+};

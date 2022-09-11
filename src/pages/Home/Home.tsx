@@ -8,7 +8,7 @@ import {
   getRandomMovies,
   resetSearch,
   searchMovies,
-} from "../../store/slices/movieSlice";
+} from "../../store/slices/moviesSlice";
 
 export const Home = () => {
   const {

@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
-import moviesReducer from "./slices/movieSlice";
+import moviesReducer from "./slices/moviesSlice";
 import trendsReducer from "./slices/trendsSlice";
 import searchReducer from "./slices/searchSlice";
+import movieReducer from "./slices/movieSlice";
 import {
   persistReducer,
   persistStore,
@@ -18,12 +19,13 @@ import storage from "redux-persist/lib/storage";
 const rootPersistConfig = {
   key: "root",
   storage,
-  blacklist: ["movies", "trends", "search"],
+  blacklist: ["movies", "trends", "search", "movie"],
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
   movies: moviesReducer,
+  movie: movieReducer,
   trends: trendsReducer,
   search: searchReducer,
 });

@@ -1,6 +1,7 @@
 import { ReactComponent as ImdbIcon } from "../../assets/imdb-icon.svg";
 import { useAppSelector } from "../../hooks";
 import { IMovieCard, IMovieFactsList } from "../../types";
+import { getMovieRecommendation } from "../../utils";
 import { MovieControl } from "../MovieControl";
 import { MovieFactsList } from "../MovieFactsList";
 import { MovieGenre } from "../MovieGenre";
@@ -26,7 +27,6 @@ export const MovieCard = ({ movie, movieFactsList }: IProps) => {
   const { isLightMode } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
   );
-
   return (
     <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
       <Control>

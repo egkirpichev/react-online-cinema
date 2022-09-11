@@ -5,6 +5,8 @@ import {
   getShortUserName,
   checkIfInFavorites,
   getTrendingPageTitle,
+  sortMovieList,
+  getMovieRecommendation,
 } from "./utils";
 
 export {
@@ -14,4 +16,6 @@ export {
   getFirebaseErrorMessage,
   checkIfInFavorites,
   getTrendingPageTitle,
+  sortMovieList,
+  getMovieRecommendation,
 };

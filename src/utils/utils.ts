@@ -1,3 +1,4 @@
+import { OMDbApi } from "../services/OMDbApi";
 import {
   FirebaseErrorMessage,
   IFilters,
@@ -101,4 +102,14 @@ export const sortMovieList = (
     );
   }
   return sortedMovieList;
+};
+
+export const getMovieRecommendation = (title: string): string => {
+  const recommendation = title
+    .toLowerCase()
+    .match(/(?!(the|this|these|those|that|them))\b\w{3,10}\b/);
+
+  if (recommendation) {
+    return recommendation[0];
+  } else return OMDbApi.trend;
 };

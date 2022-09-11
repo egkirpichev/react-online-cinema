@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
 import { ROUTE } from "../../router";
-import { loadMoreMovies } from "../../store/slices/movieSlice";
+import { loadMoreMovies } from "../../store/slices/moviesSlice";
 import { loadMoreTrends } from "../../store/slices/trendsSlice";
 import { IRequestParams } from "../../types";
 import { Color } from "../../ui";

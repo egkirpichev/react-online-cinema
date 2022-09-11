@@ -64,16 +64,33 @@ class OMDbAPI {
     return { Search, params };
   }
 
-  public async getMovieById(id: string): Promise<IMovieFull> {
+  public async getMovieById(id: string) {
     const params = {
       [Param.ApiKey]: this.API_KEY,
       [Param.Plot]: "full",
       [Param.Id]: id,
     };
-    const { data } = await this.API.get("", {
+
+    const { data } = await this.API.get<IMovieFull>("", {
       params,
     });
+
     return data;
+  }
+
+  public async getRecommendations(searchQuerry: string, type: string) {
+    const params = {
+      [Param.ApiKey]: this.API_KEY,
+      [Param.Search]: searchQuerry,
+      [Param.Type]: type,
+      [Param.Page]: "1",
+    };
+    const {
+      data: { Search },
+    } = await this.API.get<{ Search: IMovieShort[] }>("", {
+      params,
+    });
+    return Search;
   }
 
   public async searchMovies(searchRequest: IRequestParams) {
@@ -84,14 +101,6 @@ class OMDbAPI {
       [Param.Year]: searchRequest.y,
       [Param.Page]: "1",
     };
-    console.log(
-      await this.API.get<{
-        Search: IMovieShort[];
-        params: IRequestParams;
-      }>("", {
-        params,
-      })
-    );
 
     return await this.API.get<{
       Search: IMovieShort[];
@@ -104,15 +113,6 @@ class OMDbAPI {
   public async loadMoreMovies(initialParams: IRequestParams) {
     const { apikey, s, page, y } = initialParams;
     const params = { apikey, s, y, page: (Number(page) + 1).toString() };
-
-    console.log(
-      await this.API.get<{
-        Search: IMovieShort[];
-        params: IRequestParams;
-      }>("", {
-        params,
-      })
-    );
 
     return await this.API.get<{
       Search: IMovieShort[];

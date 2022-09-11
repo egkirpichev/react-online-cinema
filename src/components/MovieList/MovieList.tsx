@@ -16,8 +16,6 @@ export const MovieList = ({ movieList }: IProps) => {
 
   const sortedMovieList = sortMovieList(filters, movieList);
 
-  console.log(sortedMovieList);
-
   if (sortedMovieList.length === 0) {
     return <SearchError message="Nothing fits your current selection" />;
   }

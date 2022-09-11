@@ -1,5 +1,8 @@
+import { useAppSelector } from "../../hooks";
 import { IMovieShort } from "../../types/types";
+import { sortMovieList } from "../../utils/utils";
 import { MovieListItem } from "../MovieListItem";
+import { SearchError } from "../SearchError";
 import { StyledMovieList } from "./styles";
 
 interface IProps {
@@ -7,6 +10,17 @@ interface IProps {
 }
 
 export const MovieList = ({ movieList }: IProps) => {
+  const { filters } = useAppSelector(
+    ({ persistedReducer }) => persistedReducer.search
+  );
+
+  const sortedMovieList = sortMovieList(filters, movieList);
+
+  console.log(sortedMovieList);
+
+  if (sortedMovieList.length === 0) {
+    return <SearchError message="Nothing fits your current selection" />;
+  }
   return (
     <StyledMovieList
       gridTemplateColumns={{
@@ -19,7 +33,7 @@ export const MovieList = ({ movieList }: IProps) => {
         XL: "2/3",
       }}
     >
-      {movieList.map((movieListItem) => {
+      {sortedMovieList.map((movieListItem) => {
         return (
           <MovieListItem key={movieListItem.imdbID} movie={movieListItem} />
         );

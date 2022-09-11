@@ -3,11 +3,12 @@ import { VscClose } from "react-icons/vsc";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useEffect, useRef, useState } from "react";
 import {
+  resetSorting,
   resetTypeFilter,
   resetYearFilter,
 } from "../../store/slices/searchSlice";
 export const FilterBadges = () => {
-  const { searchRequest } = useAppSelector(
+  const { filters, searchRequest } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.search
   );
 
@@ -24,7 +25,7 @@ export const FilterBadges = () => {
     if (FilterBadgesRef.current) setOffset(FilterBadgesRef.current.offsetTop);
   }, []);
 
-  if (searchRequest.type || searchRequest.y)
+  if (filters.type || filters.year || filters.sortBy)
     return (
       <Container
         offset={offset}
@@ -35,17 +36,25 @@ export const FilterBadges = () => {
         }}
         isLightMode={isLightMode}
       >
-        {searchRequest.type && (
-          <StyledBadge isActive={!!searchRequest.s}>
-            {searchRequest.type}
+        {filters.sortBy && (
+          <StyledBadge>
+            `Soring by: {filters.sortBy}`
+            <Close type="button" onClick={() => dispatch(resetSorting())}>
+              <VscClose />
+            </Close>
+          </StyledBadge>
+        )}
+        {filters.type && (
+          <StyledBadge>
+            {filters.type}
             <Close type="button" onClick={() => dispatch(resetTypeFilter())}>
               <VscClose />
             </Close>
           </StyledBadge>
         )}
-        {searchRequest.y && (
-          <StyledBadge isActive={!!searchRequest.s}>
-            {searchRequest.y}
+        {filters.year && (
+          <StyledBadge>
+            {filters.year}
             <Close type="button" onClick={() => dispatch(resetYearFilter())}>
               <VscClose />
             </Close>

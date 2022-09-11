@@ -1,4 +1,9 @@
-import { FirebaseErrorMessage, IMovieShort, RouteType } from "../types";
+import {
+  FirebaseErrorMessage,
+  IFilters,
+  IMovieShort,
+  RouteType,
+} from "../types";
 import { Color } from "../ui";
 
 export const getRatingBadgeColor = (rating: string): Color => {
@@ -66,4 +71,34 @@ export const getTrendingPageTitle = (trend: string): string => {
     default:
       return "Currently trending";
   }
+};
+
+export const sortMovieList = (
+  filters: IFilters,
+  movieList: IMovieShort[]
+): IMovieShort[] => {
+  let sortedMovieList = [...movieList];
+
+  if (filters.sortBy === "title") {
+    sortedMovieList.sort((item, nextItem) =>
+      item.Title.localeCompare(nextItem.Title)
+    );
+  } else if (filters.sortBy === "year") {
+    sortedMovieList.sort(
+      (item, nextItem) => +nextItem.Year.slice(0, 4) - +item.Year.slice(0, 4)
+    );
+  }
+
+  if (filters.type) {
+    sortedMovieList = [...sortedMovieList].filter(
+      (item) => item.Type === filters.type
+    );
+  }
+
+  if (filters.year) {
+    sortedMovieList = [...sortedMovieList].filter(
+      (item) => item.Year === filters.year
+    );
+  }
+  return sortedMovieList;
 };

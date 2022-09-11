@@ -33,9 +33,10 @@ export const MovieListItem = ({ movie }: IProps) => {
           {movie.Title}
         </MovieTitle>
 
-        <Released
-          $isLightMode={isLightMode}
-        >{`Released: ${movie.Year}`}</Released>
+        <Released $isLightMode={isLightMode}>{`Released: ${movie.Year.slice(
+          0,
+          4
+        )}`}</Released>
       </Description>
     </StyledMovieCard>
   );

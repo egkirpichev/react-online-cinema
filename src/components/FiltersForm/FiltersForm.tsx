@@ -41,6 +41,8 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
   const dispatch = useAppDispatch();
 
   const onSumbit: SubmitHandler<IFilters> = (data) => {
+    console.log(data);
+
     setIsOpen();
     dispatch(setFilters(data));
   };
@@ -55,6 +57,7 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
   return (
     <StyledForm onSubmit={handleSubmit(onSumbit)}>
       <Title $isLightMode={isLightMode}>Filters</Title>
+      <FieldTitle $isLightMode={isLightMode}>Filters and sorting </FieldTitle>
       <Field>
         <Body $isLightMode={isLightMode}>
           <InputField>

@@ -6,7 +6,6 @@ import { Space } from "../../ui/theme";
 interface IProps {
   offset?: number;
   isLightMode?: boolean;
-  isActive?: boolean;
 }
 
 export const StyledBadge = styled(Body2)<IProps>`
@@ -16,7 +15,6 @@ export const StyledBadge = styled(Body2)<IProps>`
   color: ${Color.White};
   background-color: ${Color.Graphite};
   border-radius: 40px;
-  opacity: ${({ isActive }) => (isActive ? 1 : 0.3)};
 `;
 
 export const Container = styled.div<GridProps & IProps>`

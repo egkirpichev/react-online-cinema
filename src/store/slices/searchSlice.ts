@@ -3,6 +3,7 @@ import { IFilters, IRequestParams } from "../../types";
 
 interface ISearchState {
   searchRequest: IRequestParams;
+  filters: IFilters;
 }
 
 const initialState: ISearchState = {
@@ -10,6 +11,11 @@ const initialState: ISearchState = {
     s: "",
     type: "",
     y: "",
+  },
+  filters: {
+    sortBy: null,
+    type: "",
+    year: "",
   },
 };
 
@@ -28,17 +34,25 @@ export const searchSlice = createSlice({
       }
     },
     setFilters: (
-      { searchRequest },
-      { payload: { type, year } }: PayloadAction<IFilters>
+      { searchRequest, filters },
+      { payload: { type, year, sortBy } }: PayloadAction<IFilters>
     ) => {
       searchRequest.type = type;
       searchRequest.y = year;
+      filters.type = type;
+      filters.year = year;
+      filters.sortBy = sortBy;
     },
-    resetTypeFilter: ({ searchRequest }) => {
+    resetTypeFilter: ({ filters, searchRequest }) => {
+      filters.type = "";
       searchRequest.type = "";
     },
-    resetYearFilter: ({ searchRequest }) => {
+    resetYearFilter: ({ filters, searchRequest }) => {
+      filters.year = "";
       searchRequest.y = "";
+    },
+    resetSorting: ({ filters }) => {
+      filters.sortBy = null;
     },
   },
 });
@@ -48,5 +62,6 @@ export const {
   setFilters,
   resetTypeFilter,
   resetYearFilter,
+  resetSorting,
 } = searchSlice.actions;
 export default searchSlice.reducer;

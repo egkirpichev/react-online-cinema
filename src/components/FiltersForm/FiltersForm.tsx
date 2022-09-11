@@ -20,13 +20,19 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { MovieType } from "../../config";
 import { setFilters } from "../../store/slices/searchSlice";
+import { ErrorMessage } from "../ErrorMessage";
 
 interface IProps {
   setIsOpen: () => void;
 }
 
 export const FiltersForm = ({ setIsOpen }: IProps) => {
-  const { register, reset, control, handleSubmit } = useForm<IFilters>();
+  const {
+    register,
+    formState: { errors },
+    control,
+    handleSubmit,
+  } = useForm<IFilters>();
 
   const { isLightMode } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
@@ -35,7 +41,6 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
   const dispatch = useAppDispatch();
 
   const onSumbit: SubmitHandler<IFilters> = (data) => {
-    console.log(data);
     setIsOpen();
     dispatch(setFilters(data));
   };
@@ -103,8 +108,16 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
               $isLightMode={isLightMode}
               type="string"
               placeholder="Type in movie release year"
-              {...register("year")}
+              {...register("year", {
+                pattern: {
+                  value: /^(19|20)[\d]{2,2}$/,
+                  message: "Please, enter a valid date",
+                },
+              })}
             />
+            {errors.year && errors.year.message && (
+              <ErrorMessage message={errors.year.message} />
+            )}
           </InputField>
         </Body>
       </Field>

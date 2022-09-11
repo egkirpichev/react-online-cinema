@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const StyledNavBar = styled.nav`
-  grid-column: 1/2;
+  grid-row: 1/3;
   display: flex;
   flex-direction: column;
   gap: ${Space.XXL};

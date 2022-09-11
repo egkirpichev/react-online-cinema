@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useAppSelector, useWindowSize } from "../../hooks";
 import { Space } from "../../ui/theme";
+import { FilterBadges } from "../FilterBadges";
 import { Header } from "../Header";
 import { NavBar } from "../NavBar";
 import { Background, Main, Wrapper } from "./styles";
@@ -33,6 +34,7 @@ export const MainTemplate = () => {
           }}
         >
           {screenWidth > 1439 && <NavBar />}
+          <FilterBadges />
           <Outlet />
         </Main>
       </Wrapper>

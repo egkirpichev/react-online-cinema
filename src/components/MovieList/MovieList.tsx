@@ -15,6 +15,9 @@ export const MovieList = ({ movieList }: IProps) => {
         L: "repeat(4, 1fr)",
         XXL: "repeat(5, 1fr)",
       }}
+      gridColumn={{
+        XL: "2/3",
+      }}
     >
       {movieList.map((movieListItem) => {
         return (

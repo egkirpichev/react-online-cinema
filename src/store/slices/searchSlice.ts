@@ -34,8 +34,19 @@ export const searchSlice = createSlice({
       searchRequest.type = type;
       searchRequest.y = year;
     },
+    resetTypeFilter: ({ searchRequest }) => {
+      searchRequest.type = "";
+    },
+    resetYearFilter: ({ searchRequest }) => {
+      searchRequest.y = "";
+    },
   },
 });
 
-export const { setSearchRequest, setFilters } = searchSlice.actions;
+export const {
+  setSearchRequest,
+  setFilters,
+  resetTypeFilter,
+  resetYearFilter,
+} = searchSlice.actions;
 export default searchSlice.reducer;

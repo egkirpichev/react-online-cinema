@@ -76,10 +76,12 @@ class OMDbAPI {
     return data;
   }
 
-  public async searchMovies(searchRequest: string) {
+  public async searchMovies(searchRequest: IRequestParams) {
     const params = {
       [Param.ApiKey]: this.API_KEY,
-      [Param.Search]: searchRequest,
+      [Param.Search]: searchRequest.s,
+      [Param.Type]: searchRequest.type,
+      [Param.Year]: searchRequest.y,
       [Param.Page]: "1",
     };
     console.log(

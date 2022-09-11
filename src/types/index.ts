@@ -12,6 +12,8 @@ import {
   IMovieCard,
   IMovieFactsList,
   ISettings,
+  IFilters,
+  MovieTypeOption,
 } from "./types";
 
 export { Param, FirebaseErrorMessage };
@@ -27,4 +29,6 @@ export type {
   IMovieFactsList,
   IMovieCard,
   ISettings,
+  IFilters,
+  MovieTypeOption,
 };

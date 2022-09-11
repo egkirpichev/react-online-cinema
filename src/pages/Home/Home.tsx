@@ -30,9 +30,9 @@ export const Home = () => {
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getRandomMovies());
-    } else if (searchRequest && !isLoading) {
+    } else if (searchRequest.s && !isLoading) {
       dispatch(searchMovies(searchRequest));
-    } else if (!searchRequest && searchResults.length > 0) {
+    } else if (!searchRequest.s && searchResults.length > 0) {
       dispatch(resetSearch());
     }
   }, [searchRequest]);
@@ -45,7 +45,7 @@ export const Home = () => {
     return <SearchError message={error as string} />;
   }
 
-  if (searchRequest && searchResults.length > 0) {
+  if (searchRequest.s && searchResults.length > 0) {
     return (
       <>
         <MovieList movieList={searchResults} />

@@ -179,6 +179,7 @@ export const SettingsForm = () => {
       {error && <ErrorMessage message={error} />}
       <Control>
         <Cancel
+          type="button"
           onClick={() => {
             navigate(-1);
           }}

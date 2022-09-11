@@ -13,7 +13,13 @@ import {
   EmailAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../services/FireBase/fireBase";
-import { IMovieShort, ISettings, IUserSignIn, IUserSignUp } from "../../types";
+import {
+  IMovieShort,
+  IRequestParams,
+  ISettings,
+  IUserSignIn,
+  IUserSignUp,
+} from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
 export interface IUserState {
@@ -204,9 +210,9 @@ export const userSlice = createSlice({
         (movie) => movie.imdbID !== payload.imdbID
       );
     },
-    searchInFavourites: (state, { payload }: PayloadAction<string>) => {
+    searchInFavourites: (state, { payload }: PayloadAction<IRequestParams>) => {
       state.searchResults = state.favorites.filter((movie) =>
-        movie.Title.toLowerCase().match(payload.toLowerCase())
+        movie.Title.toLowerCase().match(payload.s.toLowerCase())
       );
     },
   },

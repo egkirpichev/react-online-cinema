@@ -1,3 +1,4 @@
+import { MovieType } from "../config";
 import { ROUTE } from "../router";
 
 export enum Param {
@@ -100,9 +101,9 @@ export type RouteType =
   | [ROUTE.RESET_PASSWORD];
 
 export interface IRequestParams {
-  apikey: string | undefined;
+  apikey?: string | undefined;
   s: string;
-  page: string;
+  page?: string;
   y?: string;
   type?: string;
 }
@@ -133,4 +134,15 @@ export interface ISettings {
   newPassword: string;
   confirmPassword: string;
   isLightMode: boolean;
+}
+
+export type MovieTypeOption = {
+  value: MovieType | "";
+  label: keyof typeof MovieType | "All";
+};
+
+export interface IFilters {
+  sortBy: "year" | "title" | null;
+  type: "movie" | "series" | "episode" | "";
+  year: string | "";
 }

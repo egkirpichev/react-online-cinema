@@ -1,22 +1,41 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IFilters, IRequestParams } from "../../types";
 
 interface ISearchState {
-  searchRequest: string | null;
+  searchRequest: IRequestParams;
 }
 
 const initialState: ISearchState = {
-  searchRequest: null,
+  searchRequest: {
+    s: "",
+    type: "",
+    y: "",
+  },
 };
 
 export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setSearchRequest: (state, { payload }: PayloadAction<string>) => {
-      state.searchRequest = payload;
+    setSearchRequest: (
+      { searchRequest },
+      { payload }: PayloadAction<string>
+    ) => {
+      searchRequest.s = payload;
+      if (payload === "") {
+        searchRequest.type = "";
+        searchRequest.y = "";
+      }
+    },
+    setFilters: (
+      { searchRequest },
+      { payload: { type, year } }: PayloadAction<IFilters>
+    ) => {
+      searchRequest.type = type;
+      searchRequest.y = year;
     },
   },
 });
 
-export const { setSearchRequest } = searchSlice.actions;
+export const { setSearchRequest, setFilters } = searchSlice.actions;
 export default searchSlice.reducer;

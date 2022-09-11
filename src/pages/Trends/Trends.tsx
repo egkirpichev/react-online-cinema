@@ -36,9 +36,9 @@ export const Trends = () => {
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getTrends());
-    } else if (searchRequest && !isLoading) {
+    } else if (searchRequest.s && !isLoading) {
       dispatch(searchTrends(searchRequest));
-    } else if (!searchRequest && searchResults.length > 0) {
+    } else if (!searchRequest.s && searchResults.length > 0) {
       dispatch(resetSearch());
     }
   }, [searchRequest]);

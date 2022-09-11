@@ -61,7 +61,7 @@ export const loadMoreMovies = createAsyncThunk<
 
 export const searchMovies = createAsyncThunk<
   { Search: IMovieShort[]; params: IRequestParams },
-  string,
+  IRequestParams,
   { rejectValue: string }
 >("movies/searchMovies", async (searchRequest, { rejectWithValue }) => {
   try {
@@ -144,7 +144,7 @@ export const movieSlice = createSlice({
         state.isLoading = false;
         Search
           ? (state.searchResults = Search)
-          : (state.error = "Please, specify your search request");
+          : (state.error = "Nothing was found");
         state.searchParams = params;
       }
     );

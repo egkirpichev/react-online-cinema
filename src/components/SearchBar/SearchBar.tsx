@@ -6,6 +6,7 @@ import {
   useInput,
 } from "../../hooks";
 import { setSearchRequest } from "../../store/slices/searchSlice";
+import { SearchFilters } from "../SearchFilters";
 import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
@@ -36,6 +37,7 @@ export const SearchBar = () => {
         placeholder="Search"
         {...searchInput}
       />
+      <SearchFilters />
     </StyledSearchBar>
   );
 };

@@ -38,7 +38,7 @@ export const BurgerMenu = () => {
       position: "fixed",
       top: "0",
       height: "100vh",
-      width: `${screenWidth > 767 ? "330px" : "196px"}`,
+      width: `${screenWidth > 767 ? "330px" : "100vw"}`,
     },
     bmMenu: {
       display: "flex",
@@ -50,6 +50,12 @@ export const BurgerMenu = () => {
     bmItemList: {
       display: "flex",
     },
+    bmOverlay: {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      background: "rgba(0, 0, 0, 0.3)",
+    },
   };
 
   return (
@@ -57,7 +63,7 @@ export const BurgerMenu = () => {
       <StyledMenu
         right
         styles={byrgerStyles}
-        customCrossIcon={<CrossIcon />}
+        customCrossIcon={<CrossIcon isLightMode={isLightMode} />}
         customBurgerIcon={<BurgerIcon />}
         onOpen={setIsOpen}
         onClose={setIsOpen}

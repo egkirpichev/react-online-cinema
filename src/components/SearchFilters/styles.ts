@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { grid, GridProps } from "styled-system";
-import { Space } from "../../ui/theme";
 import { BsFilterRight } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import { Color } from "../../ui";
+
+interface IProps {
+  isLightMode?: boolean;
+}
 
 export const MenuWrap = styled.div<GridProps>`
   grid-column: 2/3;
@@ -13,6 +16,7 @@ export const MenuWrap = styled.div<GridProps>`
 export const FilterIcon = styled(BsFilterRight)`
   fill: ${Color.White};
 `;
-export const CrossIcon = styled(IoCloseSharp)`
-  fill: ${Color.White};
+
+export const CrossIcon = styled(IoCloseSharp)<IProps>`
+  fill: ${({ isLightMode }) => (isLightMode ? Color.Black : Color.White)};
 `;

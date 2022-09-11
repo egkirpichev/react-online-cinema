@@ -41,8 +41,6 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
   const dispatch = useAppDispatch();
 
   const onSumbit: SubmitHandler<IFilters> = (data) => {
-    console.log(data);
-
     setIsOpen();
     dispatch(setFilters(data));
   };

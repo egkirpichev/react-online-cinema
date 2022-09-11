@@ -31,7 +31,7 @@ export const SearchFilters = () => {
       position: "fixed",
       top: "0",
       height: "100vh",
-      width: `${screenWidth > 767 ? "518px" : "320px"}`,
+      width: `${screenWidth > 767 ? "518px" : "100vw"}`,
     },
     bmMenu: {
       display: "flex",
@@ -42,6 +42,12 @@ export const SearchFilters = () => {
       display: "flex",
       width: "100%",
     },
+    bmOverlay: {
+      position: "fixed",
+      top: "0",
+      left: "0",
+      background: "rgba(0, 0, 0, 0.3)",
+    },
   };
 
   return (
@@ -49,7 +55,7 @@ export const SearchFilters = () => {
       <StyledMenu
         right
         styles={styles}
-        customCrossIcon={<CrossIcon />}
+        customCrossIcon={<CrossIcon isLightMode={isLightMode} />}
         customBurgerIcon={<FilterIcon />}
         onOpen={setIsOpen}
         onClose={setIsOpen}

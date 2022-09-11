@@ -36,7 +36,7 @@ export const FilterBadges = () => {
         isLightMode={isLightMode}
       >
         {searchRequest.type && (
-          <StyledBadge>
+          <StyledBadge isActive={!!searchRequest.s}>
             {searchRequest.type}
             <Close type="button" onClick={() => dispatch(resetTypeFilter())}>
               <VscClose />
@@ -44,7 +44,7 @@ export const FilterBadges = () => {
           </StyledBadge>
         )}
         {searchRequest.y && (
-          <StyledBadge>
+          <StyledBadge isActive={!!searchRequest.s}>
             {searchRequest.y}
             <Close type="button" onClick={() => dispatch(resetYearFilter())}>
               <VscClose />

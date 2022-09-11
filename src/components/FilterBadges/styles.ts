@@ -4,22 +4,24 @@ import { Body2, Color } from "../../ui";
 import { Space } from "../../ui/theme";
 
 interface IProps {
-  offset: number;
-  isLightMode: boolean;
+  offset?: number;
+  isLightMode?: boolean;
+  isActive?: boolean;
 }
 
-export const StyledBadge = styled(Body2)`
+export const StyledBadge = styled(Body2)<IProps>`
   display: flex;
   gap: 4px;
   padding: ${Space.SMALLEST} ${Space.XXS};
   color: ${Color.White};
   background-color: ${Color.Graphite};
   border-radius: 40px;
+  opacity: ${({ isActive }) => (isActive ? 1 : 0.6)};
 `;
 
 export const Container = styled.div<GridProps & IProps>`
   position: sticky;
-  top: ${(props) => props.offset - 1}px;
+  top: ${(props) => props.offset && props.offset - 1}px;
   z-index: 1;
   grid-column: 1/3;
   display: flex;
@@ -37,4 +39,12 @@ export const Close = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  :hover {
+    color: ${Color.PrimaryLight};
+  }
+
+  :active {
+    color: ${Color.PrimaryDark};
+  }
 `;

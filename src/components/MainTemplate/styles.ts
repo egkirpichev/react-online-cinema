@@ -26,6 +26,7 @@ export const Wrapper = styled.div<LayoutProps & IProps>`
 
 export const Main = styled.main<GridProps>`
   display: grid;
+  grid-template-columns: 100%;
   ${grid};
 `;
 

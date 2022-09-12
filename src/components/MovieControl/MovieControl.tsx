@@ -30,7 +30,7 @@ export const MovieControl = ({ movie }: IProps) => {
             dispatch(removeFromFavorites(forFavourites));
           }}
         >
-          <BsFillBookmarkFill />
+          <BsFillBookmarkFill size={20} />
         </ControlButton>
       ) : (
         <ControlButton
@@ -38,12 +38,12 @@ export const MovieControl = ({ movie }: IProps) => {
             dispatch(addToFavorites(forFavourites));
           }}
         >
-          <BsFillBookmarkFill />
+          <BsFillBookmarkFill size={20} />
         </ControlButton>
       )}
 
       <ControlButton>
-        <BsFillShareFill />
+        <BsFillShareFill size={20} />
       </ControlButton>
     </Container>
   );

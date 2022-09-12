@@ -14,7 +14,7 @@ export const StyledMovieCard = styled.div<LayoutProps>`
   flex-direction: column;
   gap: ${Space.S};
   max-height: 437px;
-  ${layout}
+  ${layout};
   max-width: 272px;
   margin: 0 auto;
 `;

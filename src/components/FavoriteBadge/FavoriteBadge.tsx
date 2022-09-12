@@ -4,7 +4,7 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 export const FavoriteBadge = () => {
   return (
     <StyledBadge>
-      <BsFillBookmarkFill />
+      <BsFillBookmarkFill size={20} />
     </StyledBadge>
   );
 };

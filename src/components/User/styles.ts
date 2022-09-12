@@ -94,8 +94,3 @@ export const ArrowButton = styled.button<IProps>`
     color: ${Color.PrimaryDark};
   }
 `;
-
-export const ArrowIcon = styled(IoIosArrowDown)`
-  width: 10px;
-  stroke-width: 35;
-`;

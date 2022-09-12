@@ -1,6 +1,5 @@
 import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
 import {
-  ArrowIcon,
   Avatar,
   ArrowButton,
   DropDownContainer,
@@ -13,6 +12,7 @@ import { getShortUserName } from "../../utils/utils";
 import { ROUTE } from "../../router";
 import { useNavigate } from "react-router-dom";
 import { signUserOut } from "../../store/slices/userSlice";
+import { IoIosArrowDown } from "react-icons/io";
 
 export const User = () => {
   const { isLogged, name, isLightMode } = useAppSelector(
@@ -27,7 +27,7 @@ export const User = () => {
       <Avatar>{name ? getShortUserName(name) : <FiUser />}</Avatar>
       <Header $isLightMode={isLightMode}>{name ? name : "Guest"}</Header>
       <ArrowButton onClick={setIsOpen} $isLightMode={isLightMode}>
-        <ArrowIcon />
+        <IoIosArrowDown size={20} />
       </ArrowButton>
       {isOpen && (
         <DropDownContainer $isLightMode={isLightMode}>

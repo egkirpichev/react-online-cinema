@@ -4,7 +4,7 @@ import { IoMdFlame } from "react-icons/io";
 export const TrendingBadge = () => {
   return (
     <StyledBadge>
-      <IoMdFlame />
+      <IoMdFlame size={20} />
     </StyledBadge>
   );
 };

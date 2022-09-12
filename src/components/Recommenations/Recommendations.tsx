@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import Slider from "react-slick";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getRecommendations } from "../../store/slices/movieSlice";
 import { MovieListItem } from "../MovieListItem";
 import { SearchError } from "../SearchError";
 import { SearchSpinner } from "../SearchSpinner";
+import { Slider } from "./styles";
+import { motion } from "framer-motion";
 
 export const Recommendations = () => {
   const {
@@ -17,14 +18,9 @@ export const Recommendations = () => {
   const dispatch = useAppDispatch();
 
   useMemo(() => {
-    if (recommendedMovies.length === 0 && !areRecommendationsLoading)
+    if (!areRecommendationsLoading)
       dispatch(getRecommendations(recommendation));
-  }, []);
-
-  const settings = {
-    adaptiveHeight: true,
-    variableWidth: true,
-  };
+  }, [recommendation]);
 
   if (areRecommendationsLoading) {
     return <SearchSpinner />;
@@ -35,7 +31,7 @@ export const Recommendations = () => {
   }
 
   return (
-    <Slider {...settings}>
+    <Slider>
       {recommendedMovies.map((movieListItem) => {
         return (
           <MovieListItem key={movieListItem.imdbID} movie={movieListItem} />

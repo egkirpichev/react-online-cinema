@@ -13,9 +13,10 @@ import { useAppSelector } from "../../hooks";
 
 interface IProps {
   movie: IMovieShort;
+  to?: string;
 }
 
-export const MovieListItem = ({ movie }: IProps) => {
+export const MovieListItem = ({ movie, to }: IProps) => {
   const { isLightMode } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user
   );

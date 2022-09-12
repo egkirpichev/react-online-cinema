@@ -18,7 +18,7 @@ export const Movie = () => {
   const { imdbID } = useParams<{ imdbID: string }>();
 
   useMemo(() => {
-    if (imdbID && !movieCard && !isLoading) {
+    if (imdbID && !isLoading) {
       dispatch(getMovieById(imdbID));
     }
   }, [imdbID]);

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useAppSelector, useWindowSize } from "../../hooks";
 import { Space } from "../../ui/theme";
@@ -12,6 +13,12 @@ export const MainTemplate = () => {
     ({ persistedReducer }) => persistedReducer.user
   );
 
+  const mainRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState<number>(0);
+  useEffect(() => {
+    if (mainRef.current) setOffset(mainRef.current.offsetTop);
+  }, []);
+
   return (
     <Background
       $isLightMode={isLightMode}
@@ -23,6 +30,7 @@ export const MainTemplate = () => {
       <Wrapper maxWidth={{ XXL: "1920px" }} $isLightMode={isLightMode}>
         <Header />
         <Main
+          ref={mainRef}
           gridTemplateColumns={{
             XL: "15% 85%",
           }}
@@ -33,7 +41,7 @@ export const MainTemplate = () => {
             XL: `${Space.XXL}`,
           }}
         >
-          {screenWidth > 1439 && <NavBar />}
+          {screenWidth > 1439 && <NavBar offset={offset} />}
           <FilterBadges />
           <Outlet />
         </Main>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { position, PositionProps, space, top } from "styled-system";
 import { Space } from "../../ui/theme";
 
 interface IProps {

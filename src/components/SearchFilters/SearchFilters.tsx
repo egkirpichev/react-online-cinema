@@ -35,12 +35,13 @@ export const SearchFilters = () => {
     },
     bmMenu: {
       display: "flex",
-      background: isLightMode ? Color.White : Color.Black,
       padding: `${screenWidth > 767 ? `50px ${Space.S}` : `50px ${Space.S}`}`,
+      background: isLightMode ? Color.White : Color.Black,
     },
     bmItemList: {
       display: "flex",
       width: "100%",
+      maxHeight: "90%",
     },
     bmOverlay: {
       position: "fixed",

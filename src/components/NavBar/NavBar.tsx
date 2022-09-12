@@ -7,16 +7,16 @@ import { HiBookmark } from "react-icons/hi";
 import { IoMdSettings } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 
-export const NavBar = () => {
+interface IProps {
+  offset: number;
+}
+
+export const NavBar = ({ offset }: IProps) => {
   const navBarRef = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState<number>(0);
-  useEffect(() => {
-    if (navBarRef.current) setOffset(navBarRef.current.offsetTop);
-  }, []);
 
   return (
     <StyledNavBar>
-      <Navigation offset={offset} ref={navBarRef}>
+      <Navigation offset={offset}>
         <CustomLink to={ROUTE.HOME} text="Home">
           <RiHome6Line />
         </CustomLink>

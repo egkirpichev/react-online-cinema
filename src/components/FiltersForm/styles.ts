@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   alignItems,
   AlignItemsProps,
-  borderColor,
   justifyContent,
   JustifyContentProps,
   layout,
@@ -31,6 +30,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: ${Space.M};
   width: 100%;
+  max-height: 90%;
 `;
 
 export const Title = styled(H2)<IProps>`

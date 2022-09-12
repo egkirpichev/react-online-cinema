@@ -27,7 +27,6 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: ${Space.M};
-  width: 100%;
   max-width: 1165px;
   border-radius: 10px;
 `;

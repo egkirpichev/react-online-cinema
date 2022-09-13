@@ -32,7 +32,7 @@ export const ResetPasswordForm = () => {
 
   useEffect(() => {
     error && dispatch(resetError());
-  }, []);
+  }, [dispatch, error]);
 
   useEffect(() => {
     isPasswordReset &&
@@ -40,7 +40,7 @@ export const ResetPasswordForm = () => {
         navigate(`/${ROUTE.SIGN_IN}`);
         dispatch(resetPasswordState());
       }, 2000);
-  }, [isPasswordReset]);
+  }, [dispatch, isPasswordReset, navigate]);
 
   return (
     <StyledForm

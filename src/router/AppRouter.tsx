@@ -1,4 +1,3 @@
-import { RiRouteFill } from "react-icons/ri";
 import { Route, Routes } from "react-router-dom";
 import { AuthTemplate } from "../components/AuthTemplate/AuthTemplate";
 import { MainTemplate } from "../components/MainTemplate";

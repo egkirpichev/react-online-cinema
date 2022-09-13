@@ -28,6 +28,7 @@ export const searchSlice = createSlice({
       if (payload === "") {
         searchRequest.type = "";
         searchRequest.y = "";
+        searchRequest.page = "1";
       }
     },
     setFilters: (

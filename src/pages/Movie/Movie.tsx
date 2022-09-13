@@ -18,10 +18,10 @@ export const Movie = () => {
   const { imdbID } = useParams<{ imdbID: string }>();
 
   useMemo(() => {
-    if (imdbID && !isLoading) {
+    if (imdbID) {
       dispatch(getMovieById(imdbID));
     }
-  }, [imdbID]);
+  }, [dispatch, imdbID]);
 
   if (isLoading) {
     return <SearchSpinner />;

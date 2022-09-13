@@ -18,12 +18,14 @@ const initialState: IMoviesState = {
   requestParams: {
     apikey: "",
     s: "",
-    page: "",
+    page: "1",
   },
   searchParams: {
     apikey: "",
     s: "",
-    page: "",
+    y: "",
+    type: "",
+    page: "1",
   },
   searchResults: [],
   isLoading: false,

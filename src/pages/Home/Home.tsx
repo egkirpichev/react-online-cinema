@@ -17,12 +17,16 @@ export const Home = () => {
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getRandomMovies());
-    } else if (searchRequest.s && !isLoading) {
+    }
+  }, [dispatch, isLoading, movieList.length]);
+
+  useMemo(() => {
+    if (searchRequest.s) {
       dispatch(searchMovies(searchRequest));
-    } else if (!searchRequest.s && searchResults.length > 0) {
+    } else if (!searchRequest.s) {
       dispatch(resetSearch());
     }
-  }, [searchRequest]);
+  }, [dispatch, searchRequest]);
 
   if (isLoading) {
     return <SearchSpinner />;

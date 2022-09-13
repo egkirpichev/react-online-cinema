@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { getMovieCardInfo, getMovieFacts } from "../../mappers";
 import { OMDbApi } from "../../services/OMDbApi";
@@ -68,8 +68,6 @@ export const movieSlice = createSlice({
       state.error = null;
     });
     builder.addCase(getMovieById.fulfilled, (state, { payload }) => {
-      console.log(payload);
-
       state.movieCard = getMovieCardInfo(payload);
       state.movieFacts = getMovieFacts(state.movieCard);
       state.recommendation = {
@@ -97,5 +95,4 @@ export const movieSlice = createSlice({
   },
 });
 
-export const {} = movieSlice.actions;
 export default movieSlice.reducer;

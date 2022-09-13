@@ -28,12 +28,16 @@ export const Trends = () => {
   useMemo(() => {
     if (movieList.length === 0 && !isLoading) {
       dispatch(getTrends());
-    } else if (searchRequest.s && !isLoading) {
+    }
+  }, [dispatch, isLoading, movieList.length]);
+
+  useMemo(() => {
+    if (searchRequest.s) {
       dispatch(searchTrends(searchRequest));
-    } else if (!searchRequest.s && searchResults.length > 0) {
+    } else if (!searchRequest.s) {
       dispatch(resetSearch());
     }
-  }, [searchRequest]);
+  }, [dispatch, searchRequest]);
 
   if (isLoading) {
     return <SearchSpinner />;

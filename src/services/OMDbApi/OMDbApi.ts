@@ -106,9 +106,14 @@ class OMDbAPI {
   }
 
   public async loadMoreMovies(initialParams: IRequestParams) {
-    const { apikey, s, page, y } = initialParams;
-    const params = { apikey, s, y, page: (Number(page) + 1).toString() };
-
+    const { s, page, y, type } = initialParams;
+    const params = {
+      [Param.ApiKey]: this.API_KEY,
+      [Param.Search]: s,
+      [Param.Type]: type,
+      [Param.Year]: y,
+      [Param.Page]: (Number(page) + 1).toString(),
+    };
     return await this.API.get<{
       Search: IMovieShort[];
       params: IRequestParams;

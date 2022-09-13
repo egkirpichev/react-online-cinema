@@ -13,7 +13,7 @@ export const SearchBar = () => {
 
   useEffect(() => {
     dispatch(setSearchRequest(searchRequestValue));
-  }, [searchRequestValue]);
+  }, [dispatch, searchRequestValue]);
 
   return (
     <StyledSearchBar

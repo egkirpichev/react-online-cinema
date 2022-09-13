@@ -42,14 +42,15 @@ export const SignInForm = () => {
 
   useEffect(() => {
     error && dispatch(resetError());
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   useEffect(() => {
     isLogged &&
       setTimeout(() => {
         navigate(ROUTE.HOME);
       }, 2000);
-  }, [isLogged]);
+  }, [isLogged, navigate]);
 
   return (
     <StyledForm

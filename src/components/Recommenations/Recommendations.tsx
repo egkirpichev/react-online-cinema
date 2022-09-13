@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getRecommendations } from "../../store/slices/movieSlice";
 import { MovieListItem } from "../MovieListItem";
@@ -19,12 +19,12 @@ export const Recommendations = () => {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useMemo(() => {
-    if (recommendedMovies.length === 0) dispatch(getRecommendations(recommendation));
+  useEffect(() => {
+    dispatch(getRecommendations(recommendation));
     if (wrapperRef.current) {
       setScrollConstraint(wrapperRef.current.scrollWidth - wrapperRef.current.offsetWidth);
     }
-  }, [areRecommendationsLoading, wrapperRef.current]);
+  }, [dispatch, recommendation]);
 
   if (areRecommendationsLoading) {
     return <SearchSpinner />;

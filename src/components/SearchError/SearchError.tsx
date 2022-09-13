@@ -7,7 +7,7 @@ interface IProps {
 
 export const SearchError = ({ message }: IProps) => {
   return (
-    <ErrorContiner maxWidth={{ XL: "80%" }}>
+    <ErrorContiner>
       <ErrorMessage message={message} />
     </ErrorContiner>
   );

@@ -29,6 +29,7 @@ export enum Breakpoint {
   XXL = "1920px",
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   breakpoints: Breakpoint,
   spaces: Space,

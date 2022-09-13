@@ -18,7 +18,7 @@ export const Favourites = () => {
     if (searchRequest) {
       dispatch(searchInFavourites(searchRequest));
     }
-  }, [searchRequest]);
+  }, [dispatch, searchRequest]);
 
   if (favorites.length === 0) {
     return (

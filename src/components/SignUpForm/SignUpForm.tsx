@@ -20,6 +20,7 @@ import {
   StyledInput,
   SignIn,
   SignInLink,
+  Field,
 } from "./styles";
 
 export const SignUpForm = () => {
@@ -46,7 +47,7 @@ export const SignUpForm = () => {
 
   useEffect(() => {
     error && dispatch(resetError());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLogged) {
@@ -66,59 +67,67 @@ export const SignUpForm = () => {
       <Title $isLightMode={isLightMode}>Sign Up</Title>
       {error && <ErrorMessage message={error} />}
       <Body>
-        <InputField>
-          <FieldTitle $isLightMode={isLightMode}>Name</FieldTitle>
-          <StyledInput
-            $isLightMode={isLightMode}
-            type="text"
-            placeholder="Your name"
-            {...register("name", { required: "Please, enter your name" })}
-          />
-          {errors.name && errors.name.message && <ErrorMessage message={errors.name.message} />}
-        </InputField>
-        <InputField>
-          <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
-          <StyledInput
-            $isLightMode={isLightMode}
-            type="email"
-            placeholder="Your Email"
-            {...register("email", { required: "Please, enter account e-mail" })}
-          />
-          {errors.email && errors.email.message && <ErrorMessage message={errors.email.message} />}
-        </InputField>
-        <InputField>
-          <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
-          <StyledInput
-            $isLightMode={isLightMode}
-            type="password"
-            placeholder="Your Password"
-            {...register("password", {
-              required: "Please, enter account password",
-              minLength: {
-                value: 6,
-                message: "Password should be at leat 6 characters long",
-              },
-            })}
-          />
-          {errors.password && errors.password.message && (
-            <ErrorMessage message={errors.password.message} />
-          )}
-        </InputField>
-        <InputField>
-          <FieldTitle $isLightMode={isLightMode}>Confirm Password</FieldTitle>
-          <StyledInput
-            $isLightMode={isLightMode}
-            type="password"
-            placeholder="Confirm Password"
-            {...register("confirmPassword", {
-              required: "Please, confrim the password",
-              validate: (value) => value === passwordValue || "Entered passwords do not match",
-            })}
-          />
-          {errors.confirmPassword && errors.confirmPassword.message && (
-            <ErrorMessage message={errors.confirmPassword.message} />
-          )}
-        </InputField>
+        <Field flexDirection={{ S: "row" }}>
+          <InputField>
+            <FieldTitle $isLightMode={isLightMode}>Name</FieldTitle>
+            <StyledInput
+              $isLightMode={isLightMode}
+              type="text"
+              placeholder="Your name"
+              {...register("name", { required: "Please, enter your name" })}
+            />
+            {errors.name && errors.name.message && <ErrorMessage message={errors.name.message} />}
+          </InputField>
+          <InputField>
+            <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
+            <StyledInput
+              $isLightMode={isLightMode}
+              type="email"
+              placeholder="Your Email"
+              {...register("email", {
+                required: "Please, enter account e-mail",
+              })}
+            />
+            {errors.email && errors.email.message && (
+              <ErrorMessage message={errors.email.message} />
+            )}
+          </InputField>
+        </Field>
+        <Field flexDirection={{ S: "row" }}>
+          <InputField>
+            <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
+            <StyledInput
+              $isLightMode={isLightMode}
+              type="password"
+              placeholder="Your Password"
+              {...register("password", {
+                required: "Please, enter account password",
+                minLength: {
+                  value: 6,
+                  message: "Password should be at leat 6 characters long",
+                },
+              })}
+            />
+            {errors.password && errors.password.message && (
+              <ErrorMessage message={errors.password.message} />
+            )}
+          </InputField>
+          <InputField>
+            <FieldTitle $isLightMode={isLightMode}>Confirm Password</FieldTitle>
+            <StyledInput
+              $isLightMode={isLightMode}
+              type="password"
+              placeholder="Confirm Password"
+              {...register("confirmPassword", {
+                required: "Please, confrim the password",
+                validate: (value) => value === passwordValue || "Entered passwords do not match",
+              })}
+            />
+            {errors.confirmPassword && errors.confirmPassword.message && (
+              <ErrorMessage message={errors.confirmPassword.message} />
+            )}
+          </InputField>
+        </Field>
       </Body>
       <ButtonPrimary type="submit">
         Sign Up&nbsp;&nbsp;

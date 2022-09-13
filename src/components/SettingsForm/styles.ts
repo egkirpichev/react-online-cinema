@@ -11,13 +11,7 @@ import {
 } from "styled-system";
 import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
-import {
-  Body2,
-  ButtonPrimary,
-  ButtonSecondary,
-  Input,
-  Subtitle3,
-} from "../../ui/typography";
+import { Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "../../ui/typography";
 
 interface IProps {
   $isLightMode: boolean;
@@ -52,16 +46,13 @@ export const Body = styled.div<JustifyContentProps & AlignItemsProps & IProps>`
   ${alignItems}
   width: 100%;
   padding: ${Space.S};
-  background: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Light : Color.Dark};
+  background: ${({ $isLightMode }) => ($isLightMode ? Color.Light : Color.Dark)};
   border-radius: 10px;
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
+  border-color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.Black)};
 
   :focus {
     color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};

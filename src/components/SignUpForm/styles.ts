@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { layout, LayoutProps, space, SpaceProps } from "styled-system";
+import {
+  flexDirection,
+  FlexDirectionProps,
+  layout,
+  LayoutProps,
+  space,
+  SpaceProps,
+} from "styled-system";
 import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
 import { Body2, Input, Subtitle3 } from "../../ui/typography";
@@ -29,7 +36,7 @@ export const Title = styled(H2)<IProps>`
 
 export const Body = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: ${Space.XS};
 `;
 
@@ -62,7 +69,6 @@ export const StyledInput = styled(Input)<IProps>`
 `;
 
 export const FieldTitle = styled(Subtitle3)<IProps>`
-  width: 45%;
   padding-bottom: 8px;
   color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
 `;
@@ -71,4 +77,11 @@ export const InputField = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${Space.SMALLEST};
+`;
+
+export const Field = styled.div<FlexDirectionProps>`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  ${flexDirection}
 `;

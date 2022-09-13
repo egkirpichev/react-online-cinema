@@ -9,9 +9,7 @@ import { Background, Main, Wrapper } from "./styles";
 
 export const MainTemplate = () => {
   const { screenWidth } = useWindowSize();
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const mainRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState<number>(0);

@@ -34,9 +34,7 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
     handleSubmit,
   } = useForm<IFilters>();
 
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const dispatch = useAppDispatch();
 
@@ -61,19 +59,9 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
           <InputField>
             <FieldTitle $isLightMode={isLightMode}>Sort by</FieldTitle>
             <RadioGroup>
-              <StyledRadio
-                type="radio"
-                id="title"
-                value="title"
-                {...register("sortBy")}
-              />
+              <StyledRadio type="radio" id="title" value="title" {...register("sortBy")} />
               <StyledLabel htmlFor="title">Title</StyledLabel>
-              <StyledRadio
-                type="radio"
-                id="year"
-                value="year"
-                {...register("sortBy")}
-              />
+              <StyledRadio type="radio" id="year" value="year" {...register("sortBy")} />
               <StyledLabel htmlFor="year">Year</StyledLabel>
             </RadioGroup>
           </InputField>
@@ -116,9 +104,7 @@ export const FiltersForm = ({ setIsOpen }: IProps) => {
                 },
               })}
             />
-            {errors.year && errors.year.message && (
-              <ErrorMessage message={errors.year.message} />
-            )}
+            {errors.year && errors.year.message && <ErrorMessage message={errors.year.message} />}
           </InputField>
         </Body>
       </Field>

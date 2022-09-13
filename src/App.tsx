@@ -8,9 +8,7 @@ import { auth } from "./services/FireBase/fireBase";
 import { useEffect } from "react";
 
 export const App = () => {
-  const { isLogged } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLogged } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,7 +17,7 @@ export const App = () => {
         auth.onAuthStateChanged((user) => dispatch(authenticate(user)));
       };
     }
-  }, []);
+  }, [dispatch, isLogged]);
 
   return (
     <ThemeProvider theme={theme}>

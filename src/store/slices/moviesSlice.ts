@@ -95,14 +95,11 @@ export const moviesSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     });
-    builder.addCase(
-      getRandomMovies.fulfilled,
-      (state, { payload: { Search, params } }) => {
-        state.isLoading = false;
-        Search.forEach((movie) => state.movieList.push(movie));
-        state.requestParams = params;
-      }
-    );
+    builder.addCase(getRandomMovies.fulfilled, (state, { payload: { Search, params } }) => {
+      state.isLoading = false;
+      Search.forEach((movie) => state.movieList.push(movie));
+      state.requestParams = params;
+    });
     builder.addCase(getRandomMovies.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
@@ -110,26 +107,23 @@ export const moviesSlice = createSlice({
     builder.addCase(loadMoreMovies.pending, (state) => {
       state.error = null;
     });
-    builder.addCase(
-      loadMoreMovies.fulfilled,
-      (state, { payload: { Search, params } }) => {
-        if (state.searchResults.length > 0) {
-          if (Search) {
-            Search.forEach((movie) => state.searchResults.push(movie));
-          } else {
-            state.disableLoader = true;
-          }
-          state.searchParams = params;
+    builder.addCase(loadMoreMovies.fulfilled, (state, { payload: { Search, params } }) => {
+      if (state.searchResults.length > 0) {
+        if (Search) {
+          Search.forEach((movie) => state.searchResults.push(movie));
         } else {
-          if (Search) {
-            Search.forEach((movie) => state.movieList.push(movie));
-          } else {
-            state.disableLoader = true;
-          }
-          state.requestParams = params;
+          state.disableLoader = true;
         }
+        state.searchParams = params;
+      } else {
+        if (Search) {
+          Search.forEach((movie) => state.movieList.push(movie));
+        } else {
+          state.disableLoader = true;
+        }
+        state.requestParams = params;
       }
-    );
+    });
     builder.addCase(loadMoreMovies.rejected, (state, { payload }) => {
       state.error = payload ? payload : state.error;
     });
@@ -138,16 +132,11 @@ export const moviesSlice = createSlice({
       state.error = null;
       state.disableLoader = false;
     });
-    builder.addCase(
-      searchMovies.fulfilled,
-      (state, { payload: { Search, params } }) => {
-        state.isLoading = false;
-        Search
-          ? (state.searchResults = Search)
-          : (state.error = "Nothing was found");
-        state.searchParams = params;
-      }
-    );
+    builder.addCase(searchMovies.fulfilled, (state, { payload: { Search, params } }) => {
+      state.isLoading = false;
+      Search ? (state.searchResults = Search) : (state.error = "Nothing was found");
+      state.searchParams = params;
+    });
     builder.addCase(searchMovies.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;

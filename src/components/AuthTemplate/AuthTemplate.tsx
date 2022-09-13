@@ -1,10 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { Container, Copyright, Footer, Header } from "./styles";
-
-import { ReactComponent as Logo } from "../../assets/logo.svg";
 import { Space } from "../../ui/theme";
 import { CustomLink } from "../CustomLink";
 import { ROUTE } from "../../router";
+import { Logo } from "../../assets";
 
 export const AuthTemplate = () => {
   return (

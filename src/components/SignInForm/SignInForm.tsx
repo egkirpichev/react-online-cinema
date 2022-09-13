@@ -32,7 +32,7 @@ export const SignInForm = () => {
 
   const dispatch = useAppDispatch();
   const { isLogged, isLoading, error, isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
+    ({ persistedReducer }) => persistedReducer.user,
   );
   const navigate = useNavigate();
 
@@ -69,9 +69,7 @@ export const SignInForm = () => {
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
           />
-          {errors.email && errors.email.message && (
-            <ErrorMessage message={errors.email.message} />
-          )}
+          {errors.email && errors.email.message && <ErrorMessage message={errors.email.message} />}
         </InputField>
         <InputField>
           <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
@@ -90,16 +88,12 @@ export const SignInForm = () => {
           {errors.password && errors.password.message && (
             <ErrorMessage message={errors.password.message} />
           )}
-          <ResetPassword to={`/${ROUTE.RESET_PASSWORD}`}>
-            Forgot password?
-          </ResetPassword>
+          <ResetPassword to={`/${ROUTE.RESET_PASSWORD}`}>Forgot password?</ResetPassword>
         </InputField>
       </Body>
       <ButtonPrimary type="submit">
         Sign In&nbsp;&nbsp;
-        {isLoading && (
-          <CustomSpinner color={Color.White} still={false} size="20px" />
-        )}
+        {isLoading && <CustomSpinner color={Color.White} still={false} size="20px" />}
       </ButtonPrimary>
       <SignUp>
         Dont have and account?&nbsp;&nbsp;

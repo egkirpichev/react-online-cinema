@@ -3,11 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
-import {
-  resetError,
-  signUp,
-  updateUserName,
-} from "../../store/slices/userSlice";
+import { resetError, signUp, updateUserName } from "../../store/slices/userSlice";
 import { IUserSignUp } from "../../types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
@@ -39,7 +35,7 @@ export const SignUpForm = () => {
 
   const dispatch = useAppDispatch();
   const { isLoading, isLogged, error, isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
+    ({ persistedReducer }) => persistedReducer.user,
   );
 
   const onSubmit: SubmitHandler<IUserSignUp> = async (data) => {
@@ -78,9 +74,7 @@ export const SignUpForm = () => {
             placeholder="Your name"
             {...register("name", { required: "Please, enter your name" })}
           />
-          {errors.name && errors.name.message && (
-            <ErrorMessage message={errors.name.message} />
-          )}
+          {errors.name && errors.name.message && <ErrorMessage message={errors.name.message} />}
         </InputField>
         <InputField>
           <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
@@ -90,9 +84,7 @@ export const SignUpForm = () => {
             placeholder="Your Email"
             {...register("email", { required: "Please, enter account e-mail" })}
           />
-          {errors.email && errors.email.message && (
-            <ErrorMessage message={errors.email.message} />
-          )}
+          {errors.email && errors.email.message && <ErrorMessage message={errors.email.message} />}
         </InputField>
         <InputField>
           <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
@@ -120,8 +112,7 @@ export const SignUpForm = () => {
             placeholder="Confirm Password"
             {...register("confirmPassword", {
               required: "Please, confrim the password",
-              validate: (value) =>
-                value === passwordValue || "Entered passwords do not match",
+              validate: (value) => value === passwordValue || "Entered passwords do not match",
             })}
           />
           {errors.confirmPassword && errors.confirmPassword.message && (
@@ -131,9 +122,7 @@ export const SignUpForm = () => {
       </Body>
       <ButtonPrimary type="submit">
         Sign Up&nbsp;&nbsp;
-        {isLoading && (
-          <CustomSpinner color={Color.White} still={false} size="20px" />
-        )}
+        {isLoading && <CustomSpinner color={Color.White} still={false} size="20px" />}
       </ButtonPrimary>
       <SignIn>
         Already have an account?&nbsp;&nbsp;

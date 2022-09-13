@@ -13,13 +13,7 @@ import {
 import { MovieTypeOption } from "../../types";
 import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
-import {
-  Body2,
-  ButtonPrimary,
-  ButtonSecondary,
-  Input,
-  Subtitle3,
-} from "../../ui/typography";
+import { Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "../../ui/typography";
 
 interface IProps {
   $isLightMode: boolean;
@@ -54,16 +48,13 @@ export const Body = styled.div<JustifyContentProps & AlignItemsProps & IProps>`
   ${alignItems}
   width: 100%;
   padding: ${Space.S};
-  background: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Light : Color.Dark};
+  background: ${({ $isLightMode }) => ($isLightMode ? Color.Light : Color.Dark)};
   border-radius: 10px;
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
+  border-color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.Black)};
 
   :focus {
     color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
@@ -135,59 +126,59 @@ export const StyledLabel = styled.label`
 export const selectStyles: StylesConfig<MovieTypeOption, boolean> = {
   control: (styles, state) => ({
     ...styles,
-    minHeight: `30px`,
-    borderRadius: `10px`,
-    border: `1px solid `,
+    minHeight: "30px",
+    borderRadius: "10px",
+    border: "1px solid ",
     borderColor: state.hasValue ? `${Color.PrimaryLight}` : `${Color.Dark}`,
     backgroundColor: `${Color.Graphite}`,
-    cursor: `pointer`,
+    cursor: "pointer",
   }),
 
   valueContainer: (styles) => ({
     ...styles,
-    padding: `16px 5px`,
-    fontWeight: `500`,
-    fontSize: `16px`,
-    lineHeight: `24px`,
+    padding: "16px 5px",
+    fontWeight: "500",
+    fontSize: "16px",
+    lineHeight: "24px",
     color: `${Color.White}`,
     border: `1px solid ${Color.Graphite}`,
-    borderRadius: `10px`,
+    borderRadius: "10px",
   }),
 
   singleValue: (styles) => ({
     ...styles,
-    fontWeight: `500`,
-    fontSize: `16px`,
-    lineHeight: `24px`,
+    fontWeight: "500",
+    fontSize: "16px",
+    lineHeight: "24px",
     color: `${Color.White}`,
   }),
 
   indicatorsContainer: (styles) => ({
     ...styles,
     div: {
-      padding: `0px 5px`,
+      padding: "0px 5px",
     },
   }),
 
   indicatorSeparator: (styles) => ({
     ...styles,
-    display: `none`,
+    display: "none",
   }),
 
   menu: (styles) => ({
     ...styles,
-    overflow: `hidden`,
+    overflow: "hidden",
     backgroundColor: `${Color.Dark}`,
-    borderRadius: `10px`,
+    borderRadius: "10px",
   }),
 
   option: (styles, state) => ({
     ...styles,
-    fontWeight: `500`,
-    fontSize: `16px`,
-    lineHeight: `24px`,
+    fontWeight: "500",
+    fontSize: "16px",
+    lineHeight: "24px",
     color: state.isFocused ? `${Color.PrimaryLight}` : `${Color.White}`,
     backgroundColor: state.isFocused ? `${Color.Graphite}` : `${Color.Dark}`,
-    cursor: `pointer`,
+    cursor: "pointer",
   }),
 };

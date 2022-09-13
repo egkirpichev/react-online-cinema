@@ -13,13 +13,7 @@ import {
   EmailAuthProvider,
 } from "firebase/auth";
 import { auth } from "../../services/FireBase/fireBase";
-import {
-  IMovieShort,
-  IRequestParams,
-  ISettings,
-  IUserSignIn,
-  IUserSignUp,
-} from "../../types";
+import { IMovieShort, IRequestParams, ISettings, IUserSignIn, IUserSignUp } from "../../types";
 import { getFirebaseErrorMessage } from "../../utils";
 
 export interface IUserState {
@@ -55,7 +49,7 @@ export const signUp = createAsyncThunk<
     return await createUserWithEmailAndPassword(auth, email, password).then(
       ({ user: { refreshToken } }) => {
         return { email, password, name, refreshToken };
-      }
+      },
     );
   } catch (error) {
     const firebaseError = error as FirebaseError;
@@ -78,7 +72,7 @@ export const signIn = createAsyncThunk<
       ({ user: { refreshToken, displayName } }) => {
         const name = displayName as string;
         return { email, password, name, refreshToken };
-      }
+      },
     );
   } catch (error) {
     const firebaseError = error as FirebaseError;
@@ -86,91 +80,82 @@ export const signIn = createAsyncThunk<
   }
 });
 
-export const signUserOut = createAsyncThunk<
-  void,
-  undefined,
-  { rejectValue: string }
->("user/signUserOut", async (_, { rejectWithValue }) => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    const firebaseError = error as FirebaseError;
-    return rejectWithValue(firebaseError.code);
-  }
-});
-
-export const reauthentificate = createAsyncThunk<
-  void,
-  ISettings,
-  { rejectValue: string }
->("user/reauthentificate", async ({ password }, { rejectWithValue }) => {
-  const user = auth.currentUser as User;
-  const credential = EmailAuthProvider.credential(
-    user.email as string,
-    password
-  );
-  try {
-    await reauthenticateWithCredential(auth.currentUser as User, credential);
-  } catch (error) {
-    const firebaseError = error as FirebaseError;
-    return rejectWithValue(firebaseError.code);
-  }
-});
-
-export const updateUserName = createAsyncThunk<
-  void,
-  { name: string },
-  { rejectValue: string }
->("user/updateUserName", async ({ name }, { rejectWithValue }) => {
-  if (auth.currentUser)
+export const signUserOut = createAsyncThunk<void, undefined, { rejectValue: string }>(
+  "user/signUserOut",
+  async (_, { rejectWithValue }) => {
     try {
-      await updateProfile(auth.currentUser, { displayName: name });
+      await signOut(auth);
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
-});
+  },
+);
 
-export const updateUserEmail = createAsyncThunk<
-  void,
-  ISettings,
-  { rejectValue: string }
->("user/updateUserEmail", async ({ email }, { rejectWithValue }) => {
-  if (auth.currentUser)
+export const reauthentificate = createAsyncThunk<void, ISettings, { rejectValue: string }>(
+  "user/reauthentificate",
+  async ({ password }, { rejectWithValue }) => {
+    const user = auth.currentUser as User;
+    const credential = EmailAuthProvider.credential(user.email as string, password);
     try {
-      await updateEmail(auth.currentUser, email);
+      await reauthenticateWithCredential(auth.currentUser as User, credential);
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
-});
+  },
+);
 
-export const updateUserPassword = createAsyncThunk<
-  void,
-  ISettings,
-  { rejectValue: string }
->("user/updateUserPassword", async ({ newPassword }, { rejectWithValue }) => {
-  if (auth.currentUser)
+export const updateUserName = createAsyncThunk<void, { name: string }, { rejectValue: string }>(
+  "user/updateUserName",
+  async ({ name }, { rejectWithValue }) => {
+    if (auth.currentUser)
+      try {
+        await updateProfile(auth.currentUser, { displayName: name });
+      } catch (error) {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      }
+  },
+);
+
+export const updateUserEmail = createAsyncThunk<void, ISettings, { rejectValue: string }>(
+  "user/updateUserEmail",
+  async ({ email }, { rejectWithValue }) => {
+    if (auth.currentUser)
+      try {
+        await updateEmail(auth.currentUser, email);
+      } catch (error) {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      }
+  },
+);
+
+export const updateUserPassword = createAsyncThunk<void, ISettings, { rejectValue: string }>(
+  "user/updateUserPassword",
+  async ({ newPassword }, { rejectWithValue }) => {
+    if (auth.currentUser)
+      try {
+        await updatePassword(auth.currentUser, newPassword);
+      } catch (error) {
+        const firebaseError = error as FirebaseError;
+        return rejectWithValue(firebaseError.code);
+      }
+  },
+);
+
+export const resetPassword = createAsyncThunk<void, { email: string }, { rejectValue: string }>(
+  "user/resetPassword",
+  async ({ email }, { rejectWithValue }) => {
     try {
-      await updatePassword(auth.currentUser, newPassword);
+      await sendPasswordResetEmail(auth, email);
     } catch (error) {
       const firebaseError = error as FirebaseError;
       return rejectWithValue(firebaseError.code);
     }
-});
-
-export const resetPassword = createAsyncThunk<
-  void,
-  { email: string },
-  { rejectValue: string }
->("user/resetPassword", async ({ email }, { rejectWithValue }) => {
-  try {
-    await sendPasswordResetEmail(auth, email);
-  } catch (error) {
-    const firebaseError = error as FirebaseError;
-    return rejectWithValue(firebaseError.code);
-  }
-});
+  },
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -206,13 +191,11 @@ export const userSlice = createSlice({
       state.favorites.push(payload);
     },
     removeFromFavorites: (state, { payload }: PayloadAction<IMovieShort>) => {
-      state.favorites = state.favorites.filter(
-        (movie) => movie.imdbID !== payload.imdbID
-      );
+      state.favorites = state.favorites.filter((movie) => movie.imdbID !== payload.imdbID);
     },
     searchInFavourites: (state, { payload }: PayloadAction<IRequestParams>) => {
       state.searchResults = state.favorites.filter((movie) =>
-        movie.Title.toLowerCase().match(payload.s.toLowerCase())
+        movie.Title.toLowerCase().match(payload.s.toLowerCase()),
       );
     },
   },

@@ -19,8 +19,7 @@ export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
   ${space};
   margin: 90px auto;
   padding: ${Space.S};
-  background: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
+  background: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
   border-radius: 10px;
 `;
 export const Title = styled(H2)<IProps>`
@@ -54,10 +53,8 @@ export const SignInLink = styled(Link)`
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
+  border-color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.Black)};
 
   :focus {
     color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};

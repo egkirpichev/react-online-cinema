@@ -18,8 +18,7 @@ export const StyledSearchBar = styled.div<GridProps>`
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
   border: none;
 
   :focus {

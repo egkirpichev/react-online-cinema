@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { flexbox, FlexboxProps, space, SpaceProps } from "styled-system";
-import background from "../../assets/backround.png";
+import { background } from "../../assets";
 import { Body2 } from "../../ui";
 import { Space } from "../../ui/theme";
 

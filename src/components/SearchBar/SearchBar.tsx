@@ -1,18 +1,11 @@
 import { useEffect } from "react";
-import {
-  useAppDispatch,
-  useAppSelector,
-  useDebounce,
-  useInput,
-} from "../../hooks";
+import { useAppDispatch, useAppSelector, useDebounce, useInput } from "../../hooks";
 import { setSearchRequest } from "../../store/slices/searchSlice";
 import { SearchFilters } from "../SearchFilters";
 import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const searchInput = useInput();
   const searchRequestValue = useDebounce(searchInput.value, 1000);
@@ -31,12 +24,7 @@ export const SearchBar = () => {
         S: "1/2",
       }}
     >
-      <StyledInput
-        $isLightMode={isLightMode}
-        type="text"
-        placeholder="Search"
-        {...searchInput}
-      />
+      <StyledInput $isLightMode={isLightMode} type="text" placeholder="Search" {...searchInput} />
       <SearchFilters />
     </StyledSearchBar>
   );

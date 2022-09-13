@@ -19,7 +19,7 @@ export const MovieFactsList = ({ movieFactsList, $isLightMode }: IProps) => {
                 {value}
               </Value>
             </>
-          )
+          ),
       )}
     </MovieFacts>
   );

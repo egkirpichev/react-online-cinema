@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getRecommendations } from "../../store/slices/movieSlice";
 import { MovieListItem } from "../MovieListItem";
@@ -9,12 +9,8 @@ import { motion } from "framer-motion";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";
 
 export const Recommendations = () => {
-  const {
-    recommendedMovies,
-    areRecommendationsLoading,
-    recommendationsError,
-    recommendation,
-  } = useAppSelector(({ persistedReducer }) => persistedReducer.movie);
+  const { recommendedMovies, areRecommendationsLoading, recommendationsError, recommendation } =
+    useAppSelector(({ persistedReducer }) => persistedReducer.movie);
 
   const dispatch = useAppDispatch();
 
@@ -24,12 +20,9 @@ export const Recommendations = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useMemo(() => {
-    if (recommendedMovies.length === 0)
-      dispatch(getRecommendations(recommendation));
+    if (recommendedMovies.length === 0) dispatch(getRecommendations(recommendation));
     if (wrapperRef.current) {
-      setScrollConstraint(
-        wrapperRef.current.scrollWidth - wrapperRef.current.offsetWidth
-      );
+      setScrollConstraint(wrapperRef.current.scrollWidth - wrapperRef.current.offsetWidth);
     }
   }, [areRecommendationsLoading, wrapperRef.current]);
 

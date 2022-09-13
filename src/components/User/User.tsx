@@ -1,12 +1,5 @@
 import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
-import {
-  Avatar,
-  ArrowButton,
-  DropDownContainer,
-  Header,
-  Button,
-  UserBadge,
-} from "./styles";
+import { Avatar, ArrowButton, DropDownContainer, Header, Button, UserBadge } from "./styles";
 import { FiUser } from "react-icons/fi";
 import { getShortUserName } from "../../utils/utils";
 import { ROUTE } from "../../router";
@@ -16,7 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 export const User = () => {
   const { isLogged, name, isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
+    ({ persistedReducer }) => persistedReducer.user,
   );
   const [isOpen, setIsOpen] = useToggle();
   const navigate = useNavigate();

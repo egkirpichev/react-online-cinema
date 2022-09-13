@@ -13,9 +13,7 @@ interface IProps {
 }
 
 export const Footer = ({ requestParams }: IProps) => {
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useToggle();
@@ -26,13 +24,9 @@ export const Footer = ({ requestParams }: IProps) => {
     setIsLoading();
 
     if (pathname === ROUTE.HOME) {
-      return await dispatch(loadMoreMovies(requestParams)).then(() =>
-        setIsLoading()
-      );
+      return await dispatch(loadMoreMovies(requestParams)).then(() => setIsLoading());
     } else if (pathname === `/${ROUTE.TRENDS}`) {
-      return await dispatch(loadMoreTrends(requestParams)).then(() =>
-        setIsLoading()
-      );
+      return await dispatch(loadMoreTrends(requestParams)).then(() => setIsLoading());
     }
   };
 
@@ -40,9 +34,7 @@ export const Footer = ({ requestParams }: IProps) => {
     <StyledFooter gridColumn={{ XL: "2/3" }}>
       <LoadMore type="button" onClick={handleClick} $isLightMode={isLightMode}>
         <Text>Load More</Text>
-        {isLoading && (
-          <CustomSpinner color={Color.White} still={false} size="20px" />
-        )}
+        {isLoading && <CustomSpinner color={Color.White} still={false} size="20px" />}
       </LoadMore>
     </StyledFooter>
   );

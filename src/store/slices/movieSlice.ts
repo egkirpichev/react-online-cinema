@@ -2,12 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { getMovieCardInfo, getMovieFacts } from "../../mappers";
 import { OMDbApi } from "../../services/OMDbApi";
-import {
-  IMovieCard,
-  IMovieFactsList,
-  IMovieFull,
-  IMovieShort,
-} from "../../types";
+import { IMovieCard, IMovieFactsList, IMovieFull, IMovieShort } from "../../types";
 import { getMovieRecommendation } from "../../utils";
 
 interface IMovie {
@@ -38,34 +33,30 @@ const initialState: IMovie = {
   recommendationsError: null,
 };
 
-export const getMovieById = createAsyncThunk<
-  IMovieFull,
-  string,
-  { rejectValue: string }
->("movie/getMovieById", async (id, { rejectWithValue }) => {
-  try {
-    return await OMDbApi.getMovieById(id);
-  } catch (error) {
-    const axiosError = error as AxiosError;
-    return rejectWithValue(axiosError.message);
-  }
-});
+export const getMovieById = createAsyncThunk<IMovieFull, string, { rejectValue: string }>(
+  "movie/getMovieById",
+  async (id, { rejectWithValue }) => {
+    try {
+      return await OMDbApi.getMovieById(id);
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return rejectWithValue(axiosError.message);
+    }
+  },
+);
 
 export const getRecommendations = createAsyncThunk<
   IMovieShort[],
   { searchQuerry: string; type: string },
   { rejectValue: string }
->(
-  "movie/getRecommendations",
-  async ({ searchQuerry, type }, { rejectWithValue }) => {
-    try {
-      return await OMDbApi.getRecommendations(searchQuerry, type);
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      return rejectWithValue(axiosError.message);
-    }
+>("movie/getRecommendations", async ({ searchQuerry, type }, { rejectWithValue }) => {
+  try {
+    return await OMDbApi.getRecommendations(searchQuerry, type);
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return rejectWithValue(axiosError.message);
   }
-);
+});
 
 export const movieSlice = createSlice({
   name: "movie",

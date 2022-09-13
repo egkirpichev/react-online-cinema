@@ -17,8 +17,7 @@ export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
   padding: ${Space.S};
   ${layout};
   ${space};
-  background: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
+  background: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
   border-radius: 10px;
 `;
 export const Title = styled(H2)<IProps>`
@@ -33,10 +32,8 @@ export const Body = styled.div`
 `;
 
 export const StyledInput = styled(Input)<IProps>`
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
-  border-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Secondary : Color.Black};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
+  border-color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.Black)};
 
   :focus {
     color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};

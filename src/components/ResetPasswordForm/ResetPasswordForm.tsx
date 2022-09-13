@@ -3,11 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ROUTE } from "../../router";
-import {
-  resetError,
-  resetPassword,
-  resetPasswordState,
-} from "../../store/slices/userSlice";
+import { resetError, resetPassword, resetPasswordState } from "../../store/slices/userSlice";
 import { IUserSignIn } from "../../types/types";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
@@ -15,15 +11,7 @@ import { ButtonPrimary } from "../../ui/typography";
 import { AuthModal } from "../AuthModal";
 import { CustomSpinner } from "../CustomSpinner";
 import { ErrorMessage } from "../ErrorMessage";
-import {
-  Body,
-  FieldTitle,
-  InputField,
-  StyledInput,
-  StyledForm,
-  Title,
-  Error,
-} from "./styles";
+import { Body, FieldTitle, InputField, StyledInput, StyledForm, Title, Error } from "./styles";
 
 export const ResetPasswordForm = () => {
   const {
@@ -34,7 +22,7 @@ export const ResetPasswordForm = () => {
 
   const dispatch = useAppDispatch();
   const { isLoading, isPasswordReset, error, isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
+    ({ persistedReducer }) => persistedReducer.user,
   );
   const navigate = useNavigate();
 
@@ -77,9 +65,7 @@ export const ResetPasswordForm = () => {
       </Body>
       <ButtonPrimary type="submit">
         Reset&nbsp;&nbsp;
-        {isLoading && (
-          <CustomSpinner color={Color.White} still={false} size="20px" />
-        )}
+        {isLoading && <CustomSpinner color={Color.White} still={false} size="20px" />}
       </ButtonPrimary>
       {isPasswordReset && <AuthModal message="Email has been sent" />}
     </StyledForm>

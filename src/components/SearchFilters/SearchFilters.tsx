@@ -8,9 +8,7 @@ import { FiltersForm } from "../FiltersForm";
 export const SearchFilters = () => {
   const { screenWidth } = useWindowSize();
   const [isOpen, setIsOpen] = useToggle();
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const styles = {
     bmBurgerButton: {

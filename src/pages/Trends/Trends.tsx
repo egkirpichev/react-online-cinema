@@ -4,11 +4,7 @@ import { MovieList } from "../../components/MovieList";
 import { SearchError } from "../../components/SearchError";
 import { SearchSpinner } from "../../components/SearchSpinner";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import {
-  getTrends,
-  resetSearch,
-  searchTrends,
-} from "../../store/slices/trendsSlice";
+import { getTrends, resetSearch, searchTrends } from "../../store/slices/trendsSlice";
 import { TrendingMovieList, TrendingPageTitle } from "./styles";
 
 export const Trends = () => {
@@ -23,13 +19,9 @@ export const Trends = () => {
     trend,
   } = useAppSelector(({ persistedReducer }) => persistedReducer.trends);
 
-  const { searchRequest } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.search
-  );
+  const { searchRequest } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
 
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const dispatch = useAppDispatch();
 
@@ -54,26 +46,19 @@ export const Trends = () => {
     return (
       <>
         <MovieList movieList={searchResults} />
-        {!disableLoader && !isLoading && (
-          <Footer requestParams={searchParams} />
-        )}
+        {!disableLoader && !isLoading && <Footer requestParams={searchParams} />}
       </>
     );
   } else {
     return (
       <>
         <TrendingMovieList>
-          <TrendingPageTitle
-            $isLightMode={isLightMode}
-            textAlign={{ XL: "left" }}
-          >
+          <TrendingPageTitle $isLightMode={isLightMode} textAlign={{ XL: "left" }}>
             {trend}
           </TrendingPageTitle>
           <MovieList movieList={movieList} />
         </TrendingMovieList>
-        {!disableLoader && !isLoading && (
-          <Footer requestParams={requestParams} />
-        )}
+        {!disableLoader && !isLoading && <Footer requestParams={requestParams} />}
       </>
     );
   }

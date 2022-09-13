@@ -17,6 +17,5 @@ export const Fact = styled(Subtitle3)`
 `;
 
 export const Value = styled(Body2)<IProps>`
-  color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Secondary : Color.White};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.White)};
 `;

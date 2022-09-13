@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Body1, Color } from "../../ui";
-import { IoIosArrowDown } from "react-icons/io";
 
 interface IProps {
   isOpen?: boolean;
@@ -39,8 +38,7 @@ export const DropDownContainer = styled.div<IProps>`
   overflow: hidden;
   width: 100%;
   background-color: ${Color.Graphite};
-  border: ${({ $isLightMode }) =>
-    $isLightMode ? `1px solid ${Color.Graphite}` : "none"};
+  border: ${({ $isLightMode }) => ($isLightMode ? `1px solid ${Color.Graphite}` : "none")};
   border-radius: 10px;
   animation: growDown 300ms ease-in-out;
   transform-origin: top;
@@ -66,8 +64,7 @@ export const Button = styled.button<IProps>`
   line-height: 24px;
   text-align: left;
   color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Dark};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Dark)};
   border: none;
   cursor: pointer;
 

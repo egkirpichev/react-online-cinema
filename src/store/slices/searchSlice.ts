@@ -23,10 +23,7 @@ export const searchSlice = createSlice({
   name: "search",
   initialState,
   reducers: {
-    setSearchRequest: (
-      { searchRequest },
-      { payload }: PayloadAction<string>
-    ) => {
+    setSearchRequest: ({ searchRequest }, { payload }: PayloadAction<string>) => {
       searchRequest.s = payload;
       if (payload === "") {
         searchRequest.type = "";
@@ -35,7 +32,7 @@ export const searchSlice = createSlice({
     },
     setFilters: (
       { searchRequest, filters },
-      { payload: { type, year, sortBy } }: PayloadAction<IFilters>
+      { payload: { type, year, sortBy } }: PayloadAction<IFilters>,
     ) => {
       searchRequest.type = type;
       searchRequest.y = year;
@@ -57,11 +54,6 @@ export const searchSlice = createSlice({
   },
 });
 
-export const {
-  setSearchRequest,
-  setFilters,
-  resetTypeFilter,
-  resetYearFilter,
-  resetSorting,
-} = searchSlice.actions;
+export const { setSearchRequest, setFilters, resetTypeFilter, resetYearFilter, resetSorting } =
+  searchSlice.actions;
 export default searchSlice.reducer;

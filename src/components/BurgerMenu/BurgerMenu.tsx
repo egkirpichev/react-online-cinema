@@ -12,9 +12,7 @@ import { HiBookmark } from "react-icons/hi";
 export const BurgerMenu = () => {
   const { screenWidth } = useWindowSize();
   const [isOpen, setIsOpen] = useToggle();
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   const byrgerStyles = {
     bmBurgerButton: {
@@ -43,9 +41,7 @@ export const BurgerMenu = () => {
     bmMenu: {
       display: "flex",
       background: isLightMode ? Color.White : Color.Black,
-      padding: `${
-        screenWidth > 767 ? `150px ${Space.XXL}` : `150px ${Space.M}`
-      }`,
+      padding: `${screenWidth > 767 ? `150px ${Space.XXL}` : `150px ${Space.M}`}`,
     },
     bmItemList: {
       display: "flex",

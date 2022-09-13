@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { grid, GridProps, space, SpaceProps } from "styled-system";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
-import { ReactComponent as Logo } from "../../assets/logo.svg";
-import { ReactComponent as LightLogo } from "../../assets/logo-light.svg";
+import { Logo } from "../../assets";
+import { LogoLight } from "../../assets";
 
 interface IProps {
   $isLightMode: boolean;
@@ -22,14 +22,13 @@ export const StyledHeader = styled.header<GridProps & SpaceProps & IProps>`
   width: 100%;
   padding: ${Space.M} 0;
   ${space}
-  background-color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.White : Color.Black};
+  background-color: ${({ $isLightMode }) => ($isLightMode ? Color.White : Color.Black)};
 `;
 
 export const StyledLogo = styled(Logo)`
   justify-self: start;
 `;
 
-export const StyledLightLogo = styled(LightLogo)`
+export const StyledLightLogo = styled(LogoLight)`
   justify-self: start;
 `;

@@ -7,9 +7,7 @@ import { App } from "./App";
 import { persistor, store } from "./store/store";
 import { GlobalStyles } from "./ui";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
     <GlobalStyles />
@@ -20,5 +18,5 @@ root.render(
         </PersistGate>
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

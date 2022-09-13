@@ -4,26 +4,13 @@ import { MovieList } from "../../components/MovieList";
 import { SearchError } from "../../components/SearchError";
 import { SearchSpinner } from "../../components/SearchSpinner";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import {
-  getRandomMovies,
-  resetSearch,
-  searchMovies,
-} from "../../store/slices/moviesSlice";
+import { getRandomMovies, resetSearch, searchMovies } from "../../store/slices/moviesSlice";
 
 export const Home = () => {
-  const {
-    movieList,
-    requestParams,
-    searchResults,
-    searchParams,
-    isLoading,
-    error,
-    disableLoader,
-  } = useAppSelector(({ persistedReducer }) => persistedReducer.movies);
+  const { movieList, requestParams, searchResults, searchParams, isLoading, error, disableLoader } =
+    useAppSelector(({ persistedReducer }) => persistedReducer.movies);
 
-  const { searchRequest } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.search
-  );
+  const { searchRequest } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
 
   const dispatch = useAppDispatch();
 
@@ -49,18 +36,14 @@ export const Home = () => {
     return (
       <>
         <MovieList movieList={searchResults} />
-        {!disableLoader && !isLoading && (
-          <Footer requestParams={searchParams} />
-        )}
+        {!disableLoader && !isLoading && <Footer requestParams={searchParams} />}
       </>
     );
   } else {
     return (
       <>
         <MovieList movieList={movieList} />
-        {!disableLoader && !isLoading && (
-          <Footer requestParams={requestParams} />
-        )}
+        {!disableLoader && !isLoading && <Footer requestParams={requestParams} />}
       </>
     );
   }

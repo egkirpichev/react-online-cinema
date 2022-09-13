@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { MovieCard } from "../../components/MovieCard";
 import { Recommendations } from "../../components/Recommenations";
@@ -10,7 +10,7 @@ import { IMovieCard, IMovieFactsList } from "../../types";
 
 export const Movie = () => {
   const { isLoading, error, movieCard, movieFacts } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.movie
+    ({ persistedReducer }) => persistedReducer.movie,
   );
 
   const dispatch = useAppDispatch();
@@ -33,10 +33,7 @@ export const Movie = () => {
 
   return (
     <>
-      <MovieCard
-        movie={movieCard as IMovieCard}
-        movieFactsList={movieFacts as IMovieFactsList}
-      />
+      <MovieCard movie={movieCard as IMovieCard} movieFactsList={movieFacts as IMovieFactsList} />
       <Recommendations />
     </>
   );

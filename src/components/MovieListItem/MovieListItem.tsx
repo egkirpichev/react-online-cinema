@@ -1,11 +1,5 @@
 import { IMovieShort } from "../../types";
-import {
-  Description,
-  MovieTitle,
-  Released,
-  StyledLink,
-  StyledMovieCard,
-} from "./styles";
+import { Description, MovieTitle, Released, StyledLink, StyledMovieCard } from "./styles";
 import { MoviePoster } from "../MoviePoster";
 import { createRoute } from "../../utils";
 import { ROUTE } from "../../router";
@@ -17,9 +11,7 @@ interface IProps {
 }
 
 export const MovieListItem = ({ movie, to }: IProps) => {
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
   return (
     <StyledMovieCard>
@@ -34,10 +26,7 @@ export const MovieListItem = ({ movie, to }: IProps) => {
           {movie.Title}
         </MovieTitle>
 
-        <Released $isLightMode={isLightMode}>{`Released: ${movie.Year.slice(
-          0,
-          4
-        )}`}</Released>
+        <Released $isLightMode={isLightMode}>{`Released: ${movie.Year.slice(0, 4)}`}</Released>
       </Description>
     </StyledMovieCard>
   );

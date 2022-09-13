@@ -45,6 +45,5 @@ export const StyledLink = styled(Link)`
 `;
 
 export const Released = styled(Body2)<IProps>`
-  color: ${({ $isLightMode }) =>
-    $isLightMode ? Color.Secondary : Color.Light};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.Light)};
 `;

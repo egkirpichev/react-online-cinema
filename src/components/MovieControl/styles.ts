@@ -15,15 +15,13 @@ export const Container = styled.div`
 
 export const ControlButton = styled.button<IProps>`
   padding: ${`${Space.XXS} ${Space.XXL}`};
-  color: ${({ isInFavorites }) =>
-    isInFavorites ? Color.PrimaryDark : Color.Light};
+  color: ${({ isInFavorites }) => (isInFavorites ? Color.PrimaryDark : Color.Light)};
   background-color: ${Color.Graphite};
   border: none;
   cursor: pointer;
 
   :hover {
-    color: ${({ isInFavorites }) =>
-      isInFavorites ? Color.PrimaryDark : Color.White};
+    color: ${({ isInFavorites }) => (isInFavorites ? Color.PrimaryDark : Color.White)};
   }
 
   :active {

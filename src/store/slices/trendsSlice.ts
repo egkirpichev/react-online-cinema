@@ -100,15 +100,12 @@ export const trendsSlice = createSlice({
       state.error = null;
       state.trend = null;
     });
-    builder.addCase(
-      getTrends.fulfilled,
-      (state, { payload: { Search, params } }) => {
-        state.isLoading = false;
-        Search.forEach((movie) => state.movieList.push(movie));
-        state.requestParams = params;
-        state.trend = getTrendingPageTitle(OMDbApi.trend);
-      }
-    );
+    builder.addCase(getTrends.fulfilled, (state, { payload: { Search, params } }) => {
+      state.isLoading = false;
+      Search.forEach((movie) => state.movieList.push(movie));
+      state.requestParams = params;
+      state.trend = getTrendingPageTitle(OMDbApi.trend);
+    });
     builder.addCase(getTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
@@ -116,26 +113,23 @@ export const trendsSlice = createSlice({
     builder.addCase(loadMoreTrends.pending, (state) => {
       state.error = null;
     });
-    builder.addCase(
-      loadMoreTrends.fulfilled,
-      (state, { payload: { Search, params } }) => {
-        if (state.searchResults.length > 0) {
-          if (Search) {
-            Search.forEach((movie) => state.searchResults.push(movie));
-          } else {
-            state.disableLoader = true;
-          }
-          state.searchParams = params;
+    builder.addCase(loadMoreTrends.fulfilled, (state, { payload: { Search, params } }) => {
+      if (state.searchResults.length > 0) {
+        if (Search) {
+          Search.forEach((movie) => state.searchResults.push(movie));
         } else {
-          if (Search) {
-            Search.forEach((movie) => state.movieList.push(movie));
-          } else {
-            state.disableLoader = true;
-          }
-          state.requestParams = params;
+          state.disableLoader = true;
         }
+        state.searchParams = params;
+      } else {
+        if (Search) {
+          Search.forEach((movie) => state.movieList.push(movie));
+        } else {
+          state.disableLoader = true;
+        }
+        state.requestParams = params;
       }
-    );
+    });
     builder.addCase(loadMoreTrends.rejected, (state, { payload }) => {
       state.error = payload ? payload : state.error;
     });
@@ -144,16 +138,11 @@ export const trendsSlice = createSlice({
       state.error = null;
       state.disableLoader = false;
     });
-    builder.addCase(
-      searchTrends.fulfilled,
-      (state, { payload: { Search, params } }) => {
-        state.isLoading = false;
-        Search
-          ? (state.searchResults = Search)
-          : (state.error = "Nothing was found");
-        state.searchParams = params;
-      }
-    );
+    builder.addCase(searchTrends.fulfilled, (state, { payload: { Search, params } }) => {
+      state.isLoading = false;
+      Search ? (state.searchResults = Search) : (state.error = "Nothing was found");
+      state.searchParams = params;
+    });
     builder.addCase(searchTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;

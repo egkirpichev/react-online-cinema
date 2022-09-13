@@ -40,7 +40,7 @@ export const SettingsForm = () => {
   const newPasswordValue = watch("newPassword", "");
 
   const { name, email, isLoading, error, isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
+    ({ persistedReducer }) => persistedReducer.user,
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -76,9 +76,7 @@ export const SettingsForm = () => {
                 value: name as string,
               })}
             />
-            {errors.name && errors.name.message && (
-              <ErrorMessage message={errors.name.message} />
-            )}
+            {errors.name && errors.name.message && <ErrorMessage message={errors.name.message} />}
           </InputField>
           <InputField width={{ S: "45%" }}>
             <FieldTitle $isLightMode={isLightMode}>Email</FieldTitle>
@@ -138,9 +136,7 @@ export const SettingsForm = () => {
               type="password"
               placeholder="Confirm password"
               {...register("confirmPassword", {
-                validate: (value) =>
-                  value === newPasswordValue ||
-                  "Entered passwords do not match",
+                validate: (value) => value === newPasswordValue || "Entered passwords do not match",
               })}
             />
             {errors.confirmPassword && errors.confirmPassword.message && (
@@ -151,16 +147,10 @@ export const SettingsForm = () => {
       </Field>
       <Field>
         <Title $isLightMode={isLightMode}>Color mode</Title>
-        <Body
-          $isLightMode={isLightMode}
-          justifyContent="space-between"
-          alignItems="center"
-        >
+        <Body $isLightMode={isLightMode} justifyContent="space-between" alignItems="center">
           <InputField width="120px">
             <FieldTitle $isLightMode={isLightMode}>Light</FieldTitle>
-            <FieldDescription $isLightMode={isLightMode}>
-              Use light thema
-            </FieldDescription>
+            <FieldDescription $isLightMode={isLightMode}>Use light thema</FieldDescription>
           </InputField>
           <Controller
             control={control}
@@ -188,9 +178,7 @@ export const SettingsForm = () => {
         </Cancel>
         <Save type="submit">
           Save&nbsp;&nbsp;
-          {isLoading && (
-            <CustomSpinner color={Color.White} still={false} size="20px" />
-          )}
+          {isLoading && <CustomSpinner color={Color.White} still={false} size="20px" />}
         </Save>
       </Control>
     </StyledForm>

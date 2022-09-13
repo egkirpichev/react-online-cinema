@@ -1,7 +1,6 @@
-import { ReactComponent as ImdbIcon } from "../../assets/imdb-icon.svg";
+import { ImdbIcon } from "../../assets";
 import { useAppSelector } from "../../hooks";
 import { IMovieCard, IMovieFactsList } from "../../types";
-import { getMovieRecommendation } from "../../utils";
 import { MovieControl } from "../MovieControl";
 import { MovieFactsList } from "../MovieFactsList";
 import { MovieGenre } from "../MovieGenre";
@@ -24,9 +23,7 @@ interface IProps {
 }
 
 export const MovieCard = ({ movie, movieFactsList }: IProps) => {
-  const { isLightMode } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.user
-  );
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
   return (
     <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
       <Control>
@@ -48,10 +45,7 @@ export const MovieCard = ({ movie, movieFactsList }: IProps) => {
           </Stats>
         </Header>
         <Plot $isLightMode={isLightMode}>{movie.plot}</Plot>
-        <MovieFactsList
-          $isLightMode={isLightMode}
-          movieFactsList={movieFactsList}
-        />
+        <MovieFactsList $isLightMode={isLightMode} movieFactsList={movieFactsList} />
       </Description>
     </StyledMovieCard>
   );

@@ -1,4 +1,3 @@
-import { size } from "styled-system";
 import { Color } from "../../ui";
 import { Spinner } from "./styles";
 

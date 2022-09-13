@@ -24,4 +24,6 @@ export {
   Subtitle1,
   Subtitle2,
   Subtitle3,
+  ButtonPrimary,
+  ButtonSecondary,
 };

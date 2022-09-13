@@ -26,8 +26,7 @@ export const Container = styled.div<GridProps & IProps>`
   gap: ${Space.XXS};
   ${grid}
   padding-bottom: ${Space.SMALLEST};
-  background-color: ${({ isLightMode }) =>
-    isLightMode ? Color.White : Color.Black};
+  background-color: ${({ isLightMode }) => (isLightMode ? Color.White : Color.Black)};
 `;
 
 export const Close = styled.button`

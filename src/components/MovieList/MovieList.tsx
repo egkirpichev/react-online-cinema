@@ -10,9 +10,7 @@ interface IProps {
 }
 
 export const MovieList = ({ movieList }: IProps) => {
-  const { filters } = useAppSelector(
-    ({ persistedReducer }) => persistedReducer.search
-  );
+  const { filters } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
 
   const sortedMovieList = sortMovieList(filters, movieList);
 
@@ -32,9 +30,7 @@ export const MovieList = ({ movieList }: IProps) => {
       }}
     >
       {sortedMovieList.map((movieListItem) => {
-        return (
-          <MovieListItem key={movieListItem.imdbID} movie={movieListItem} />
-        );
+        return <MovieListItem key={movieListItem.imdbID} movie={movieListItem} />;
       })}
     </StyledMovieList>
   );

@@ -10,11 +10,11 @@ interface IProps {
 }
 
 export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: ${Space.L};
   align-self: center;
-  width: 272px;
   ${layout};
   ${space};
   margin: 90px auto;
@@ -29,7 +29,7 @@ export const Title = styled(H2)<IProps>`
 
 export const Body = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: ${Space.XS};
 `;
 
@@ -62,6 +62,7 @@ export const StyledInput = styled(Input)<IProps>`
 `;
 
 export const FieldTitle = styled(Subtitle3)<IProps>`
+  width: 45%;
   padding-bottom: 8px;
   color: ${({ $isLightMode }) => ($isLightMode ? Color.Dark : Color.White)};
 `;

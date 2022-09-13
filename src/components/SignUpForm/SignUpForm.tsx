@@ -105,7 +105,7 @@ export const SignUpForm = () => {
           )}
         </InputField>
         <InputField>
-          <FieldTitle $isLightMode={isLightMode}>Password</FieldTitle>
+          <FieldTitle $isLightMode={isLightMode}>Confirm Password</FieldTitle>
           <StyledInput
             $isLightMode={isLightMode}
             type="password"

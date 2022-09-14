@@ -28,6 +28,8 @@ export const Home = () => {
     }
   }, [dispatch, s, type, y]);
 
+  const enableSearchPagination = !disableLoader && !isLoading && searchResults.length > 0;
+
   if (isLoading) {
     return <SearchSpinner />;
   }
@@ -40,7 +42,7 @@ export const Home = () => {
     return (
       <>
         <MovieList movieList={searchResults} />
-        {!disableLoader && !isLoading && <Footer requestParams={searchParams} />}
+        {enableSearchPagination && <Footer requestParams={searchParams} />}
       </>
     );
   } else {

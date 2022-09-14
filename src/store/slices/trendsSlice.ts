@@ -145,7 +145,6 @@ export const trendsSlice = createSlice({
     builder.addCase(searchTrends.fulfilled, (state, { payload: { Search, params } }) => {
       state.isLoading = false;
       Search ? (state.searchResults = Search) : (state.error = "Nothing was found");
-      Search ? (state.disableLoader = false) : (state.disableLoader = true);
       state.searchParams = params;
     });
     builder.addCase(searchTrends.rejected, (state, { payload }) => {

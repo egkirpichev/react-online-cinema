@@ -3,7 +3,7 @@ import { Footer } from "../../components/Footer";
 import { MovieList } from "../../components/MovieList";
 import { SearchError } from "../../components/SearchError";
 import { SearchSpinner } from "../../components/SearchSpinner";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { getRandomMovies, resetSearch, searchMovies } from "../../store/slices/moviesSlice";
 
 export const Home = () => {

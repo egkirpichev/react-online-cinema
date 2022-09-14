@@ -14,9 +14,10 @@ import {
   ISettings,
   IFilters,
   MovieTypeOption,
+  MovieType,
 } from "./types";
 
-export { Param, FirebaseErrorMessage };
+export { Param, FirebaseErrorMessage, MovieType };
 export type {
   IMovieFull,
   IMovieRating,

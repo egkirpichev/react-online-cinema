@@ -1,5 +1,6 @@
+import { useAppSelector } from "store/hooks";
 import { ImdbIcon } from "../../assets";
-import { useAppSelector } from "../../hooks";
+
 import { IMovieCard, IMovieFactsList } from "../../types";
 import { MovieControl } from "../MovieControl";
 import { MovieFactsList } from "../MovieFactsList";

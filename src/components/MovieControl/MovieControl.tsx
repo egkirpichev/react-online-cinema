@@ -1,5 +1,5 @@
 import { BsFillShareFill, BsFillBookmarkFill } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { transformForFavorites } from "../../mappers/mappers";
 import { addToFavorites, removeFromFavorites } from "../../store/slices/userSlice";
 import { IMovieCard } from "../../types";

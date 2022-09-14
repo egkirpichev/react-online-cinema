@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Select from "react-select";
-import { IFilters, MovieTypeOption } from "../../types";
+import { IFilters, MovieType, MovieTypeOption } from "../../types";
 import {
   Body,
   Cancel,
@@ -17,8 +17,7 @@ import {
   StyledRadio,
   Title,
 } from "./styles";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { MovieType } from "../../config";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { setFilters } from "../../store/slices/searchSlice";
 import { ErrorMessage } from "../ErrorMessage";
 

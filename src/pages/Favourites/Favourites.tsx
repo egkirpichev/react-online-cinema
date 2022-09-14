@@ -1,5 +1,5 @@
 import { MovieList } from "../../components/MovieList";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { EmptyPage, Message } from "./styles";
 import { NoFavorites } from "../../assets";
 import { useEffect } from "react";

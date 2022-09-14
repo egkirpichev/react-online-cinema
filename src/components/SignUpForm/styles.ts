@@ -10,7 +10,7 @@ import {
 } from "styled-system";
 import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
-import { Body2, Input, Subtitle3 } from "../../ui/typography";
+import { Body2, Input, Subtitle3 } from "../../ui";
 
 interface IProps {
   $isLightMode: boolean;

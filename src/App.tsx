@@ -2,10 +2,10 @@ import { ThemeProvider } from "styled-components";
 import { AppRouter } from "./router";
 import theme from "./ui/theme";
 import "./services/FireBase/fireBase";
-import { useAppDispatch, useAppSelector } from "./hooks";
 import { authenticate } from "./store/slices/userSlice";
 import { auth } from "./services/FireBase/fireBase";
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 
 export const App = () => {
   const { isLogged } = useAppSelector(({ persistedReducer }) => persistedReducer.user);

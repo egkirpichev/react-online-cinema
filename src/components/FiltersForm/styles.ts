@@ -13,7 +13,7 @@ import {
 import { MovieTypeOption } from "../../types";
 import { Color, H2 } from "../../ui";
 import { Space } from "../../ui/theme";
-import { Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "../../ui/typography";
+import { Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "../../ui";
 
 interface IProps {
   $isLightMode: boolean;

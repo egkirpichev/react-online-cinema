@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { layout, LayoutProps, space, SpaceProps } from "styled-system";
-import { Color, H2 } from "../../ui";
+import { Color, H2, Body2, Input, Subtitle3 } from "../../ui";
 import { Space } from "../../ui/theme";
-import { Body2, Input, Subtitle3 } from "../../ui/typography";
 
 interface IProps {
   $isLightMode: boolean;

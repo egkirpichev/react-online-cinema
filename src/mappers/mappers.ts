@@ -1,5 +1,4 @@
-import { IMovieFull, IMovieListItem } from "../types";
-import { IMovieCard, IMovieFactsList, IMovieShort } from "../types/types";
+import { IMovieCard, IMovieFactsList, IMovieFull, IMovieListItem, IMovieShort } from "../types";
 
 export const getShortMovieDescription = ({
   Poster,

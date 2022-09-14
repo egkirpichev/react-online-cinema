@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from "store/hooks";
 import { IMovieShort } from "../../types/types";
 import { sortMovieList } from "../../utils/utils";
 import { MovieListItem } from "../MovieListItem";

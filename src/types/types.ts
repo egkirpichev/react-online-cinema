@@ -1,4 +1,3 @@
-import { MovieType } from "../config";
 import { ROUTE } from "../router";
 
 export enum Param {
@@ -10,6 +9,12 @@ export enum Param {
   Plot = "plot",
   Search = "s",
   Page = "page",
+}
+
+export enum MovieType {
+  Movie = "movie",
+  Series = "series",
+  Episode = "episode",
 }
 
 export interface IMovieFull {

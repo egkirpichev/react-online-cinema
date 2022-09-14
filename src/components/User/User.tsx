@@ -1,4 +1,5 @@
-import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
+import { useToggle } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { Avatar, ArrowButton, DropDownContainer, Header, Button, UserBadge } from "./styles";
 import { FiUser } from "react-icons/fi";
 import { getShortUserName } from "../../utils/utils";

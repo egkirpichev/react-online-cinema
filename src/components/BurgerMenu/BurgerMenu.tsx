@@ -1,4 +1,4 @@
-import { useAppSelector, useToggle, useWindowSize } from "../../hooks";
+import { useToggle, useWindowSize } from "../../hooks";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { slide as StyledMenu } from "react-burger-menu";
@@ -8,6 +8,7 @@ import { RiHome6Line } from "react-icons/ri";
 import { ROUTE } from "../../router";
 import { IoMdFlame, IoMdSettings } from "react-icons/io";
 import { HiBookmark } from "react-icons/hi";
+import { useAppSelector } from "store/hooks";
 
 export const BurgerMenu = () => {
   const { screenWidth } = useWindowSize();

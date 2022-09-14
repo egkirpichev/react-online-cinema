@@ -1,6 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../store/store";
+import { useAppSelector } from "store/hooks";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
@@ -36,10 +35,6 @@ export const useInput = (initialValue: string = "") => {
     onChange,
   };
 };
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useAuth = () => {
   const { name, email, isLogged } = useAppSelector(({ persistedReducer }) => persistedReducer.user);

@@ -3,7 +3,7 @@ import { Description, MovieTitle, Released, StyledLink, StyledMovieCard } from "
 import { MoviePoster } from "../MoviePoster";
 import { createRoute } from "../../utils";
 import { ROUTE } from "../../router";
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from "store/hooks";
 
 interface IProps {
   movie: IMovieShort;

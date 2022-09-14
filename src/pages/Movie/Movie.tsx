@@ -4,7 +4,7 @@ import { MovieCard } from "../../components/MovieCard";
 import { Recommendations } from "../../components/Recommenations";
 import { SearchError } from "../../components/SearchError";
 import { SearchSpinner } from "../../components/SearchSpinner";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { getMovieById } from "../../store/slices/movieSlice";
 import { IMovieCard, IMovieFactsList } from "../../types";
 

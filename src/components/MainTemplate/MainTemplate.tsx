@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useAppSelector, useWindowSize } from "../../hooks";
+import { useAppSelector } from "store/hooks";
+import { useWindowSize } from "../../hooks";
 import { Space } from "../../ui/theme";
 import { FilterBadges } from "../FilterBadges";
 import { Header } from "../Header";

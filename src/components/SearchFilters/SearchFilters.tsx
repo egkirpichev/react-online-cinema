@@ -1,9 +1,10 @@
-import { useAppSelector, useToggle, useWindowSize } from "../../hooks";
+import { useToggle, useWindowSize } from "../../hooks";
 import { Color } from "../../ui";
 import { Space } from "../../ui/theme";
 import { slide as StyledMenu } from "react-burger-menu";
 import { CrossIcon, FilterIcon, MenuWrap } from "./styles";
 import { FiltersForm } from "../FiltersForm";
+import { useAppSelector } from "store/hooks";
 
 export const SearchFilters = () => {
   const { screenWidth } = useWindowSize();

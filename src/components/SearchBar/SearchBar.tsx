@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector, useDebounce, useInput } from "../../hooks";
+import { useDebounce, useInput } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { setSearchRequest } from "../../store/slices/searchSlice";
 import { SearchFilters } from "../SearchFilters";
 import { StyledInput, StyledSearchBar } from "./styles";

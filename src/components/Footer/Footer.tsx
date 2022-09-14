@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { useAppDispatch, useAppSelector, useToggle } from "../../hooks";
+import { useToggle } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { ROUTE } from "../../router";
 import { loadMoreMovies } from "../../store/slices/moviesSlice";
 import { loadMoreTrends } from "../../store/slices/trendsSlice";

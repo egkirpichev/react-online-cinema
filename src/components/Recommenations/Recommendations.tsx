@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "store/hooks";
 import { getRecommendations } from "../../store/slices/movieSlice";
 import { MovieListItem } from "../MovieListItem";
 import { SearchError } from "../SearchError";

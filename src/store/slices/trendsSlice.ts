@@ -98,6 +98,7 @@ export const trendsSlice = createSlice({
     builder.addCase(getTrends.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.disableLoader = false;
       state.trend = null;
     });
     builder.addCase(getTrends.fulfilled, (state, { payload: { Search, params } }) => {
@@ -109,9 +110,11 @@ export const trendsSlice = createSlice({
     builder.addCase(getTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
+      state.disableLoader = true;
     });
     builder.addCase(loadMoreTrends.pending, (state) => {
       state.error = null;
+      state.disableLoader = false;
     });
     builder.addCase(loadMoreTrends.fulfilled, (state, { payload: { Search, params } }) => {
       if (state.searchResults.length > 0) {
@@ -132,6 +135,7 @@ export const trendsSlice = createSlice({
     });
     builder.addCase(loadMoreTrends.rejected, (state, { payload }) => {
       state.error = payload ? payload : state.error;
+      state.disableLoader = true;
     });
     builder.addCase(searchTrends.pending, (state) => {
       state.isLoading = true;
@@ -141,11 +145,13 @@ export const trendsSlice = createSlice({
     builder.addCase(searchTrends.fulfilled, (state, { payload: { Search, params } }) => {
       state.isLoading = false;
       Search ? (state.searchResults = Search) : (state.error = "Nothing was found");
+      Search ? (state.disableLoader = false) : (state.disableLoader = true);
       state.searchParams = params;
     });
     builder.addCase(searchTrends.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload ? payload : state.error;
+      state.disableLoader = true;
     });
   },
 });

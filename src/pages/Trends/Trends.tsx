@@ -20,6 +20,7 @@ export const Trends = () => {
   } = useAppSelector(({ persistedReducer }) => persistedReducer.trends);
 
   const { searchRequest } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
+  const { y, type, s } = searchRequest;
 
   const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
 
@@ -32,12 +33,12 @@ export const Trends = () => {
   }, [dispatch, isLoading, movieList.length]);
 
   useMemo(() => {
-    if (searchRequest.s) {
-      dispatch(searchTrends(searchRequest));
-    } else if (!searchRequest.s) {
+    if (s || type || y) {
+      dispatch(searchTrends({ y, type, s }));
+    } else if (!s) {
       dispatch(resetSearch());
     }
-  }, [dispatch, searchRequest]);
+  }, [dispatch, s, type, y]);
 
   if (isLoading) {
     return <SearchSpinner />;

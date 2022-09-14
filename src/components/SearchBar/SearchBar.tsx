@@ -6,7 +6,6 @@ import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
   const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
-
   const searchInput = useInput();
   const searchRequestValue = useDebounce(searchInput.value, 1000);
   const dispatch = useAppDispatch();

@@ -11,7 +11,7 @@ export const Home = () => {
     useAppSelector(({ persistedReducer }) => persistedReducer.movies);
 
   const { searchRequest } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
-
+  const { y, type, s } = searchRequest;
   const dispatch = useAppDispatch();
 
   useMemo(() => {
@@ -21,12 +21,12 @@ export const Home = () => {
   }, [dispatch, isLoading, movieList.length]);
 
   useMemo(() => {
-    if (searchRequest.s) {
-      dispatch(searchMovies(searchRequest));
-    } else if (!searchRequest.s) {
+    if (s || type || y) {
+      dispatch(searchMovies({ y, type, s }));
+    } else if (!s) {
       dispatch(resetSearch());
     }
-  }, [dispatch, searchRequest]);
+  }, [dispatch, s, type, y]);
 
   if (isLoading) {
     return <SearchSpinner />;

@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { useAppSelector } from "store/hooks";
 import { ImdbIcon } from "../../assets";
-
 import { IMovieCard, IMovieFactsList } from "../../types";
 import { MovieControl } from "../MovieControl";
 import { MovieFactsList } from "../MovieFactsList";
@@ -25,6 +25,14 @@ interface IProps {
 
 export const MovieCard = ({ movie, movieFactsList }: IProps) => {
   const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
+
+  useEffect(() => {
+    document.documentElement.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
     <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
       <Control>

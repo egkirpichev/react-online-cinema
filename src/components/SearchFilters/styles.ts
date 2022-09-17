@@ -5,7 +5,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Color } from "../../ui";
 
 interface IProps {
-  isLightMode?: boolean;
+  $isLightMode?: boolean;
 }
 
 export const MenuWrap = styled.div<GridProps>`
@@ -15,8 +15,12 @@ export const MenuWrap = styled.div<GridProps>`
 
 export const FilterIcon = styled(BsFilterRight)`
   fill: ${Color.White};
+
+  :hover {
+    fill: ${Color.PrimaryDark};
+  }
 `;
 
 export const CrossIcon = styled(IoCloseSharp)<IProps>`
-  fill: ${({ isLightMode }) => (isLightMode ? Color.Black : Color.White)};
+  fill: ${({ $isLightMode }) => ($isLightMode ? Color.Black : Color.White)};
 `;

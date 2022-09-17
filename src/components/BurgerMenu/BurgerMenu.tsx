@@ -60,7 +60,7 @@ export const BurgerMenu = () => {
       <StyledMenu
         right
         styles={byrgerStyles}
-        customCrossIcon={<CrossIcon isLightMode={isLightMode} />}
+        customCrossIcon={<CrossIcon $isLightMode={isLightMode} />}
         customBurgerIcon={<BurgerIcon />}
         onOpen={setIsOpen}
         onClose={setIsOpen}

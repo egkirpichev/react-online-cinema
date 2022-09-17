@@ -55,7 +55,7 @@ export const SearchFilters = () => {
       <StyledMenu
         right
         styles={styles}
-        customCrossIcon={<CrossIcon isLightMode={isLightMode} />}
+        customCrossIcon={<CrossIcon $isLightMode={isLightMode} />}
         customBurgerIcon={<FilterIcon />}
         onOpen={setIsOpen}
         onClose={setIsOpen}

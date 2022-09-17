@@ -26,7 +26,7 @@ export const FilterBadges = () => {
           S: "1/2",
           XL: "2/3",
         }}
-        isLightMode={isLightMode}
+        $isLightMode={isLightMode}
       >
         {filters.sortBy && (
           <StyledBadge>

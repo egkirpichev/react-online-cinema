@@ -12,6 +12,8 @@ export const Recommendations = () => {
   const { recommendedMovies, areRecommendationsLoading, recommendationsError, recommendation } =
     useAppSelector(({ persistedReducer }) => persistedReducer.movie);
 
+  const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
+
   const dispatch = useAppDispatch();
 
   const [offset, setOffset] = useState<number>(0);
@@ -39,6 +41,7 @@ export const Recommendations = () => {
       <Header>
         <Title>Recommendations</Title>
         <Arrow
+          $isLightMode={isLightMode}
           disabled={offset >= 0}
           type="button"
           onClick={() => {
@@ -50,6 +53,7 @@ export const Recommendations = () => {
           <IoMdArrowRoundBack size={20} />
         </Arrow>
         <Arrow
+          $isLightMode={isLightMode}
           disabled={offset + scrollConstraint <= 0}
           type="button"
           onClick={() => {

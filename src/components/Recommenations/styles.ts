@@ -3,6 +3,10 @@ import { grid, GridProps } from "styled-system";
 import { Color, H3 } from "../../ui";
 import { Space } from "../../ui/theme";
 
+interface IProps {
+  $isLightMode: boolean;
+}
+
 export const Slider = styled.div<GridProps>`
   display: flex;
   gap: ${Space.L};
@@ -19,12 +23,12 @@ export const ItemContainer = styled.div`
   min-width: 272px;
 `;
 
-export const Arrow = styled.button`
+export const Arrow = styled.button<IProps>`
   width: 50px;
   height: 50px;
   background-color: transparent;
   border: none;
-  color: ${Color.White};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.White)};
   cursor: pointer;
 
   :hover {

@@ -83,7 +83,7 @@ export const Header = styled(Body1)<IProps>`
 
 export const ArrowButton = styled.button<IProps>`
   width: 20px;
-  color: ${({ $isLightMode }) => ($isLightMode ? Color.Light : Color.White)};
+  color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.White)};
   background-color: transparent;
   border: none;
   cursor: pointer;

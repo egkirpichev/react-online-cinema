@@ -30,7 +30,7 @@ export const FilterBadges = () => {
       >
         {filters.sortBy && (
           <StyledBadge>
-            `Soring by: {filters.sortBy}`
+            Soring by: {filters.sortBy}
             <Close type="button" onClick={() => dispatch(resetSorting())}>
               <VscClose />
             </Close>

@@ -7,9 +7,13 @@ import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {
   const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
+  const movies = useAppSelector(({ persistedReducer }) => persistedReducer.movies);
+  const trends = useAppSelector(({ persistedReducer }) => persistedReducer.trends);
   const searchInput = useInput();
   const searchRequestValue = useDebounce(searchInput.value, 1000);
   const dispatch = useAppDispatch();
+
+  const isError = !!movies.error || !!trends.error;
 
   useEffect(() => {
     dispatch(setSearchRequest(searchRequestValue));
@@ -24,7 +28,13 @@ export const SearchBar = () => {
         S: "1/2",
       }}
     >
-      <StyledInput $isLightMode={isLightMode} type="text" placeholder="Search" {...searchInput} />
+      <StyledInput
+        $isLightMode={isLightMode}
+        $isError={isError}
+        type="text"
+        placeholder="Search"
+        {...searchInput}
+      />
       <SearchFilters />
     </StyledSearchBar>
   );

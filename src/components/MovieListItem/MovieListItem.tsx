@@ -1,9 +1,9 @@
 import { IMovieShort } from "../../types";
 import { Description, MovieTitle, Released, StyledLink, StyledMovieCard } from "./styles";
 import { MoviePoster } from "../MoviePoster";
-import { createRoute } from "../../utils";
 import { ROUTE } from "../../router";
 import { useAppSelector } from "store/hooks";
+import { generatePath } from "react-router-dom";
 
 interface IProps {
   movie: IMovieShort;
@@ -15,13 +15,13 @@ export const MovieListItem = ({ movie, to }: IProps) => {
 
   return (
     <StyledMovieCard>
-      <StyledLink to={createRoute(ROUTE.MOVIE, { imdbID: movie.imdbID })}>
+      <StyledLink to={generatePath(`/${ROUTE.MOVIE}`, { imdbID: movie.imdbID })}>
         <MoviePoster poster={movie.Poster} id={movie.imdbID}></MoviePoster>
       </StyledLink>
       <Description>
         <MovieTitle
           $isLightMode={isLightMode}
-          to={createRoute(ROUTE.MOVIE, { imdbID: movie.imdbID })}
+          to={generatePath(`/${ROUTE.MOVIE}`, { imdbID: movie.imdbID })}
         >
           {movie.Title}
         </MovieTitle>

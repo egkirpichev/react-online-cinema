@@ -68,8 +68,8 @@ export const Recommendations = () => {
       <Slider as={motion.div} animate={{ x: `${offset}px` }}>
         {recommendedMovies.map((movieListItem) => {
           return (
-            <ItemContainer>
-              <MovieListItem key={movieListItem.imdbID} movie={movieListItem} />
+            <ItemContainer key={movieListItem.imdbID}>
+              <MovieListItem movie={movieListItem} />
             </ItemContainer>
           );
         })}

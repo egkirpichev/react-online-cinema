@@ -1,6 +1,5 @@
 import {
   getRatingBadgeColor,
-  createRoute,
   getFirebaseErrorMessage,
   getShortUserName,
   checkIfInFavorites,
@@ -11,7 +10,6 @@ import {
 
 export {
   getRatingBadgeColor,
-  createRoute,
   getShortUserName,
   getFirebaseErrorMessage,
   checkIfInFavorites,

@@ -1,10 +1,5 @@
 import { OMDbApi } from "../services/OMDbApi";
-import {
-  FirebaseErrorMessage,
-  IFilters,
-  IMovieShort,
-  RouteType,
-} from "../types";
+import { FirebaseErrorMessage, IFilters, IMovieShort } from "../types";
 import { Color } from "../ui";
 
 export const getRatingBadgeColor = (rating: string): Color => {
@@ -13,16 +8,6 @@ export const getRatingBadgeColor = (rating: string): Color => {
   } else if (Number(rating) <= 4) {
     return Color.Orange;
   } else return Color.Green;
-};
-
-export const createRoute = (...args: RouteType) => {
-  const [path, params] = args;
-
-  if (typeof params === "undefined") return path;
-
-  return Object.entries(params).reduce((prev: string, [param, value]) => {
-    return prev.replace(`:${param}`, "" + value);
-  }, path);
 };
 
 export const getShortUserName = (name: string): string => {
@@ -42,22 +27,17 @@ export const getFirebaseErrorMessage = (code: string): FirebaseErrorMessage => {
   }
 };
 
-export const checkIfInFavorites = (
-  favorites: IMovieShort[],
-  id: string
-): boolean => {
+export const checkIfInFavorites = (favorites: IMovieShort[], id: string): boolean => {
   return favorites.reduce(
-    (isInFavorites, favorite) =>
-      favorite.imdbID === id ? !isInFavorites : isInFavorites,
-    false
+    (isInFavorites, favorite) => (favorite.imdbID === id ? !isInFavorites : isInFavorites),
+    false,
   );
 };
 
 export const checkIfInTrends = (trends: IMovieShort[], id: string): boolean => {
   return trends.reduce(
-    (isInFavorites, trending) =>
-      trending.imdbID === id ? !isInFavorites : isInFavorites,
-    false
+    (isInFavorites, trending) => (trending.imdbID === id ? !isInFavorites : isInFavorites),
+    false,
   );
 };
 
@@ -74,32 +54,21 @@ export const getTrendingPageTitle = (trend: string): string => {
   }
 };
 
-export const sortMovieList = (
-  filters: IFilters,
-  movieList: IMovieShort[]
-): IMovieShort[] => {
+export const sortMovieList = (filters: IFilters, movieList: IMovieShort[]): IMovieShort[] => {
   let sortedMovieList = [...movieList];
 
   if (filters.sortBy === "title") {
-    sortedMovieList.sort((item, nextItem) =>
-      item.Title.localeCompare(nextItem.Title)
-    );
+    sortedMovieList.sort((item, nextItem) => item.Title.localeCompare(nextItem.Title));
   } else if (filters.sortBy === "year") {
-    sortedMovieList.sort(
-      (item, nextItem) => +nextItem.Year.slice(0, 4) - +item.Year.slice(0, 4)
-    );
+    sortedMovieList.sort((item, nextItem) => +nextItem.Year.slice(0, 4) - +item.Year.slice(0, 4));
   }
 
   if (filters.type) {
-    sortedMovieList = [...sortedMovieList].filter(
-      (item) => item.Type === filters.type
-    );
+    sortedMovieList = [...sortedMovieList].filter((item) => item.Type === filters.type);
   }
 
   if (filters.year) {
-    sortedMovieList = [...sortedMovieList].filter(
-      (item) => item.Year === filters.year
-    );
+    sortedMovieList = [...sortedMovieList].filter((item) => item.Year === filters.year);
   }
   return sortedMovieList;
 };

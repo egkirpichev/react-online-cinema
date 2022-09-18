@@ -35,7 +35,7 @@ const initialState: IUserState = {
   searchResults: [],
   error: null,
   isLogged: false,
-  isLoading: true,
+  isLoading: false,
   isPasswordReset: false,
   isLightMode: false,
 };
@@ -161,16 +161,6 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    authenticate: (state, { payload }: PayloadAction<User | null>) => {
-      if (payload) {
-        state.name = payload.displayName;
-        state.email = payload.email;
-        state.isLogged = true;
-        state.isLoading = false;
-      } else {
-        state.isLoading = false;
-      }
-    },
     resetPasswordState: (state) => {
       state.isPasswordReset = false;
       state.error = null;
@@ -184,8 +174,8 @@ export const userSlice = createSlice({
         state.email = auth.currentUser.email;
       }
     },
-    toggleColorMode: (state) => {
-      state.isLightMode = !state.isLightMode;
+    toggleColorMode: (state, { payload }: PayloadAction<boolean>) => {
+      state.isLightMode = payload;
     },
     addToFavorites: (state, { payload }: PayloadAction<IMovieShort>) => {
       state.favorites.push(payload);
@@ -311,7 +301,6 @@ export const {
   resetPasswordState,
   resetError,
   updateUserCredentials,
-  authenticate,
   toggleColorMode,
   addToFavorites,
   removeFromFavorites,

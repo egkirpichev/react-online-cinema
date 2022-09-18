@@ -52,7 +52,7 @@ export const SettingsForm = () => {
       .then(() => dispatch(updateUserEmail(data)).unwrap())
       .then(() => dispatch(updateUserPassword(data)).unwrap())
       .then(() => dispatch(updateUserCredentials()))
-      .then(() => dispatch(toggleColorMode()))
+      .then(() => dispatch(toggleColorMode(data.isLightMode)))
       .finally(() => {
         resetField("password");
         resetField("newPassword");

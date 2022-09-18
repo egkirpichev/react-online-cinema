@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/react-online-cinema/static/js/main.a480b6ff.js",
+    "main.js": "/react-online-cinema/static/js/main.3202ecb4.js",
     "static/media/backround.png": "/react-online-cinema/static/media/backround.59b7e78558daf9fb568b.png",
     "static/media/no-favorites.svg": "/react-online-cinema/static/media/no-favorites.bca03b74866305d2a29d3069ce91b4d0.svg",
     "static/media/logo-light.svg": "/react-online-cinema/static/media/logo-light.184130e54b7fdd4a0dfa4a34e25c5fb3.svg",
@@ -13,9 +13,9 @@
     "static/media/close-icon.svg": "/react-online-cinema/static/media/close-icon.303b7cbeb825ddab50ae83a7bdba2588.svg",
     "static/media/favorites-icon.svg": "/react-online-cinema/static/media/favorites-icon.693e8898ef23de166fb502928ce8f283.svg",
     "static/media/arrow.svg": "/react-online-cinema/static/media/arrow.025a97f2ed544a35995e7c03d1abd9b9.svg",
-    "main.a480b6ff.js.map": "/react-online-cinema/static/js/main.a480b6ff.js.map"
+    "main.3202ecb4.js.map": "/react-online-cinema/static/js/main.3202ecb4.js.map"
   },
   "entrypoints": [
-    "static/js/main.a480b6ff.js"
+    "static/js/main.3202ecb4.js"
   ]
 }

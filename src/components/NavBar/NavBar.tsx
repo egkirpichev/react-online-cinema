@@ -20,7 +20,7 @@ export const NavBar = ({ offset }: IProps) => {
         <CustomLink to={ROUTE.TRENDS} text="Trends">
           <IoMdFlame />
         </CustomLink>
-        <CustomLink to={ROUTE.FAVOURITES} text="Favourites">
+        <CustomLink to={ROUTE.FAVOURITES} text="Favorites">
           <HiBookmark />
         </CustomLink>
         <CustomLink to={ROUTE.SETTINGS} text="Settings">

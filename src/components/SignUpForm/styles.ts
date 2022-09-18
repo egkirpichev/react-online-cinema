@@ -5,6 +5,8 @@ import {
   FlexDirectionProps,
   layout,
   LayoutProps,
+  position,
+  PositionProps,
   space,
   SpaceProps,
 } from "styled-system";
@@ -16,8 +18,9 @@ interface IProps {
   $isLightMode: boolean;
 }
 
-export const StyledForm = styled.form<LayoutProps & SpaceProps & IProps>`
+export const StyledForm = styled.form<PositionProps & LayoutProps & SpaceProps & IProps>`
   position: absolute;
+  ${position};
   display: flex;
   flex-direction: column;
   gap: ${Space.L};

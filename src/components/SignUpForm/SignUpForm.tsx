@@ -59,6 +59,7 @@ export const SignUpForm = () => {
 
   return (
     <StyledForm
+      position={{ S: "static" }}
       $isLightMode={isLightMode}
       width={{ S: "574px" }}
       padding={{ S: Space.L }}

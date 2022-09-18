@@ -1,7 +1,6 @@
 import { Link, PathMatch } from "react-router-dom";
 import styled from "styled-components";
-import { Color } from "../../ui";
-import { Space } from "../../ui/theme";
+import { Color, Space } from "ui";
 
 interface IProps {
   isactive: PathMatch<string> | null;

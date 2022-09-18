@@ -1,6 +1,6 @@
 import { Navigation, StyledNavBar } from "./styles";
-import { ROUTE } from "../../router";
-import { CustomLink } from "../CustomLink";
+import { ROUTE } from "router";
+import { CustomLink } from "components";
 import { RiHome6Line } from "react-icons/ri";
 import { IoMdFlame } from "react-icons/io";
 import { HiBookmark } from "react-icons/hi";

@@ -12,9 +12,9 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
 } from "firebase/auth";
-import { auth } from "../../services/FireBase/fireBase";
-import { IMovieShort, IRequestParams, ISettings, IUserSignIn, IUserSignUp } from "../../types";
-import { getFirebaseErrorMessage } from "../../utils";
+import { auth } from "services";
+import { IMovieShort, IRequestParams, ISettings, IUserSignIn, IUserSignUp } from "types";
+import { getFirebaseErrorMessage } from "utils";
 
 export interface IUserState {
   name: string | null;

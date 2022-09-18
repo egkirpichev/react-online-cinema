@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { layout, LayoutProps } from "styled-system";
-import { Body2, Color } from "../../ui";
-import { Space } from "../../ui/theme";
+import { Body2, Color, Space } from "ui";
 
 interface IProps {
   $isLightMode: boolean;

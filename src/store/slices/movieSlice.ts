@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { getMovieCardInfo, getMovieFacts } from "../../mappers";
-import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieCard, IMovieFactsList, IMovieFull, IMovieShort } from "../../types";
-import { getMovieRecommendation } from "../../utils";
+import { getMovieCardInfo, getMovieFacts } from "mappers";
+import { OMDbApi } from "services";
+import { IMovieCard, IMovieFactsList, IMovieFull, IMovieShort } from "types";
+import { getMovieRecommendation } from "utils";
 
 interface IMovie {
   movieCard: IMovieCard | null;

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieShort, IRequestParams } from "../../types";
+import { OMDbApi } from "services";
+import { IMovieShort, IRequestParams } from "types";
 
 interface IMoviesState {
   movieList: IMovieShort[];
@@ -82,7 +82,7 @@ export const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    resetSearch: (state) => {
+    resetMoviesSearch: (state) => {
       state.error = null;
       state.searchResults = [];
       state.searchParams = {
@@ -151,5 +151,5 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { resetSearch } = moviesSlice.actions;
+export const { resetMoviesSearch } = moviesSlice.actions;
 export default moviesSlice.reducer;

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { useDebounce, useInput } from "../../hooks";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { setSearchRequest } from "../../store/slices/searchSlice";
-import { SearchFilters } from "../SearchFilters";
+import { useDebounce, useInput } from "hooks";
+import { useAppDispatch, useAppSelector, setSearchRequest } from "store";
+import { SearchFilters } from "components";
 import { StyledInput, StyledSearchBar } from "./styles";
 
 export const SearchBar = () => {

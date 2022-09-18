@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { layout, LayoutProps } from "styled-system";
-import { H3 } from "../../ui";
-import { Space } from "../../ui/theme";
+import { H3, Space } from "ui";
 
 export const EmptyPage = styled.div<LayoutProps>`
   display: flex;

@@ -1,5 +1,5 @@
-import { Color } from "../../ui";
-import { CustomSpinner } from "../CustomSpinner";
+import { Color } from "ui";
+import { CustomSpinner } from "components";
 import { SpinnerContiner } from "./styles";
 
 export const SearchSpinner = () => {

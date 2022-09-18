@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { OMDbApi } from "../../services/OMDbApi";
-import { IMovieShort, IRequestParams } from "../../types";
-import { getTrendingPageTitle } from "../../utils";
+import { OMDbApi } from "services";
+import { IMovieShort, IRequestParams } from "types";
+import { getTrendingPageTitle } from "utils";
 
 interface ITrendsState {
   trend: string | null;
@@ -84,7 +84,7 @@ export const trendsSlice = createSlice({
   name: "trends",
   initialState,
   reducers: {
-    resetSearch: (state) => {
+    resetTrendsSearch: (state) => {
       state.error = null;
       state.searchResults = [];
       state.searchParams = {
@@ -155,5 +155,5 @@ export const trendsSlice = createSlice({
   },
 });
 
-export const { resetSearch } = trendsSlice.actions;
+export const { resetTrendsSearch } = trendsSlice.actions;
 export default trendsSlice.reducer;

@@ -1,10 +1,9 @@
 import { BsFillShareFill, BsFillBookmarkFill } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { transformForFavorites } from "../../mappers/mappers";
-import { addToFavorites, removeFromFavorites } from "../../store/slices/userSlice";
-import { IMovieCard } from "../../types";
-import { checkIfInFavorites } from "../../utils/utils";
+import { useAppDispatch, useAppSelector, addToFavorites, removeFromFavorites } from "store";
+import { IMovieCard } from "types";
 import { Container, ControlButton } from "./styles";
+import { checkIfInFavorites } from "utils";
+import { transformForFavorites } from "mappers";
 
 interface IProps {
   movie: IMovieCard;

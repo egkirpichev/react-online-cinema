@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { useAppSelector } from "store/hooks";
-import { useWindowSize } from "../../hooks";
-import { Space } from "../../ui/theme";
-import { FilterBadges } from "../FilterBadges";
-import { Header } from "../Header";
-import { NavBar } from "../NavBar";
+import { useAppSelector } from "store";
+import { useWindowSize } from "hooks";
+import { Space } from "ui";
+import { FilterBadges, Header, NavBar } from "components";
 import { Background, Main, Wrapper } from "./styles";
 
 export const MainTemplate = () => {

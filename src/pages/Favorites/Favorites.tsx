@@ -1,11 +1,10 @@
-import { MovieList } from "../../components/MovieList";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { MovieList } from "components";
+import { searchInFavourites, useAppDispatch, useAppSelector } from "store";
 import { EmptyPage, Message } from "./styles";
-import { NoFavorites } from "../../assets";
+import { NoFavorites } from "assets";
 import { useEffect } from "react";
-import { searchInFavourites } from "../../store/slices/userSlice";
 
-export const Favourites = () => {
+export const Favorites = () => {
   const { favorites, searchResults } = useAppSelector(
     ({ persistedReducer }) => persistedReducer.user,
   );

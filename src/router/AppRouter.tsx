@@ -1,18 +1,16 @@
-import { Route, Routes } from "react-router-dom";
-import { AuthTemplate } from "../components/AuthTemplate/AuthTemplate";
-import { MainTemplate } from "../components/MainTemplate";
-import { RequareAuth } from "../components/RequireAuth";
+import { MainTemplate, AuthTemplate, RequireAuth } from "components";
 import {
-  Favourites,
   Home,
-  NotFound,
-  ResetPassword,
-  Settings,
-  SignIn,
-  SignUp,
   Trends,
-} from "../pages";
-import { Movie } from "../pages/Movie";
+  NotFound,
+  Favorites,
+  Settings,
+  SignUp,
+  SignIn,
+  ResetPassword,
+  Movie,
+} from "pages";
+import { Routes, Route } from "react-router-dom";
 import { ROUTE } from "./routes";
 
 export const AppRouter = () => {
@@ -23,8 +21,8 @@ export const AppRouter = () => {
         <Route path={ROUTE.MOVIE} element={<Movie />} />
         <Route path={ROUTE.TRENDS} element={<Trends />} />
         <Route path="*" element={<NotFound />} />
-        <Route element={<RequareAuth />}>
-          <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
+        <Route element={<RequireAuth />}>
+          <Route path={ROUTE.FAVOURITES} element={<Favorites />} />
           <Route path={ROUTE.FAVOURITE_MOVIE} element={<Movie />} />
           <Route path={ROUTE.TRENDING_MOVIE} element={<Movie />} />
           <Route path={ROUTE.SETTINGS} element={<Settings />} />

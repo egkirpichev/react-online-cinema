@@ -1,4 +1,4 @@
-import { Color } from "../../ui";
+import { Color } from "ui";
 import { Spinner } from "./styles";
 
 interface IProps {

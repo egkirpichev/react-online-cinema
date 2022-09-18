@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { getRecommendations } from "../../store/slices/movieSlice";
-import { MovieListItem } from "../MovieListItem";
-import { SearchError } from "../SearchError";
-import { SearchSpinner } from "../SearchSpinner";
+import { getRecommendations, useAppDispatch, useAppSelector } from "store";
+import { MovieListItem, SearchError, SearchSpinner } from "components";
 import { Arrow, Header, ItemContainer, Slider, Title, Wrapper } from "./styles";
 import { motion } from "framer-motion";
 import { IoMdArrowRoundBack, IoMdArrowRoundForward } from "react-icons/io";

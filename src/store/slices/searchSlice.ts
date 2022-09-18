@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFilters, IRequestParams } from "../../types";
+import { IFilters, IRequestParams } from "types";
 
 interface ISearchState {
   searchRequest: IRequestParams;

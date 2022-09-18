@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Select from "react-select";
-import { IFilters, MovieType, MovieTypeOption } from "../../types";
+import { IFilters, MovieType, MovieTypeOption } from "types";
 import {
   Body,
   Cancel,
@@ -17,9 +17,8 @@ import {
   StyledRadio,
   Title,
 } from "./styles";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { setFilters } from "../../store/slices/searchSlice";
-import { ErrorMessage } from "../ErrorMessage";
+import { useAppDispatch, useAppSelector, setFilters } from "store";
+import { ErrorMessage } from "components";
 
 interface IProps {
   setIsOpen: () => void;

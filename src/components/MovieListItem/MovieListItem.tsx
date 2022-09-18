@@ -1,8 +1,8 @@
-import { IMovieShort } from "../../types";
+import { IMovieShort } from "types";
 import { Description, MovieTitle, Released, StyledLink, StyledMovieCard } from "./styles";
-import { MoviePoster } from "../MoviePoster";
-import { ROUTE } from "../../router";
-import { useAppSelector } from "store/hooks";
+import { MoviePoster } from "components";
+import { ROUTE } from "router";
+import { useAppSelector } from "store";
 import { generatePath } from "react-router-dom";
 
 interface IProps {

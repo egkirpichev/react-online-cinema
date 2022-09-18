@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { flexbox, FlexboxProps, space, SpaceProps } from "styled-system";
-import { background } from "../../assets";
-import { Body2 } from "../../ui";
-import { Space } from "../../ui/theme";
+import { background } from "assets";
+import { Body2, Space } from "ui";
 
 export const Container = styled.div<SpaceProps>`
   display: flex;

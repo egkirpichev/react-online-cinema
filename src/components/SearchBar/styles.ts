@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import styled from "styled-components";
 import { grid, GridProps } from "styled-system";
-import { Color, Input } from "../../ui";
+import { Color, Input } from "ui";
 
 interface IProps {
   $isLightMode: boolean;

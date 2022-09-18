@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Color, Subtitle3 } from "../../ui";
-import { getRatingBadgeColor } from "../../utils";
+import { Color, Subtitle3 } from "ui";
+import { getRatingBadgeColor } from "utils";
 
 interface IProps {
   rating: string;

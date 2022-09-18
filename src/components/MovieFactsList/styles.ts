@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Body2, Color, Subtitle3 } from "../../ui";
-import { Space } from "../../ui/theme";
+import { Body2, Color, Subtitle3, Space } from "ui";
 
 interface IProps {
   $isLightMode: boolean;

@@ -10,10 +10,8 @@ import {
   space,
   SpaceProps,
 } from "styled-system";
-import { MovieTypeOption } from "../../types";
-import { Color, H2 } from "../../ui";
-import { Space } from "../../ui/theme";
-import { Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "../../ui";
+import { MovieTypeOption } from "types";
+import { Color, H2, Space, Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "ui";
 
 interface IProps {
   $isLightMode: boolean;

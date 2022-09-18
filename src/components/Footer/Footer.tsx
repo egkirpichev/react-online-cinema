@@ -1,12 +1,10 @@
 import { useLocation } from "react-router-dom";
-import { useToggle } from "../../hooks";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { ROUTE } from "../../router";
-import { loadMoreMovies } from "../../store/slices/moviesSlice";
-import { loadMoreTrends } from "../../store/slices/trendsSlice";
-import { IRequestParams } from "../../types";
-import { Color } from "../../ui";
-import { CustomSpinner } from "../CustomSpinner";
+import { useToggle } from "hooks";
+import { useAppDispatch, useAppSelector, loadMoreTrends, loadMoreMovies } from "store";
+import { ROUTE } from "router";
+import { IRequestParams } from "types";
+import { Color } from "ui";
+import { CustomSpinner } from "components";
 import { LoadMore, StyledFooter, Text } from "./styles";
 
 interface IProps {

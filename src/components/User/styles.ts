@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body1, Color } from "../../ui";
+import { Body1, Color } from "ui";
 
 interface IProps {
   isOpen?: boolean;

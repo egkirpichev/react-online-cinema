@@ -1,12 +1,11 @@
-import { useToggle } from "../../hooks";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { useToggle } from "hooks";
+import { useAppDispatch, useAppSelector, signUserOut } from "store";
 import { Avatar, ArrowButton, DropDownContainer, Header, Button, UserBadge } from "./styles";
 import { FiUser } from "react-icons/fi";
-import { getShortUserName } from "../../utils/utils";
-import { ROUTE } from "../../router";
+import { ROUTE } from "router";
 import { useNavigate } from "react-router-dom";
-import { signUserOut } from "../../store/slices/userSlice";
 import { IoIosArrowDown } from "react-icons/io";
+import { getShortUserName } from "utils";
 
 export const User = () => {
   const { isLogged, name, isLightMode } = useAppSelector(

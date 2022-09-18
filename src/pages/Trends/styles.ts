@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { textAlign, TextAlignProps } from "styled-system";
-import { Color, H1 } from "../../ui";
-import { Space } from "../../ui/theme";
+import { Color, H1 } from "ui";
+import { Space } from "ui";
 
 interface IProps {
   $isLightMode?: boolean;

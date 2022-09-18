@@ -1,9 +1,8 @@
-import { checkIfInFavorites } from "../../utils";
-import { FavoriteBadge } from "../FavoriteBadge";
-import { TrendingBadge } from "../TrendingBadge";
+import { checkIfInFavorites } from "utils";
+import { FavoriteBadge, TrendingBadge } from "components";
 import { Badges, Poster, StyledMoviePoster } from "./styles";
-import { noPoster } from "../../assets";
-import { useAppSelector } from "store/hooks";
+import { noPoster } from "assets";
+import { useAppSelector } from "store";
 
 interface IProps {
   poster: string;

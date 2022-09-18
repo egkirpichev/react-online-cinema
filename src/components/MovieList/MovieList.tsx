@@ -1,9 +1,8 @@
-import { useAppSelector } from "store/hooks";
-import { IMovieShort } from "../../types/types";
-import { sortMovieList } from "../../utils/utils";
-import { MovieListItem } from "../MovieListItem";
-import { SearchError } from "../SearchError";
+import { useAppSelector } from "store";
+import { MovieListItem, SearchError } from "components";
 import { StyledMovieList } from "./styles";
+import { IMovieShort } from "types";
+import { sortMovieList } from "utils";
 
 interface IProps {
   movieList: IMovieShort[];

@@ -1,12 +1,8 @@
+import { SearchSpinner, SearchError, MovieCard, Recommendations } from "components";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { MovieCard } from "../../components/MovieCard";
-import { Recommendations } from "../../components/Recommenations";
-import { SearchError } from "../../components/SearchError";
-import { SearchSpinner } from "../../components/SearchSpinner";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { getMovieById } from "../../store/slices/movieSlice";
-import { IMovieCard, IMovieFactsList } from "../../types";
+import { useAppSelector, useAppDispatch, getMovieById } from "store";
+import { IMovieCard, IMovieFactsList } from "types";
 
 export const Movie = () => {
   const { isLoading, error, movieCard, movieFacts } = useAppSelector(

@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { useAppSelector } from "store/hooks";
+import { useAppSelector } from "store";
 
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({

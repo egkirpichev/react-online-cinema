@@ -1,8 +1,13 @@
 import { Close, Container, StyledBadge } from "./styles";
 import { VscClose } from "react-icons/vsc";
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import {
+  resetSorting,
+  resetTypeFilter,
+  resetYearFilter,
+  useAppDispatch,
+  useAppSelector,
+} from "store";
 import { useEffect, useRef, useState } from "react";
-import { resetSorting, resetTypeFilter, resetYearFilter } from "../../store/slices/searchSlice";
 export const FilterBadges = () => {
   const { filters } = useAppSelector(({ persistedReducer }) => persistedReducer.search);
 

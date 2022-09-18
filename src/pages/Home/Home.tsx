@@ -1,10 +1,12 @@
+import { Footer, MovieList, SearchError, SearchSpinner } from "components";
 import { useMemo } from "react";
-import { Footer } from "../../components/Footer";
-import { MovieList } from "../../components/MovieList";
-import { SearchError } from "../../components/SearchError";
-import { SearchSpinner } from "../../components/SearchSpinner";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { getRandomMovies, resetSearch, searchMovies } from "../../store/slices/moviesSlice";
+import {
+  useAppDispatch,
+  useAppSelector,
+  getRandomMovies,
+  resetMoviesSearch,
+  searchMovies,
+} from "store";
 
 export const Home = () => {
   const { movieList, requestParams, searchResults, searchParams, isLoading, error, disableLoader } =
@@ -24,7 +26,7 @@ export const Home = () => {
     if (s || type || y) {
       dispatch(searchMovies({ y, type, s }));
     } else if (!s) {
-      dispatch(resetSearch());
+      dispatch(resetMoviesSearch());
     }
   }, [dispatch, s, type, y]);
 

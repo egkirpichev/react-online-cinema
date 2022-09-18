@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovieFull, IMovieShort, IRequestParams, Param } from "../../types/types";
+import { IMovieFull, IMovieShort, IRequestParams, Param } from "types/types";
 
 class OMDbAPI {
   private readonly BASE_URL = process.env.REACT_APP_BASE_URL_OMDbAPI;

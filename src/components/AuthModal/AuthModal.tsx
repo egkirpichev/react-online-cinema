@@ -1,5 +1,4 @@
-import { ReactPortal } from "../ReactPortal";
-import { PortalTarget } from "../ReactPortal/ReactPortal";
+import { PortalTarget, ReactPortal } from "components";
 import { Message, StyledModal, Window } from "./styles";
 
 interface IProps {

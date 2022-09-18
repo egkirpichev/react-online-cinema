@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { Container, Copyright, Footer, Header } from "./styles";
-import { Space } from "../../ui/theme";
-import { CustomLink } from "../CustomLink";
-import { ROUTE } from "../../router";
-import { Logo } from "../../assets";
+import { Space } from "ui";
+import { CustomLink } from "components";
+import { ROUTE } from "router";
+import { Logo } from "assets";
 
 export const AuthTemplate = () => {
   return (

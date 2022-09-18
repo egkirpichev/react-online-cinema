@@ -1,3 +1,3 @@
-import ReactPortal from "./ReactPortal";
+import ReactPortal, { PortalTarget } from "./ReactPortal";
 
-export { ReactPortal };
+export { ReactPortal, PortalTarget };

@@ -1,18 +1,18 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "store/hooks";
 import {
+  useAppDispatch,
+  useAppSelector,
   reauthentificate,
   toggleColorMode,
   updateUserCredentials,
   updateUserEmail,
   updateUserName,
   updateUserPassword,
-} from "../../store/slices/userSlice";
-import { ISettings } from "../../types";
-import { Color } from "../../ui";
-import { CustomSpinner } from "../CustomSpinner";
-import { ErrorMessage } from "../ErrorMessage";
+} from "store";
+import { ISettings } from "types";
+import { Color } from "ui";
+import { CustomSpinner, ErrorMessage } from "components";
 import Switch from "react-switch";
 import {
   Body,

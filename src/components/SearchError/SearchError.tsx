@@ -1,4 +1,4 @@
-import { ErrorMessage } from "../ErrorMessage";
+import { ErrorMessage } from "components";
 import { ErrorContiner } from "./styles";
 
 interface IProps {

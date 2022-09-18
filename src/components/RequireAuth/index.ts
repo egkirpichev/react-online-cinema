@@ -1,3 +1,3 @@
-import { RequareAuth } from "./RequireAuth";
+import { RequireAuth } from "./RequireAuth";
 
-export { RequareAuth };
+export { RequireAuth };

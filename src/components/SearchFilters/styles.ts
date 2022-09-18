@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { grid, GridProps } from "styled-system";
 import { BsFilterRight } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
-import { Color } from "../../ui";
+import { Color } from "ui";
 
 interface IProps {
   $isLightMode?: boolean;

@@ -9,8 +9,7 @@ import {
   space,
   SpaceProps,
 } from "styled-system";
-import { Color, H2, Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3 } from "../../ui";
-import { Space } from "../../ui/theme";
+import { Color, H2, Body2, ButtonPrimary, ButtonSecondary, Input, Subtitle3, Space } from "ui";
 
 interface IProps {
   $isLightMode: boolean;

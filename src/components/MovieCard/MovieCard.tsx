@@ -1,12 +1,8 @@
 import { useEffect } from "react";
-import { useAppSelector } from "store/hooks";
-import { ImdbIcon } from "../../assets";
-import { IMovieCard, IMovieFactsList } from "../../types";
-import { MovieControl } from "../MovieControl";
-import { MovieFactsList } from "../MovieFactsList";
-import { MovieGenre } from "../MovieGenre";
-import { MoviePoster } from "../MoviePoster";
-import { RatingBadge } from "../RatingBadge";
+import { useAppSelector } from "store";
+import { ImdbIcon } from "assets";
+import { IMovieCard, IMovieFactsList } from "types";
+import { MovieControl, MovieFactsList, MovieGenre, MoviePoster, RatingBadge } from "components";
 import {
   Plot,
   Control,

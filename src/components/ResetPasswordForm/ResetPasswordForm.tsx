@@ -1,16 +1,18 @@
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { ROUTE } from "../../router";
-import { resetError, resetPassword, resetPasswordState } from "../../store/slices/userSlice";
-import { IUserSignIn } from "../../types/types";
-import { ButtonPrimary, Color } from "../../ui";
-import { Space } from "../../ui/theme";
-import { AuthModal } from "../AuthModal";
-import { CustomSpinner } from "../CustomSpinner";
-import { ErrorMessage } from "../ErrorMessage";
+import {
+  useAppDispatch,
+  useAppSelector,
+  resetError,
+  resetPassword,
+  resetPasswordState,
+} from "store";
+import { ROUTE } from "router";
+import { ButtonPrimary, Color, Space } from "ui";
+import { AuthModal, CustomSpinner, ErrorMessage } from "components";
 import { Body, FieldTitle, InputField, StyledInput, StyledForm, Title, Error } from "./styles";
+import { IUserSignIn } from "types";
 
 export const ResetPasswordForm = () => {
   const {

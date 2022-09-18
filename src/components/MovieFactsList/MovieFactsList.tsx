@@ -1,6 +1,6 @@
-import { IMovieFactsList } from "../../types/types";
 import { Fact, MovieFacts, Value } from "./styles";
 import { v4 as uuidv4 } from "uuid";
+import { IMovieFactsList } from "types";
 
 interface IProps {
   movieFactsList: IMovieFactsList;

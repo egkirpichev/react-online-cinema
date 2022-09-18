@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useMatch } from "react-router-dom";
-import { ROUTE } from "../../router";
+import { ROUTE } from "router";
 import { StyledLink } from "./styles";
 
 interface IProps {

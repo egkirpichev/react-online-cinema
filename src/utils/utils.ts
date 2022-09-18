@@ -1,6 +1,6 @@
-import { OMDbApi } from "../services/OMDbApi";
-import { FirebaseErrorMessage, IFilters, IMovieShort } from "../types";
-import { Color } from "../ui";
+import { OMDbApi } from "services/OMDbApi";
+import { FirebaseErrorMessage, IFilters, IMovieShort } from "types";
+import { Color } from "ui";
 
 export const getRatingBadgeColor = (rating: string): Color => {
   if (Number(rating) <= 7) {

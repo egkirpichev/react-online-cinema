@@ -1,15 +1,11 @@
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { ROUTE } from "../../router";
-import { resetError, signUp, updateUserName } from "../../store/slices/userSlice";
-import { IUserSignUp } from "../../types";
-import { Color, ButtonPrimary } from "../../ui";
-import { Space } from "../../ui/theme";
-import { AuthModal } from "../AuthModal";
-import { CustomSpinner } from "../CustomSpinner";
-import { ErrorMessage } from "../ErrorMessage";
+import { useAppDispatch, useAppSelector, resetError, signUp, updateUserName } from "store";
+import { ROUTE } from "router";
+import { IUserSignUp } from "types";
+import { Color, ButtonPrimary, Space } from "ui";
+import { AuthModal, CustomSpinner, ErrorMessage } from "components";
 import {
   Body,
   FieldTitle,

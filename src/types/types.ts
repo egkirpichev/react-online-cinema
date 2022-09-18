@@ -1,4 +1,4 @@
-import { ROUTE } from "../router";
+import { ROUTE } from "router";
 
 export enum Param {
   ApiKey = "apikey",

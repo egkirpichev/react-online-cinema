@@ -1,10 +1,6 @@
+import { SearchSpinner, SearchError, MovieList, Footer } from "components";
 import { useMemo } from "react";
-import { Footer } from "../../components/Footer";
-import { MovieList } from "../../components/MovieList";
-import { SearchError } from "../../components/SearchError";
-import { SearchSpinner } from "../../components/SearchSpinner";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import { getTrends, resetSearch, searchTrends } from "../../store/slices/trendsSlice";
+import { useAppSelector, useAppDispatch, getTrends, searchTrends, resetTrendsSearch } from "store";
 import { TrendingMovieList, TrendingPageTitle } from "./styles";
 
 export const Trends = () => {
@@ -36,7 +32,7 @@ export const Trends = () => {
     if (s || type || y) {
       dispatch(searchTrends({ y, type, s }));
     } else if (!s) {
-      dispatch(resetSearch());
+      dispatch(resetTrendsSearch());
     }
   }, [dispatch, s, type, y]);
 

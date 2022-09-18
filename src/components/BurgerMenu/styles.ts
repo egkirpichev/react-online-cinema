@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { grid, GridProps } from "styled-system";
-import { Space } from "../../ui/theme";
+import { Space, Color } from "ui";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
-import { Color } from "../../ui";
 
 interface IProps {
   $isLightMode?: boolean;

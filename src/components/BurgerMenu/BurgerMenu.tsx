@@ -1,14 +1,13 @@
-import { useToggle, useWindowSize } from "../../hooks";
-import { Color } from "../../ui";
-import { Space } from "../../ui/theme";
+import { useToggle, useWindowSize } from "hooks";
+import { Color, Space } from "ui";
 import { slide as StyledMenu } from "react-burger-menu";
 import { BurgerIcon, CrossIcon, MenuWrap, Navigation } from "./styles";
-import { CustomLink } from "../CustomLink";
+import { CustomLink } from "components";
 import { RiHome6Line } from "react-icons/ri";
-import { ROUTE } from "../../router";
+import { ROUTE } from "router";
 import { IoMdFlame, IoMdSettings } from "react-icons/io";
 import { HiBookmark } from "react-icons/hi";
-import { useAppSelector } from "store/hooks";
+import { useAppSelector } from "store";
 
 export const BurgerMenu = () => {
   const { screenWidth } = useWindowSize();

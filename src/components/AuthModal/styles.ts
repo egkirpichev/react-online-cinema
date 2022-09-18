@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Color, Subtitle2 } from "../../ui";
-import { Space } from "../../ui/theme";
+import { Color, Space, Subtitle2 } from "ui";
 
 export const StyledModal = styled.div`
   position: fixed;

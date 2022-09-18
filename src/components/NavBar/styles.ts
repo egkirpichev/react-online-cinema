@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Space } from "../../ui/theme";
+import { Space } from "ui";
 
 interface IProps {
   offset: number;

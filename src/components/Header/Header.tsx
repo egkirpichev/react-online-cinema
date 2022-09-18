@@ -1,12 +1,9 @@
 import { StyledHeader, StyledLightLogo, StyledLogo } from "./styles";
-import { SearchBar } from "../SearchBar";
-import { Space } from "../../ui/theme";
-import { useWindowSize } from "../../hooks";
-import { BurgerMenu } from "../BurgerMenu/BurgerMenu";
-import { User } from "../User";
-import { CustomLink } from "../CustomLink";
-import { ROUTE } from "../../router";
-import { useAppSelector } from "store/hooks";
+import { SearchBar, BurgerMenu, User, CustomLink } from "components";
+import { Space } from "ui";
+import { useWindowSize } from "hooks";
+import { ROUTE } from "router";
+import { useAppSelector } from "store";
 
 export const Header = () => {
   const { screenWidth } = useWindowSize();

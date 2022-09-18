@@ -41,16 +41,14 @@ const initialState: IUserState = {
 };
 
 export const signUp = createAsyncThunk<
-  { email: string; password: string; name: string; refreshToken: string },
+  { email: string; password: string; name: string },
   IUserSignUp,
   { rejectValue: string }
 >("user/signUp", async ({ email, password, name }, { rejectWithValue }) => {
   try {
-    return await createUserWithEmailAndPassword(auth, email, password).then(
-      ({ user: { refreshToken } }) => {
-        return { email, password, name, refreshToken };
-      },
-    );
+    return await createUserWithEmailAndPassword(auth, email, password).then(() => {
+      return { email, password, name };
+    });
   } catch (error) {
     const firebaseError = error as FirebaseError;
     return rejectWithValue(firebaseError.code);

@@ -40,7 +40,7 @@ export const SignUpForm = () => {
 
   const onSubmit: SubmitHandler<IUserSignUp> = async (data) => {
     dispatch(signUp(data)).then(() => {
-      error && dispatch(updateUserName(data));
+      !error && dispatch(updateUserName(data));
     });
   };
 

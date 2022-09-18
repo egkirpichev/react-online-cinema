@@ -195,7 +195,7 @@ export const userSlice = createSlice({
     });
     builder.addCase(signUp.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.isLogged = true;
+      state.isLogged = false;
       state.name = payload.name;
       state.email = payload.email;
     });
@@ -268,20 +268,30 @@ export const userSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     });
+    builder.addCase(updateUserName.fulfilled, (state) => {
+      state.isLoading = false;
+      state.isLogged = true;
+    });
     builder.addCase(updateUserName.rejected, (state, { payload }) => {
       if (payload) {
-        state.isLoading = true;
+        state.isLoading = false;
         state.error = getFirebaseErrorMessage(payload);
       }
     });
-    builder.addCase(updateUserEmail.fulfilled, (state) => {
+    builder.addCase(updateUserEmail.pending, (state) => {
       state.isLoading = true;
+    });
+    builder.addCase(updateUserEmail.fulfilled, (state) => {
+      state.isLoading = false;
     });
     builder.addCase(updateUserEmail.rejected, (state, { payload }) => {
       if (payload) {
         state.isLoading = false;
         state.error = getFirebaseErrorMessage(payload);
       }
+    });
+    builder.addCase(updateUserPassword.pending, (state) => {
+      state.isLoading = true;
     });
     builder.addCase(updateUserPassword.fulfilled, (state) => {
       state.isLoading = false;

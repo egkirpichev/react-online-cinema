@@ -9,9 +9,11 @@
 
 <!-- PROJECT LOGO -->
 <br />
-  <a href="https://github.com/egkirpichev/react-online-cinema">
+  <div align="center">
+	<a href="https://github.com/egkirpichev/react-online-cinema">
     <img src="src/assets/icons/logo.svg" alt="Logo" width="80" height="80">
   </a>
+</div>
 
   <h3 align="center">React movie library</h3>
 
@@ -58,7 +60,6 @@
 - [![styled-components][styled-components]][styled-components-url]
 - [![Framer Motion][framer.com]][framer-url]
 - [![React Select][react-select.com]][react-select-url]
-- [![React Burger Menu][react-select.com]][react-select-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

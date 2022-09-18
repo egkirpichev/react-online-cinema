@@ -45,6 +45,8 @@
 
 A web application, clone of the Imdb database, which provides you with possibility to search though a vast movie databse, providing a several more features alongside which are going to be describeed below
 
+Deployment Link: [https://egkirpichev.github.io/react-online-cinema/](https://egkirpichev.github.io/react-online-cinema/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With

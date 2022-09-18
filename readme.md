@@ -99,17 +99,32 @@ To get a local copy of the app up and running follow these simple example steps.
 
 Upon entering the site you will land at the Homepage which provides you with opportunity to search through various movies and series with the help of The Open Movie Database (OMDb API).
 
+![image](https://user-images.githubusercontent.com/99477750/190917830-6cf6f179-8d8b-4be0-a954-e87efca0f84d.png)
+
 Upon clicking on the Trends link you will be navigated to the Trends page displaying current cinema trends. The page is also searchable.
+
+![image](https://user-images.githubusercontent.com/99477750/190917909-90d45ae2-b72b-475d-8ee8-1957d9e117f8.png)
 
 To narrow down your search, please access additional filtering options upon clicking on the Search Filters icon.
 
-Each movie has its own dedicated page, which provides you with all the relevant info on the particular entry, as well as the list of the specifically fit reccomendations.
+![image](https://user-images.githubusercontent.com/99477750/190917998-bf265245-ba2a-4d12-a9aa-cb464a91e53e.png)
+
+Each movie has its own dedicated page, which provides you with all the relevant info on the particular entry, as well as the list of the specifically tailored reccomendations.
+
+![image](https://user-images.githubusercontent.com/99477750/190918025-7d2f9092-49df-497b-9ae3-acd6d09cda2e.png)
 
 In order to get access to more features, you will have to create your own user account. For this proceed to the sign up page through the corresponding ink.
 
+![image](https://user-images.githubusercontent.com/99477750/190918086-59dde9d8-c10e-457b-b979-f5309d5cfd02.png)
+
 Upon registration you'll get access to more features. Such as the ability to form the list of your favourite movies.
 
+![image](https://user-images.githubusercontent.com/99477750/190918151-2f4af13f-28ea-47f8-bd28-0876bc08e47b.png)
+![image](https://user-images.githubusercontent.com/99477750/190918119-56832f66-75f1-4d85-9976-7f4a632e57fd.png)
+
 Adittionaly, application provides you with functionality to configure your user profile by changing your userName, e-mail, password or color mode.
+
+![image](https://user-images.githubusercontent.com/99477750/190918172-8f78d41c-158d-487e-afeb-cddca6b28f1d.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

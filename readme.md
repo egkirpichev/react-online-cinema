@@ -9,7 +9,6 @@
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
   <a href="https://github.com/egkirpichev/react-online-cinema">
     <img src="src/assets/icons/logo.svg" alt="Logo" width="80" height="80">
   </a>
@@ -72,15 +71,21 @@ To get a local copy of the app up and running follow these simple example steps.
 ### Installation
 
 1. Get a free API Key at [https://www.omdbapi.com/](https://www.omdbapi.com/)
+
 2. Clone the repo
+
    ```sh
    git clone https://github.com/egkirpichev/react-online-cinema.git
    ```
+
 3. Install NPM packages
+
    ```sh
    npm install
    ```
+
 4. Enter your API in `.env`
+
    ```js
    REACT_APP_API_KEY = "ENTER YOUR API";
    ```

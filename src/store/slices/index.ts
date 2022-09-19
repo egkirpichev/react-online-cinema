@@ -11,6 +11,7 @@ import searchSlice, {
   resetYearFilter,
   setFilters,
   setSearchRequest,
+  resetSearchSlice,
 } from "./searchSlice";
 import { getTrends, loadMoreTrends, searchTrends, resetTrendsSearch } from "./trendsSlice";
 import userSlice, {
@@ -43,6 +44,7 @@ export {
   getMovieById,
   getRecommendations,
   setSearchRequest,
+  resetSearchSlice,
   setFilters,
   resetTypeFilter,
   resetYearFilter,

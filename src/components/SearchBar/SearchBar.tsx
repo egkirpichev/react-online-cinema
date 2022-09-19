@@ -1,20 +1,29 @@
-import { useEffect } from "react";
+import { useMemo } from "react";
 import { useDebounce, useInput } from "hooks";
-import { useAppDispatch, useAppSelector, setSearchRequest } from "store";
+import { useAppDispatch, useAppSelector, setSearchRequest, resetSearchSlice } from "store";
 import { SearchFilters } from "components";
 import { StyledInput, StyledSearchBar } from "./styles";
+import { useLocation } from "react-router-dom";
 
 export const SearchBar = () => {
   const { isLightMode } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
   const movies = useAppSelector(({ persistedReducer }) => persistedReducer.movies);
   const trends = useAppSelector(({ persistedReducer }) => persistedReducer.trends);
-  const searchInput = useInput();
-  const searchRequestValue = useDebounce(searchInput.value, 1000);
+  const { pathname } = useLocation();
+  const { value, onChange, setInputValue } = useInput();
+  const searchRequestValue = useDebounce(value, 1000);
   const dispatch = useAppDispatch();
 
   const isError = !!movies.error || !!trends.error;
 
-  useEffect(() => {
+  useMemo(() => {
+    if (pathname) {
+      dispatch(resetSearchSlice());
+      setInputValue("");
+    }
+  }, [dispatch, pathname, setInputValue]);
+
+  useMemo(() => {
     dispatch(setSearchRequest(searchRequestValue));
   }, [dispatch, searchRequestValue]);
 
@@ -32,7 +41,8 @@ export const SearchBar = () => {
         $isError={isError}
         type="text"
         placeholder="Search"
-        {...searchInput}
+        value={value}
+        onChange={onChange}
       />
       <SearchFilters />
     </StyledSearchBar>

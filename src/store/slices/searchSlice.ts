@@ -28,8 +28,15 @@ export const searchSlice = createSlice({
       if (payload === "") {
         searchRequest.type = "";
         searchRequest.y = "";
-        searchRequest.page = "1";
       }
+    },
+    resetSearchSlice: ({ searchRequest, filters }) => {
+      searchRequest.s = "";
+      searchRequest.type = "";
+      searchRequest.y = "";
+      filters.sortBy = null;
+      filters.type = "";
+      filters.year = "";
     },
     setFilters: (
       { searchRequest, filters },
@@ -55,6 +62,12 @@ export const searchSlice = createSlice({
   },
 });
 
-export const { setSearchRequest, setFilters, resetTypeFilter, resetYearFilter, resetSorting } =
-  searchSlice.actions;
+export const {
+  setSearchRequest,
+  setFilters,
+  resetTypeFilter,
+  resetYearFilter,
+  resetSorting,
+  resetSearchSlice,
+} = searchSlice.actions;
 export default searchSlice.reducer;

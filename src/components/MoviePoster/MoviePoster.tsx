@@ -18,7 +18,7 @@ export const MoviePoster = ({ poster, id }: IProps) => {
   return (
     <Poster>
       <Badges>
-        {isInFavorites && <FavoriteBadge />}
+        {isInFavorites && <FavoriteBadge id={id} />}
         {isInTrends && <TrendingBadge />}
       </Badges>
 

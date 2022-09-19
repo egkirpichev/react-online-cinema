@@ -178,8 +178,8 @@ export const userSlice = createSlice({
     addToFavorites: (state, { payload }: PayloadAction<IMovieShort>) => {
       state.favorites.push(payload);
     },
-    removeFromFavorites: (state, { payload }: PayloadAction<IMovieShort>) => {
-      state.favorites = state.favorites.filter((movie) => movie.imdbID !== payload.imdbID);
+    removeFromFavorites: (state, { payload }: PayloadAction<string>) => {
+      state.favorites = state.favorites.filter((movie) => movie.imdbID !== payload);
     },
     searchInFavourites: (state, { payload }: PayloadAction<IRequestParams>) => {
       state.searchResults = state.favorites.filter((movie) =>

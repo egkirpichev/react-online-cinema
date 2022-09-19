@@ -15,6 +15,7 @@ export const Poster = styled.div`
 
 export const Badges = styled.div`
   position: absolute;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 10px;

@@ -21,7 +21,7 @@ export const MovieControl = ({ movie }: IProps) => {
         <ControlButton
           isInFavorites
           onClick={() => {
-            dispatch(removeFromFavorites(forFavourites));
+            dispatch(removeFromFavorites(movie.imdbID));
           }}
         >
           <BsFillBookmarkFill size={20} />

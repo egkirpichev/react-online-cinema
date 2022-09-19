@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { layout, LayoutProps } from "styled-system";
 
@@ -21,4 +22,14 @@ export const Badges = styled.div`
   gap: 10px;
   justify-content: space-between;
   padding: 10px;
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+
+  :hover {
+    opacity: 0.7;
+  }
 `;

@@ -1,15 +1,18 @@
 import { checkIfInFavorites } from "utils";
 import { FavoriteBadge, TrendingBadge } from "components";
-import { Badges, Poster, StyledMoviePoster } from "./styles";
+import { Badges, Poster, StyledLink, StyledMoviePoster } from "./styles";
 import { noPoster } from "assets";
 import { useAppSelector } from "store";
+import { generatePath } from "react-router-dom";
+import { ROUTE } from "router";
 
 interface IProps {
   poster: string;
   id: string;
+  isLinkDisabled?: boolean;
 }
 
-export const MoviePoster = ({ poster, id }: IProps) => {
+export const MoviePoster = ({ poster, id, isLinkDisabled }: IProps) => {
   const { favorites } = useAppSelector(({ persistedReducer }) => persistedReducer.user);
   const { movieList } = useAppSelector(({ persistedReducer }) => persistedReducer.trends);
   const isInFavorites = checkIfInFavorites(favorites, id);
@@ -21,11 +24,19 @@ export const MoviePoster = ({ poster, id }: IProps) => {
         {isInFavorites && <FavoriteBadge id={id} />}
         {isInTrends && <TrendingBadge />}
       </Badges>
-
-      <StyledMoviePoster
-        maxHeight={{ S: "279px", XL: "357px" }}
-        src={poster === "N/A" ? noPoster : poster}
-      />
+      {isLinkDisabled ? (
+        <StyledMoviePoster
+          maxHeight={{ S: "279px", XL: "357px" }}
+          src={poster === "N/A" ? noPoster : poster}
+        />
+      ) : (
+        <StyledLink to={generatePath(`/${ROUTE.MOVIE}`, { imdbID: id })}>
+          <StyledMoviePoster
+            maxHeight={{ S: "279px", XL: "357px" }}
+            src={poster === "N/A" ? noPoster : poster}
+          />
+        </StyledLink>
+      )}
     </Poster>
   );
 };

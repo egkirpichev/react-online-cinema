@@ -32,7 +32,7 @@ export const MovieCard = ({ movie, movieFactsList }: IProps) => {
   return (
     <StyledMovieCard gridTemplateColumns={{ S: "1fr 2fr", XL: "20% 80%" }}>
       <Control>
-        <MoviePoster poster={movie.poster} id={movie.imdbID} />
+        <MoviePoster isLinkDisabled={true} poster={movie.poster} id={movie.imdbID} />
         <MovieControl movie={movie} />
       </Control>
       <Description maxWidth={{ S: "80%" }}>

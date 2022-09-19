@@ -37,16 +37,6 @@ export const MovieTitle = styled(Link)<IProps>`
   }
 `;
 
-export const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-
-  :hover {
-    opacity: 0.7;
-  }
-`;
-
 export const Released = styled(Body2)<IProps>`
   color: ${({ $isLightMode }) => ($isLightMode ? Color.Secondary : Color.Light)};
 `;

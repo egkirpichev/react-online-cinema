@@ -9,14 +9,12 @@ import { GlobalStyles } from "./ui";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <HashRouter>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <GlobalStyles />
-          <App />
-        </PersistGate>
-      </Provider>
-    </HashRouter>
-  </React.StrictMode>,
+  <HashRouter>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <GlobalStyles />
+        <App />
+      </PersistGate>
+    </Provider>
+  </HashRouter>,
 );

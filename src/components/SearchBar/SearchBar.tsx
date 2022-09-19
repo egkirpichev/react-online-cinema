@@ -1,6 +1,13 @@
 import { useMemo } from "react";
 import { useDebounce, useInput } from "hooks";
-import { useAppDispatch, useAppSelector, setSearchRequest, resetSearchSlice } from "store";
+import {
+  useAppDispatch,
+  useAppSelector,
+  setSearchRequest,
+  resetSearchSlice,
+  resetTrendsSearch,
+  resetMoviesSearch,
+} from "store";
 import { SearchFilters } from "components";
 import { StyledInput, StyledSearchBar } from "./styles";
 import { useLocation } from "react-router-dom";
@@ -20,6 +27,8 @@ export const SearchBar = () => {
     if (pathname) {
       dispatch(resetSearchSlice());
       setInputValue("");
+      dispatch(resetTrendsSearch());
+      dispatch(resetMoviesSearch());
     }
   }, [dispatch, pathname, setInputValue]);
 

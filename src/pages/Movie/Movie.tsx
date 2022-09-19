@@ -26,11 +26,10 @@ export const Movie = () => {
     return <SearchError message={error} />;
   }
 
-  if (movieCard && movieFacts)
-    return (
-      <>
-        <MovieCard movie={movieCard} movieFactsList={movieFacts} />
-        <Recommendations />
-      </>
-    );
+  return (
+    <>
+      {movieCard && movieFacts && <MovieCard movie={movieCard} movieFactsList={movieFacts} />}
+      <Recommendations />
+    </>
+  );
 };

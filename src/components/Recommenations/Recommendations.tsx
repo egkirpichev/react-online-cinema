@@ -19,11 +19,13 @@ export const Recommendations = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    dispatch(getRecommendations(recommendation));
+    if (!recommendedMovies.length && !areRecommendationsLoading) {
+      dispatch(getRecommendations(recommendation));
+    }
     if (wrapperRef.current) {
       setScrollConstraint(wrapperRef.current.scrollWidth - wrapperRef.current.offsetWidth);
     }
-  }, [dispatch, recommendation]);
+  }, [dispatch, recommendation, areRecommendationsLoading, recommendedMovies.length]);
 
   if (areRecommendationsLoading) {
     return <SearchSpinner />;

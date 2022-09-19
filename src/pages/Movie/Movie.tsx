@@ -2,7 +2,6 @@ import { SearchSpinner, SearchError, MovieCard, Recommendations } from "componen
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch, getMovieById } from "store";
-import { IMovieCard, IMovieFactsList } from "types";
 
 export const Movie = () => {
   const { isLoading, error, movieCard, movieFacts } = useAppSelector(
@@ -27,10 +26,11 @@ export const Movie = () => {
     return <SearchError message={error} />;
   }
 
-  return (
-    <>
-      <MovieCard movie={movieCard as IMovieCard} movieFactsList={movieFacts as IMovieFactsList} />
-      <Recommendations />
-    </>
-  );
+  if (movieCard && movieFacts)
+    return (
+      <>
+        <MovieCard movie={movieCard} movieFactsList={movieFacts} />
+        <Recommendations />
+      </>
+    );
 };

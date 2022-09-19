@@ -24,6 +24,7 @@ export const Container = styled.div<SpaceProps>`
 export const Header = styled.header<FlexboxProps>`
   display: flex;
   justify-content: center;
+  padding: 10px 0px;
   ${flexbox}
 `;
 

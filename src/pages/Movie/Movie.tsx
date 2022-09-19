@@ -27,9 +27,12 @@ export const Movie = () => {
   }
 
   return (
-    <>
-      {movieCard && movieFacts && <MovieCard movie={movieCard} movieFactsList={movieFacts} />}
-      <Recommendations />
-    </>
+    movieCard &&
+    movieFacts && (
+      <>
+        <MovieCard movie={movieCard} movieFactsList={movieFacts} />
+        <Recommendations />
+      </>
+    )
   );
 };

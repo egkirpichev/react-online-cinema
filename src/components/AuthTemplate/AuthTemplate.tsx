@@ -9,8 +9,8 @@ export const AuthTemplate = () => {
   return (
     <Container
       padding={{
-        S: `${Space.XL} ${Space.L} ${Space.XXL}`,
-        XXL: `${Space.XL} ${Space.LARGEST}`,
+        S: `${Space.L} ${Space.L} ${Space.XXL}`,
+        XXL: `${Space.L} ${Space.LARGEST}`,
       }}
     >
       <Header justifyContent={{ S: "start" }}>

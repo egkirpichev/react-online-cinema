@@ -41,6 +41,10 @@ export const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;
   text-decoration: none;
+
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 export const Released = styled(Body2)<IProps>`

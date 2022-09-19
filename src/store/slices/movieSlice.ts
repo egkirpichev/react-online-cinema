@@ -66,6 +66,7 @@ export const movieSlice = createSlice({
     builder.addCase(getMovieById.pending, (state) => {
       state.isLoading = true;
       state.error = null;
+      state.recommendedMovies = [];
     });
     builder.addCase(getMovieById.fulfilled, (state, { payload }) => {
       state.movieCard = getMovieCardInfo(payload);
